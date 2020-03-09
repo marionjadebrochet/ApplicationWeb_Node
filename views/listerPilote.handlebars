@@ -1,0 +1,19 @@
+<h1> Gestion des Pilotes </h1>
+<a href="/ajouterPilote/"><img src="/image/act_add.png"><p>Ajouter un pilote</p></a>
+
+<table>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Actions</th>
+      </tr>
+      {{#each listePilote}}
+        <tr>
+            <td>{{nom}}</td>
+            <td>{{prenom}}</td>
+            <td>{{formatDate date 'DD/MM/YYYY' }} </td>
+            <td><a href="/modifierPilote/"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerPilote/"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+        </tr>
+      {{/each}}
+</table>

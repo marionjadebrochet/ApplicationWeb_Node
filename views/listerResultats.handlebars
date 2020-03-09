@@ -1,0 +1,14 @@
+<div class="resultat">
+  <img src="/image/cat_resultat.png">
+  <h1>Resultats</h1>
+  <p>Selectionner un grand prix :</p>
+
+  <select name="gp" id="gp_select">
+      {{#each listeGrandPrix}}
+      <option value="{{num}}">{{nom}}</option>
+      {{/each}}
+  </select>
+</br>
+</br>
+  <button type="submit" name="valider">VALIDER</button>
+</div>
