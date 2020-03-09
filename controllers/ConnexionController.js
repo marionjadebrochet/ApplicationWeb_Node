@@ -21,19 +21,26 @@ module.exports.Connexion = function(request, response){
 
 module.exports.VerifConnexion = function(request, response){
    response.title = 'Connexion';
-   let login = request.body.mdp,
-      mdp = request.body.login;
- //// Gestion du mot de passe ////
+   let login = request.body.login,
+      mdp = request.body.mdp;
 
-
-    model.verifLogin(login, mdp, function (err, result) {
+    model.verifLogin(login, function (err, result) {
         if (err) {
             // gestion de l'erreur
             console.log(err);
             return;
         }
-        response.estConnecter = result;
-        //console.log(result);
+        //// dechiffrage du mot de passe récupéré dans la bd ////
+        var Cryptr = require('cryptr');
+        let cryptr = new Cryptr('MaSuperCléDeChiffrementDeouF'); //clé de chiffrement ne surtout pas modifier
+        let decryptedString = cryptr.decrypt(result[0].passwd);
+        console.log(decryptedString);
+        if (result[0].login == login && decryptedString == mdp) {
+          response.estConnecter = true;
+          request.session.login = login;
+        } else {
+          response.estConnecter = false;
+        }
 response.render('connexion', response);
 });
 };

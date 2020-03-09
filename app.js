@@ -10,8 +10,6 @@ let express         = require('express'),
 
 let app = express();
 
-let cryptr = new Cryptr('MaSuperCléDeChiffrementDeouF'); //clé de chiffrement ne surtout pas modifier
-
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', 6900);

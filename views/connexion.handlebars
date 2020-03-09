@@ -1,1 +1,17 @@
 <h1>Administration</h1>
+
+{{#if session.login}}
+T'es Co
+{{else}}
+<form action="/seConnecter" method="POST">
+  <div class="row">
+    <label class="auto" for="Login">Login : </label>
+    <input class="auto" type="text" name="login" id="Login" />
+  </div>
+  <div class="row">
+    <label class="auto" for="Mdp">Mot de passe : </label>
+    <input class="auto" type="password" name="mdp" id="mdp" />
+  </div>
+  <button type="submit" name="valider">Connexion</button>
+</form>
+{{/if}}
