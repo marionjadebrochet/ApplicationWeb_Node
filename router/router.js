@@ -5,6 +5,7 @@ let EcurieController = require('./../controllers/EcurieController');
 let PiloteController = require('./../controllers/PiloteController');
 let CircuitController = require('./../controllers/CircuitController');
 let SponsorsController = require('./../controllers/SponsorsController');
+let ConnexionController = require('./../controllers/ConnexionController');
 
 // Routes
 module.exports = function(app){
