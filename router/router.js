@@ -20,18 +20,27 @@ module.exports = function(app){
 
 // pilotes
     app.get('/listerPilote', PiloteController.Pilote);
+    app.get('/ajouterPilote', PiloteController.Ajouter);
+    app.get('/modifierPilote', PiloteController.Modifier);
+
 
  // circuits
    app.get('/listerCircuits', CircuitController.Circuit);
+   app.get('/ajouterCircuit', CircuitController.Ajouter);
+   app.get('/modifierCircuit', CircuitController.Modifier);
 
 // Ecuries
    app.get('/listerEcurie', EcurieController.Ecurie);
+   app.get('/ajouterEcurie', EcurieController.Ajouter);
+   app.get('/modifierEcurie', EcurieController.Modifier);
 
  //Résultats
    app.get('/listerResultats', ResultatController.DescResultat);
 
 //Sponsors
    app.get('/sponsors', SponsorsController.Sponsor);
+   app.get('/ajouterSponsors', SponsorsController.Ajouter);
+   app.get('/modifierSponsors', SponsorsController.Modifier);
 
 // tout le reste
 app.get('*', HomeController.NotFound);

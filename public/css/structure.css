@@ -69,10 +69,7 @@ border-radius:15px;
 .myboth  {
 clear:both;
 }
-a  {
-text-decoration:none;
-color:#0072ff;
-}
+
 .lienNotFound {
 align:center;
 background-color: #1d81b1;
@@ -99,11 +96,14 @@ width: 300px;
 text-align: center;
 }
 
+/* POUR TOUS LES FORMULAIRE */
+
 button {
   color: white;
   background-color: red;
   width: 70px;
   height: 30px;
+  padding: 2px;
 }
 
 button:hover {
@@ -119,15 +119,71 @@ form {
 	align-items: center;
 	flex-direction: column;
 }
+
 .row {
-	resize: horizontal;
-	overflow: hidden;
 	display: flex;
+  padding: 5px;
 }
+
 .row > label{
 	text-align: left;
 }
+
+input, textarea, select  {
+  border-radius: 10px;
+}
+
+input[type=number]{
+width: 56px;
+margin-right: 2px;
+margin-left: 2px;
+}
+
+.autoPetit {
+  width: 180px;
+}
+
 .auto {
 	width: 200px;
 	flex:auto;
 }
+
+
+/* TAILLE DE TEXTE */
+
+a  {
+text-decoration:none;
+color:#0072ff;
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+}
+
+label {
+  font-weight: bold;
+}
+
+/* TABLEAU */
+
+
+table {
+ border-collapse:collapse;
+ width:90%;
+ }
+th, td {
+ border:1px solid black;
+ width:20%;
+ }
+ th {
+   font-weight: bold;
+   text-align: center;
+   padding: 10px;
+   background-color: #7D7D80;
+   color: white;
+}
+td {
+ text-align:center;
+ background-color: #E1E2E6;
+ }

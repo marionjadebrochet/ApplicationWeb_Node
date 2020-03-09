@@ -15,3 +15,32 @@ module.exports.Pilote = 	function(request, response){
        response.render('listerPilote', response);
 });
 };
+
+module.exports.Ajouter = 	function(request, response){
+
+   model.getListePilote( function (err, result) {
+       if (err) {
+           // gestion de l'erreur
+           console.log(err);
+           return;
+       }
+       response.listePilote = result;
+       //console.log(result);
+       response.render('ajouterPilote', response);
+});
+};
+
+
+module.exports.Modifier = 	function(request, response){
+
+   model.getListePilote( function (err, result) {
+       if (err) {
+           // gestion de l'erreur
+           console.log(err);
+           return;
+       }
+       response.listePilote = result;
+       //console.log(result);
+       response.render('modifierPilote', response);
+});
+};
