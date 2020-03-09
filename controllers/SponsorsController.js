@@ -15,3 +15,31 @@ module.exports.Sponsor = 	function(request, response){
        response.render('ListerSponsor', response);
 });
 };
+
+module.exports.Ajouter = 	function(request, response){
+
+   model.getListeSponsor( function (err, result) {
+       if (err) {
+           // gestion de l'erreur
+           console.log(err);
+           return;
+       }
+       response.listeSponsor = result;
+       //console.log(result);
+       response.render('AjouterSponsors', response);
+});
+};
+
+module.exports.Modifier = 	function(request, response){
+
+   model.getListeSponsor( function (err, result) {
+       if (err) {
+           // gestion de l'erreur
+           console.log(err);
+           return;
+       }
+       response.listeSponsor = result;
+       //console.log(result);
+       response.render('ModifierSponsors', response);
+});
+};

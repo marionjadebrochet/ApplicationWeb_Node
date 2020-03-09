@@ -15,3 +15,31 @@ module.exports.Circuit = 	function(request, response){
        response.render('listerCircuit', response);
 });
 };
+
+module.exports.Ajouter = 	function(request, response){
+
+   model.getListeCircuit( function (err, result) {
+       if (err) {
+           // gestion de l'erreur
+           console.log(err);
+           return;
+       }
+       response.listeCircuit = result;
+       //console.log(result);
+       response.render('ajouterCircuit', response);
+});
+};
+
+module.exports.Modifier = 	function(request, response){
+
+   model.getListeCircuit( function (err, result) {
+       if (err) {
+           // gestion de l'erreur
+           console.log(err);
+           return;
+       }
+       response.listeCircuit = result;
+       //console.log(result);
+       response.render('modifierCircuit', response);
+});
+};
