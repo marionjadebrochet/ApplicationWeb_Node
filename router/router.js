@@ -13,6 +13,10 @@ module.exports = function(app){
     app.get('/', HomeController.Index);
     app.get('/accueil', HomeController.Index);
 
+// connexion
+    app.get('/connexion', ConnexionController.Connexion);
+    app.get('/seConnecter', ConnexionController.VerifConnexion);
+
 // pilotes
     app.get('/listerPilote', PiloteController.Pilote);
 
