@@ -4,13 +4,13 @@ let express         = require('express'),
     bodyParser      = require('body-parser'), //pour récupérer les résultats des post
     http = require('http'),
     path = require('path'),
-    async = require('async');
-    //Cryptr = require('cryptr');
+    async = require('async'),
+    Cryptr = require('cryptr');
 
 
 let app = express();
 
-//let cryptr = new Cryptr('MaSuperCléDeChiffrementDeouF'); //clé de chiffrement ne surtout pas modifier
+let cryptr = new Cryptr('MaSuperCléDeChiffrementDeouF'); //clé de chiffrement ne surtout pas modifier
 
 
 app.use(bodyParser.urlencoded({extended: true}));
