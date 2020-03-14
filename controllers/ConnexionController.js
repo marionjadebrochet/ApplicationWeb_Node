@@ -6,21 +6,11 @@ let model       = require('../models/connexion.js');
 
 module.exports.Connexion = function(request, response){
    response.title = 'Connexion';
-//
-//     model.VerifLogin(function (err, result) {
-//         if (err) {
-//             // gestion de l'erreur
-//             console.log(err);
-//             return;
-//         }
-//         response.listeEcurie = result;
-//         //console.log(result);
    response.render('connexion', response);
-// });
 };
 
 module.exports.VerifConnexion = function(request, response){
-   response.title = 'Connexion';
+   response.title = 'Bienvenue sur le site de WROOM (IUT du Limousin).';
    let login = request.body.login,
       mdp = request.body.mdp;
 
@@ -33,14 +23,26 @@ module.exports.VerifConnexion = function(request, response){
         //// dechiffrage du mot de passe récupéré dans la bd ////
         var Cryptr = require('cryptr');
         let cryptr = new Cryptr('MaSuperCléDeChiffrementDeouF'); //clé de chiffrement ne surtout pas modifier
-        let decryptedString = cryptr.decrypt(result[0].passwd);
-        console.log(decryptedString);
-        if (result[0].login == login && decryptedString == mdp) {
-          response.estConnecter = true;
-          request.session.login = login;
-        } else {
-          response.estConnecter = false;
-        }
-response.render('connexion', response);
+
+        result.forEach( function(log, index) {
+          let decryptedString = cryptr.decrypt(log.passwd);
+
+          if (log.login == login && decryptedString == mdp)
+            request.session.login = login;
+        });
+response.render('home', response);
 });
+
+};
+
+module.exports.deconnexion = function(request, response){
+   response.title = 'connexion';
+   // destruction de la varible de session
+   request.session.destroy(function(err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+  });
+  response.render('connexion', response);
 };

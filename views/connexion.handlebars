@@ -1,17 +1,26 @@
+{{#if session.login}}
+  <meta http-equiv="refresh" content="0; URL=accueil">
+{{else}}
+
 <h1>Administration</h1>
 
-{{#if session.login}}
-T'es Co
-{{else}}
 <form action="/seConnecter" method="POST">
   <div class="row">
     <label class="auto" for="Login">Login : </label>
     <input class="auto" type="text" name="login" id="Login" />
   </div>
   <div class="row">
+    <br /><br />
     <label class="auto" for="Mdp">Mot de passe : </label>
     <input class="auto" type="password" name="mdp" id="mdp" />
   </div>
+
   <button type="submit" name="valider">Connexion</button>
 </form>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#menu').remove();
+  });
+</script>
 {{/if}}

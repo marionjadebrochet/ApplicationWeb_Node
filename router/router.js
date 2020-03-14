@@ -17,6 +17,7 @@ module.exports = function(app){
 // connexion
     app.get('/connexion', ConnexionController.Connexion);
     app.post('/seConnecter', ConnexionController.VerifConnexion);
+    app.get('/deconnexion', ConnexionController.deconnexion);
 
 // pilotes
     app.get('/listerPilote', PiloteController.Pilote);

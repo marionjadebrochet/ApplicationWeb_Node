@@ -49,9 +49,14 @@ font-size: 20px;
 }
 
 #menu {
-text-align: center;
+display: flex;
+/* text-align: center; */
+flex-direction: row;
+justify-content: space-between;
 padding: 8px;
 }
+
+
 
 #LogoNode {
   max-height: 20%;
