@@ -18,7 +18,7 @@ module.exports.verifLogin = function (login, callback) {
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
 						let sql ="SELECT login, passwd FROM login"
-            + " WHERE login = \'" + login + "\'";
+            + " WHERE login = " + connexion.escape(login);
 
             connexion.query(sql, callback);
 

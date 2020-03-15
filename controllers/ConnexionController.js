@@ -27,8 +27,12 @@ module.exports.VerifConnexion = function(request, response){
         result.forEach( function(log, index) {
           let decryptedString = cryptr.decrypt(log.passwd);
 
-          if (log.login == login && decryptedString == mdp)
+          if (log.login == login && decryptedString == mdp) {
             request.session.login = login;
+            console.log('Connection autorisée pour ' + login);
+          } else {
+            console.log('Connection refusée ...')
+          }
         });
 response.render('home', response);
 });
@@ -37,6 +41,7 @@ response.render('home', response);
 
 module.exports.deconnexion = function(request, response){
    response.title = 'connexion';
+   var login = request.session.login;
    // destruction de la varible de session
    request.session.destroy(function(err) {
     if (err) {
@@ -44,5 +49,6 @@ module.exports.deconnexion = function(request, response){
       return;
     }
   });
+  console.log(login + " c'est déconnecté");
   response.render('connexion', response);
 };
