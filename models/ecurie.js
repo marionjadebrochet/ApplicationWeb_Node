@@ -32,15 +32,16 @@ module.exports.getListeEcurie = function (callback) {
 			module.exports.supEcu = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
-            let sql1 ="update pilote set ecunum = 'NULL' where ecunum =" + connexion.escape(data);
+            let sql1 ="update pilote set ecunum = NULL where ecunum =" + connexion.escape(data);
             let sql2 = "delete from  voiture where ecunum =" + connexion.escape(data);
             let sql3 = "delete from  finance  where ecunum =" + connexion.escape(data);
             let sql4 = "delete from  ecurie  where ecunum =" + connexion.escape(data);
             connexion.query(sql1);
             connexion.query(sql2);
             connexion.query(sql3);
-            connexion.query(sql4, callback); //ou callback à la derniere
+            connexion.query(sql4, callback);
             connexion.release();
+console.log("je passe ici aussi");
         }
     });
 }

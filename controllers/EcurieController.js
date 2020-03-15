@@ -70,7 +70,7 @@ async.parallel ([
         console.log(err);
         return;
     }
-    //console.log(result);
+    console.log("je passe ici");
 
     //Pas besoin t'as pas d'infos utile à mettre sur ta page que renvoie cette requête
     //response.supEcurie = result;
