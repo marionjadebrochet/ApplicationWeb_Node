@@ -32,15 +32,18 @@
 	</div>
 	<div id="contenu">
 
-			{{#if session.login}}
-				{{{body}}}
+		{{{body}}}
+		<!-- Pour faire fonctionner la connexion
+						décommenter les lignes ci-dessous et enlever l'anti-slash devant les body
+		{{#if session.login}}
+			\{{{body}}}
+		{{else}}
+			{{#ifCond title '==' 'Connexion'}}
+				\{{{body}}}
 			{{else}}
-				{{#ifCond title '==' 'Connexion'}}
-					{{{body}}}
-				{{else}}
-			  	<meta http-equiv="refresh" content="0; URL=connexion">
-				{{/ifCond}}
-			{{/if}}
+				<meta http-equiv="refresh" content="0; URL=connexion">
+			{{/ifCond}}
+		{{/if}} -->
 
 	</div>
 				<div id="footer">

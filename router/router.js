@@ -16,13 +16,14 @@ module.exports = function(app){
 
 // connexion
     app.get('/connexion', ConnexionController.Connexion);
-    app.post('/seConnecter', ConnexionController.VerifConnexion);
+    app.post('/accueil', ConnexionController.VerifConnexion);
     app.get('/deconnexion', ConnexionController.deconnexion);
 
 // pilotes
     app.get('/listerPilote', PiloteController.Pilote);
     app.get('/ajouterPilote', PiloteController.Ajouter);
     app.get('/modifierPilote', PiloteController.Modifier);
+    app.post('/listerPilote', PiloteController.Ajout);
 
 
  // circuits
