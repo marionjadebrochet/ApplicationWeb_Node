@@ -43,3 +43,25 @@ module.exports.Modifier = 	function(request, response){
        response.render('modifierEcurie', response);
 });
 };
+
+
+module.exports.Supprimer = 	function(request, response){
+let data = request.params.num;
+async.parallel ([
+  function (callback) {
+    model.supEcu(data, function (err, result) {
+      callback(null, result) });
+  },
+],
+  function (err, result){
+    if (err) {
+        // gestion de l'erreur
+        console.log(err);
+        return;
+    }
+    console.log(result);
+    response.supEcurie = result;
+    response.render('supprimerEcurie', response);
+  }
+); //fin async
+};

@@ -1,5 +1,5 @@
 let model = require('../models/resultat.js');
-
+var async = require('async');
   // //////////////////////////L I S T E R    R E S U L T A T S
 
 module.exports.DescResultat = 	function(request, response){
