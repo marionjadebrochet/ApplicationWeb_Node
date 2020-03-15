@@ -40,4 +40,4 @@ module.exports.getNationalite = function (callback) {
 			connexion.release();
 		}
 	});
-}
+};

@@ -26,17 +26,19 @@ module.exports.getListeEcurie = function (callback) {
             connexion.release();
          }
       });
-}
+}; // T'AVAIS OUBLIE LE POINT VIRGULE, JE l'ECRIS EN MAJUSCULE POUR ÊTRE SUR QUE TU LE VOIS MDRR
+
+//le 'data' de t'as fonction contiens donc le num passé dans l'adresse
 			module.exports.supEcu = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
-            let sql1 ="update pilote set ecunum = NULL where ecunum =" + connexion.escape(data);
+            let sql1 ="update pilote set ecunum = 'NULL' where ecunum =" + connexion.escape(data);
             let sql2 = "delete from  voiture where ecunum =" + connexion.escape(data);
             let sql3 = "delete from  finance  where ecunum =" + connexion.escape(data);
             let sql4 = "delete from  ecurie  where ecunum =" + connexion.escape(data);
-            connexion.query(sql1, callback);
-            connexion.query(sql2, callback);
-            connexion.query(sql3, callback);
+            connexion.query(sql1);
+            connexion.query(sql2);
+            connexion.query(sql3);
             connexion.query(sql4, callback); //ou callback à la derniere
             connexion.release();
         }

@@ -13,7 +13,7 @@ module.exports.VerifConnexion = function(request, response){
    response.title = 'Bienvenue sur le site de WROOM (IUT du Limousin).';
    let login = request.body.login,
       mdp = request.body.mdp;
-
+      
     model.verifLogin(login, function (err, result) {
         if (err) {
             // gestion de l'erreur
@@ -24,6 +24,7 @@ module.exports.VerifConnexion = function(request, response){
         var Cryptr = require('cryptr');
         let cryptr = new Cryptr('MaSuperCléDeChiffrementDeouF'); //clé de chiffrement ne surtout pas modifier
 
+        // S'il y a plusieurs login pareils ça va tester pour tous, si le mot de passe correspond
         result.forEach( function(log, index) {
           let decryptedString = cryptr.decrypt(log.passwd);
 
