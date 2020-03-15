@@ -17,3 +17,11 @@
         </tr>
       {{/each}}
 </table>
+
+{{#if ajout_effetue}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("Le nouveau pilote a bien été ajouté !");
+  });
+</script>
+{{/if}}

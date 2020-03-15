@@ -17,8 +17,8 @@ module.exports.getListeEcurie = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT e.ECUNOM as nom, e.ECUNOMDIR as dir, e.ECUPOINTS as point FROM ecurie e ORDER BY `nom` ASC ";
-
+						let sql ="SELECT ecunum, ecunom as nom, ecunomdir as dir, ecupoints as point "
+										+ "FROM ecurie";
             //console.log (sql);
             connexion.query(sql, callback);
 

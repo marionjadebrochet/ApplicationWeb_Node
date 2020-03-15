@@ -26,4 +26,18 @@ module.exports.getListePilote = function (callback) {
             connexion.release();
          }
       });
+};
+
+module.exports.getNationalite = function (callback) {
+
+	db.getConnection(function(err, connexion){
+		if(!err){
+
+			let sql = "SELECT paynum, paynat FROM pays ORDER BY paynat";
+
+			connexion.query(sql, callback);
+
+			connexion.release();
+		}
+	});
 }

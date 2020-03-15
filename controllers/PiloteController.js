@@ -1,9 +1,12 @@
-let model = require('../models/pilote.js');
+let model = require('../models/pilote.js'),
+    modelEcurie = require('../models/ecurie.js');
+
+var async = require('async');
 
 // ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
 
 module.exports.Pilote = 	function(request, response){
-
+  response.title = 'Pilote';
    model.getListePilote( function (err, result) {
        if (err) {
            // gestion de l'erreur
@@ -17,17 +20,56 @@ module.exports.Pilote = 	function(request, response){
 };
 
 module.exports.Ajouter = 	function(request, response){
+  response.title = 'Ajouter un pilote';
 
-   model.getListePilote( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listePilote = result;
-       //console.log(result);
-       response.render('ajouterPilote', response);
-});
+  async.parallel ([
+    function (callback) {
+      model.getNationalite( function (err, result) {
+        callback(null, result) });
+    }, //result[0] : nationalite
+    function(callback) {
+      modelEcurie.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    }, //result[1] : ecurie
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.nationalite = result[0];
+      response.nomEcurie = result[1];
+      response.render('ajouterPilote', response);
+    }
+  ); //fin async
+};
+
+module.exports.Ajout = 	function(request, response){
+  response.title = 'Pilote';
+
+  async.parallel ([
+    function (callback) {
+      model.getNationalite( function (err, result) {
+        callback(null, result) });
+    }, //result[0] : nationalite
+    function(callback) {
+      model.getListePilote( function (err, result) {
+        callback(null, result) });
+    }, //result[1] : listePilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.nationalite = result[0];
+      response.listePilote = result[1];
+      response.ajout_effetue = true;
+      response.render('listerPilote', response);
+    }
+  ); //fin async
 };
 
 

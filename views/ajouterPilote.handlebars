@@ -1,6 +1,6 @@
 <h1> Ajouter un Pilote </h1>
 
-<form action="#" method="POST">
+<form action="/listerPilote" method="POST">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
     <input class="auto" type="text" name="nom" id="Nom" />
@@ -18,13 +18,17 @@
   <div class="row">
     <label class="auto" for="Natio">Nationalité</label>
     <select class="auto" name="natio">
-
+      {{#each nationalite}}
+      <option value="{{this.paynum}}">{{this.paynat}}</option>
+      {{/each}}
     </select>
   </div>
   <div class="row">
     <label class="auto" for="Ecurie">Ecurie</label>
     <select class="auto" name="ecurie">
-
+      {{#each nomEcurie}}
+      <option value="{{this.ecunum}}">{{this.nom}}</option>
+      {{/each}}
     </select>
   </div>
   <div class="row">
