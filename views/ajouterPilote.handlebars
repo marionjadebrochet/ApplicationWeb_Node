@@ -11,7 +11,7 @@
   </div>
   <div class="row">
     <label class="auto" for="Date">Date de naissance</label>
-    <input class="auto" type="date" name="jour" id="jour" required /> 
+    <input class="auto" type="date" name="jour" id="jour" required />
   </div>
   <div class="row">
     <label class="auto" for="Natio">Nationalité</label>
@@ -24,6 +24,7 @@
   <div class="row">
     <label class="auto" for="Ecurie">Ecurie</label>
     <select class="auto" name="ecurie">
+      <option value="">pas d'écurie</option>
       {{#each nomEcurie}}
       <option value="{{this.ecunum}}">{{this.nom}}</option>
       {{/each}}

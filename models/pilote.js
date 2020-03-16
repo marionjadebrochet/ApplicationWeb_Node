@@ -49,8 +49,9 @@ module.exports.ajouterPilote = function (data, callback) {
 			let sql = "insert into pilote set "
 			 	 			+ "paynum=" + connexion.escape(data.natio)
 						 	+ ", pilnom=" + connexion.escape(data.nom)
-							+ ", ecunum=" + connexion.escape(data.ecurie)
 							+ ", pilprenom=" + connexion.escape(data.prenom);
+							if (data.ecurie != '')
+								sql = sql + ", ecunum=" + connexion.escape(data.ecurie);
 							if (data.point != '')
 								sql = sql + ", pilpoints=" + connexion.escape(data.point);
 							sql = sql + ", piltaille=" + connexion.escape(data.taille)
