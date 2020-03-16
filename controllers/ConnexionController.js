@@ -13,7 +13,7 @@ module.exports.VerifConnexion = function(request, response){
    response.title = 'Bienvenue sur le site de WROOM (IUT du Limousin).';
    let login = request.body.login,
       mdp = request.body.mdp;
-      
+
     model.verifLogin(login, function (err, result) {
         if (err) {
             // gestion de l'erreur
@@ -51,5 +51,5 @@ module.exports.deconnexion = function(request, response){
     }
   });
   console.log(login + " c'est déconnecté");
-  response.render('connexion', response);
+  response.render('home', response);
 };
