@@ -1,0 +1,26 @@
+<h1> Gestion des Sponsors </h1>
+<a href="/ajouterSponsor/"><img src="/image/act_add.png"><p>Ajouter un sponsor</p></a>
+
+<table>
+      <tr>
+        <th>Nom</th>
+        <th>Activité</th>
+        <th>Actions</th>
+      </tr>
+      {{#each listeSponsor}}
+        <tr>
+            <td>{{nom}}</td>
+            <td>{{act}}</td>
+            <td><a href="/modifierSponsors"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerSponsor/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+        </tr>
+      {{/each}}
+</table>
+
+{{#if est_supprime}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("Le sponsor a bien été supprimé");
+    document.location.href="/listerSponsors";
+  });
+</script>
+{{/if}}

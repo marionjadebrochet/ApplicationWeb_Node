@@ -26,7 +26,7 @@ module.exports.getListeEcurie = function (callback) {
             connexion.release();
          }
       });
-}; // T'AVAIS OUBLIE LE POINT VIRGULE, JE l'ECRIS EN MAJUSCULE POUR ÊTRE SUR QUE TU LE VOIS MDRR
+};
 
 //le 'data' de t'as fonction contiens donc le num passé dans l'adresse
 			module.exports.supEcu = function (data, callback) {
@@ -41,7 +41,7 @@ module.exports.getListeEcurie = function (callback) {
             connexion.query(sql3);
             connexion.query(sql4, callback);
             connexion.release();
-console.log("je passe ici aussi");
+
         }
     });
 }

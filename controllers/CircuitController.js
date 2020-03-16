@@ -16,30 +16,32 @@ module.exports.Circuit = 	function(request, response){
 });
 };
 
-module.exports.Ajouter = 	function(request, response){
-
-   model.getListeCircuit( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeCircuit = result;
-       //console.log(result);
-       response.render('ajouterCircuit', response);
-});
-};
-
-module.exports.Modifier = 	function(request, response){
-
-   model.getListeCircuit( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeCircuit = result;
-       //console.log(result);
-       response.render('modifierCircuit', response);
-});
-};
+// module.exports.Supprimer = 	function(request, response){
+//
+// let data = request.params.num;
+//
+// async.parallel ([
+//   function (callback) {
+//     model.supCir(data, function (err, result) {
+//       callback(null, result) });
+//   },
+//   function (callback) {
+//     model.getListeCircuit( function (err, result) {
+//       callback(null, result) });
+//   },
+// ],
+//   function (err, result){
+//     if (err) {
+//         // gestion de l'erreur
+//         console.log(err);
+//         return;
+//     }
+//
+//     response.listeCircuit = result[1];
+//
+//     response.est_supprime = true;
+//
+//     response.render('listerCircuit', response);
+//   }
+// ); //fin async
+// };

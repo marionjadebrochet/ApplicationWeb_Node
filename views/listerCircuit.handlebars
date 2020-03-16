@@ -13,7 +13,16 @@
             <td>{{nom}}</td>
             <td>{{longu}}</td>
             <td>{{nbrSpec}} </td>
-            <td><a href="/modifierCircuit/"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerCircuit/"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+            <td><a href="/modifierCircuit/"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerCircuit/{{cirnum}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
         </tr>
       {{/each}}
 </table>
+
+{{#if est_supprime}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("Le circuit a bien été supprimé");
+    document.location.href="/listerCircuit";
+  });
+</script>
+{{/if}}

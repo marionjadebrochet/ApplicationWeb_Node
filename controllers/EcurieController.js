@@ -17,34 +17,34 @@ module.exports.Ecurie = 	function(request, response){
        response.render('listerEcurie', response);
 });
 };
-
-module.exports.Ajouter = 	function(request, response){
-
-   model.getListeEcurie( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeEcurie = result;
-       //console.log(result);
-       response.render('ajouterEcurie', response);
-});
-};
-
-module.exports.Modifier = 	function(request, response){
-
-   model.getListeEcurie( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeEcurie = result;
-       //console.log(result);
-       response.render('modifierEcurie', response);
-});
-};
+// 
+// module.exports.Ajouter = 	function(request, response){
+//
+//    model.getListeEcurie( function (err, result) {
+//        if (err) {
+//            // gestion de l'erreur
+//            console.log(err);
+//            return;
+//        }
+//        response.listeEcurie = result;
+//        //console.log(result);
+//        response.render('ajouterEcurie', response);
+// });
+// };
+//
+// module.exports.Modifier = 	function(request, response){
+//
+//    model.getListeEcurie( function (err, result) {
+//        if (err) {
+//            // gestion de l'erreur
+//            console.log(err);
+//            return;
+//        }
+//        response.listeEcurie = result;
+//        //console.log(result);
+//        response.render('modifierEcurie', response);
+// });
+// };
 
 
 module.exports.Supprimer = 	function(request, response){
@@ -70,7 +70,7 @@ async.parallel ([
         console.log(err);
         return;
     }
-    console.log("je passe ici");
+
 
     //Pas besoin t'as pas d'infos utile à mettre sur ta page que renvoie cette requête
     //response.supEcurie = result;
