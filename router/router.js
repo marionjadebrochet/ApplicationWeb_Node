@@ -28,15 +28,15 @@ module.exports = function(app){
 
  // circuits
    app.get('/listerCircuits', CircuitController.Circuit);
-   //app.get('/ajouterCircuit', CircuitController.Ajouter);
-   //app.get('/modifierCircuit', CircuitController.Modifier);
-   //app.get('/supprimerCircuit/:num', CircuitController.Supprimer);
+   app.get('/ajouterCircuit', CircuitController.Ajouter);
+   app.get('/modifierCircuit', CircuitController.Modifier);
+   app.get('/supprimerCircuit/:num', CircuitController.Supprimer);
 
 
 // Ecuries
    app.get('/listerEcurie', EcurieController.Ecurie);
-   //app.get('/ajouterEcurie', EcurieController.Ajouter);
-   //app.get('/modifierEcurie', EcurieController.Modifier);
+   app.get('/ajouterEcurie', EcurieController.Ajouter);
+   app.get('/modifierEcurie', EcurieController.Modifier);
    app.get('/supprimerEcurie/:num', EcurieController.Supprimer);
 
  //Résultats
@@ -44,8 +44,8 @@ module.exports = function(app){
 
 //Sponsors
    app.get('/listerSponsors', SponsorsController.Sponsor);
-   //app.get('/ajouterSponsors', SponsorsController.Ajouter);
-   //app.get('/modifierSponsors', SponsorsController.Modifier);
+   app.get('/ajouterSponsors', SponsorsController.Ajouter);
+   app.get('/modifierSponsors', SponsorsController.Modifier);
    app.get('/supprimerSponsor/:num', SponsorsController.Supprimer);
 
 
