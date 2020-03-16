@@ -3,17 +3,15 @@
 <form action="/listerPilote" method="POST">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="nom" id="Nom" />
+    <input class="auto" type="text" name="nom" id="Nom" required/>
   </div>
   <div class="row">
     <label class="auto" for="Prenom">Prenom</label>
-    <input class="auto" type="text" name="prenom" id="Prenom" />
+    <input class="auto" type="text" name="prenom" id="Prenom" required/>
   </div>
   <div class="row">
     <label class="auto" for="Date">Date de naissance</label>
-    <input class="auto" type="number" name="jour" id="jour" min="1" max="31"/> /
-    <input class="auto" type="number" name="mois" id="mois" min="1" max="12"/> /
-    <input class="auto" type="number" name="annee" id="annee" min="1920" max="2020"/>
+    <input class="auto" type="date" name="jour" id="jour" required /> 
   </div>
   <div class="row">
     <label class="auto" for="Natio">Nationalité</label>
@@ -37,15 +35,15 @@
   </div>
   <div class="row">
     <label class="auto" for="Poids">Poids</label>
-    <input class="autoPetit" type="text" name="poids" id="Poids" />     kg
+    <input class="autoPetit" type="text" name="poids" id="Poids" required/>     kg
   </div>
   <div class="row">
     <label class="auto" for="Taille">Taille</label>
-    <input class="autoPetit" type="text" name="taille" id="Taille" />    cm
+    <input class="autoPetit" type="text" name="taille" id="Taille" required/>    cm
   </div>
   <div class="row">
     <label class="auto" for="Desc">Description</label>
-    <textarea class="auto" name="desc" rows="5" cols="60"></textarea>
+    <textarea class="auto" name="desc" rows="5" cols="60" required></textarea>
   </div>
-  <button type="submit" name="valider">AJOUTER</button>
+  <button type="submit">AJOUTER</button>
 </form>

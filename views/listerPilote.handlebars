@@ -12,16 +12,25 @@
         <tr>
             <td>{{nom}}</td>
             <td>{{prenom}}</td>
-            <td>{{formatDate date 'DD/MM/YYYY' }} </td>
+            <td>{{formatDate dateNai 'DD/MM/YYYY' }} </td>
             <td><a href="/modifierPilote/"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerPilote/"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
         </tr>
       {{/each}}
 </table>
 
-{{#if ajout_effetue}}
+{{#if est_ajoute}}
 <script type="text/javascript">
   $(document).ready(function() {
     alert("Le nouveau pilote a bien été ajouté !");
+  });
+</script>
+{{/if}}
+
+{{#if est_supprime}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("L'écurie a bien été supprimé");
+    document.location.href="/listerEcurie";
   });
 </script>
 {{/if}}

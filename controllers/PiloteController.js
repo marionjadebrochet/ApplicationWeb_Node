@@ -47,10 +47,11 @@ module.exports.Ajouter = 	function(request, response){
 
 module.exports.Ajout = 	function(request, response){
   response.title = 'Pilote';
+  let data = request.body;
 
   async.parallel ([
     function (callback) {
-      model.getNationalite( function (err, result) {
+      model.ajouterPilote(data, function (err, result) {
         callback(null, result) });
     }, //result[0] : nationalite
     function(callback) {
@@ -64,9 +65,9 @@ module.exports.Ajout = 	function(request, response){
           console.log(err);
           return;
       }
-      response.nationalite = result[0];
+
       response.listePilote = result[1];
-      response.ajout_effetue = true;
+      response.est_ajoute = true;
       response.render('listerPilote', response);
     }
   ); //fin async

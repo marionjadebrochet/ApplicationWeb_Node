@@ -41,3 +41,27 @@ module.exports.getNationalite = function (callback) {
 		}
 	});
 };
+
+module.exports.ajouterPilote = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+		if(!err){
+			let sql = "insert into pilote set "
+			 	 			+ "paynum=" + connexion.escape(data.natio)
+						 	+ ", pilnom=" + connexion.escape(data.nom)
+							+ ", ecunum=" + connexion.escape(data.ecurie)
+							+ ", pilprenom=" + connexion.escape(data.prenom);
+							if (data.point != '')
+								sql = sql + ", pilpoints=" + connexion.escape(data.point);
+							sql = sql + ", piltaille=" + connexion.escape(data.taille)
+							+ ", pilpoids=" + connexion.escape(data.poids)
+							+ ", piltexte=" + connexion.escape(data.desc)
+							+ ", pildatenais=" + connexion.escape(data.jour);
+
+
+			connexion.query(sql, callback);
+
+			connexion.release();
+		}
+	});
+};
