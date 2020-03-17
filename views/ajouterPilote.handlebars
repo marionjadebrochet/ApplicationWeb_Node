@@ -3,19 +3,19 @@
 <form action="/listerPilote" method="POST">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="nom" id="Nom" required/>
+    <input class="auto" type="text" name="pilnom" id="Nom" required/>
   </div>
   <div class="row">
     <label class="auto" for="Prenom">Prenom</label>
-    <input class="auto" type="text" name="prenom" id="Prenom" required/>
+    <input class="auto" type="text" name="pilprenom" id="Prenom" required/>
   </div>
   <div class="row">
     <label class="auto" for="Date">Date de naissance</label>
-    <input class="auto" type="date" name="jour" id="jour" required />
+    <input class="auto" type="date" name="pildatenais" id="jour" required />
   </div>
   <div class="row">
     <label class="auto" for="Natio">Nationalité</label>
-    <select class="auto" name="natio">
+    <select class="auto" name="paynum">
       {{#each nationalite}}
       <option value="{{this.paynum}}">{{this.paynat}}</option>
       {{/each}}
@@ -23,7 +23,7 @@
   </div>
   <div class="row">
     <label class="auto" for="Ecurie">Ecurie</label>
-    <select class="auto" name="ecurie">
+    <select class="auto" name="ecunum">
       <option value="">pas d'écurie</option>
       {{#each nomEcurie}}
       <option value="{{this.ecunum}}">{{this.nom}}</option>
@@ -32,19 +32,19 @@
   </div>
   <div class="row">
     <label class="auto" for="Point">Points</label>
-    <input class="autoPetit" type="text" name="point" id="Points" />   pts
+    <input class="autoPetit" type="number" name="pilpoints" id="Points" />   pts
   </div>
   <div class="row">
     <label class="auto" for="Poids">Poids</label>
-    <input class="autoPetit" type="text" name="poids" id="Poids" required/>     kg
+    <input class="autoPetit" type="number" name="pilpoids" id="Poids" required/>     kg
   </div>
   <div class="row">
     <label class="auto" for="Taille">Taille</label>
-    <input class="autoPetit" type="text" name="taille" id="Taille" required/>    cm
+    <input class="autoPetit" type="number" name="piltaille" id="Taille" required/>    cm
   </div>
   <div class="row">
     <label class="auto" for="Desc">Description</label>
-    <textarea class="auto" name="desc" rows="5" cols="60" required></textarea>
+    <textarea class="auto" name="piltexte" rows="5" cols="60" required></textarea>
   </div>
   <button type="submit">AJOUTER</button>
 </form>

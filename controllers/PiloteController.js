@@ -48,6 +48,12 @@ module.exports.Ajouter = 	function(request, response){
 module.exports.Ajout = 	function(request, response){
   response.title = 'Pilote';
   let data = request.body;
+  // supression de pilpoints et ecunum si pas renseigner
+  // pour qu'il soit mis à null dans la bd
+  if(data.pilpoints == '')
+    delete data.pilpoints;
+  if(data.ecunum == '')
+    delete data.ecunum;
 
   async.parallel ([
     function (callback) {

@@ -43,24 +43,13 @@ module.exports.getNationalite = function (callback) {
 };
 
 module.exports.ajouterPilote = function (data, callback) {
-
+console.log(data);
+console.log(data.pilpoints);
 	db.getConnection(function(err, connexion){
 		if(!err){
-			let sql = "insert into pilote set "
-			 	 			+ "paynum=" + connexion.escape(data.natio)
-						 	+ ", pilnom=" + connexion.escape(data.nom)
-							+ ", pilprenom=" + connexion.escape(data.prenom);
-							if (data.ecurie != '')
-								sql = sql + ", ecunum=" + connexion.escape(data.ecurie);
-							if (data.point != '')
-								sql = sql + ", pilpoints=" + connexion.escape(data.point);
-							sql = sql + ", piltaille=" + connexion.escape(data.taille)
-							+ ", pilpoids=" + connexion.escape(data.poids)
-							+ ", piltexte=" + connexion.escape(data.desc)
-							+ ", pildatenais=" + connexion.escape(data.jour);
-
-
-			connexion.query(sql, callback);
+			let sql = "insert into pilote set ?";
+			
+			connexion.query(sql, data, callback);
 
 			connexion.release();
 		}
