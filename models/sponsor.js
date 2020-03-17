@@ -46,3 +46,19 @@ module.exports.getListeSponsor = function (callback) {
 		        }
 		    });
 		}
+
+		module.exports.ajouterSponsors = function (data, callback) {
+
+			db.getConnection(function(err, connexion){
+				if(!err){
+					let sql = "insert into sponsor set "
+								 	+ " sponom=" + connexion.escape(data.nom)
+									+ ", SPOSECTACTIVITE=" + connexion.escape(data.sec);
+
+
+					connexion.query(sql, callback);
+
+					connexion.release();
+				}
+			});
+		};

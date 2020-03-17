@@ -20,17 +20,47 @@ module.exports.Sponsor = 	function(request, response){
 
 module.exports.Ajouter = 	function(request, response){
 
-   model.getListeSponsor( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeSponsor = result;
-       //console.log(result);
-       response.render('AjouterSponsors', response);
-});
+  model.getListeSponsor( function (err, result) {
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.listeSponsor = result;
+      //console.log(result);
+      response.render('ajouterSponsors', response);
+    }
+  ); //fin async
 };
+
+module.exports.Ajout = 	function(request, response){
+
+  let data = request.body;
+
+  async.parallel ([
+    function (callback) {
+      model.ajouterSponsors(data, function (err, result) {
+        callback(null, result) });
+    },
+    function(callback) {
+      model.getListeSponsor( function (err, result) {
+        callback(null, result) });
+    },
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listeSponsor = result[1];
+      response.est_ajoute = true;
+      response.render('listerSponsors', response);
+    }
+  ); //fin async
+};
+
 
 module.exports.Modifier = 	function(request, response){
 

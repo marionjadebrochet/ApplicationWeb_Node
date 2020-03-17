@@ -1,5 +1,5 @@
 <h1> Gestion des Sponsors </h1>
-<a href="/ajouterSponsor/"><img src="/image/act_add.png"><p>Ajouter un sponsor</p></a>
+<a href="/ajouterSponsors/"><img src="/image/act_add.png"><p>Ajouter un sponsor</p></a>
 
 <table>
       <tr>
@@ -20,6 +20,15 @@
 <script type="text/javascript">
   $(document).ready(function() {
     alert("Le sponsor a bien été supprimé");
+    document.location.href="/listerSponsors";
+  });
+</script>
+{{/if}}
+
+{{#if est_ajoute}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("Le nouveau sponsor a bien été ajouté !");
     document.location.href="/listerSponsors";
   });
 </script>
