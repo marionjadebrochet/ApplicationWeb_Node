@@ -59,7 +59,7 @@ module.exports.Ajout = 	function(request, response){
     function (callback) {
       model.ajouterPilote(data, function (err, result) {
         callback(null, result) });
-    }, //result[0] : nationalite
+    }, // ajout du pilote dans la bd
     function(callback) {
       model.getListePilote( function (err, result) {
         callback(null, result) });
@@ -80,16 +80,59 @@ module.exports.Ajout = 	function(request, response){
 };
 
 
-module.exports.Modifier = 	function(request, response){
+module.exports.Modifier = function(request, response){
+  response.title = 'Pilote';
+  let data = request.params.num;
 
-   model.getListePilote( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listePilote = result;
-       //console.log(result);
-       response.render('modifierPilote', response);
+  async.parallel ([
+    function (callback) {
+      model.getNationalite( function (err, result) {
+        callback(null, result) });
+    }, //result[0] : nationalite
+    function(callback) {
+      modelEcurie.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    }, //result[1] : ecurie
+    function(callback) {
+      model.getPilote(data, function (err, result) {
+        callback(null, result) });
+    }, //result[2] : pilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.nationalite = result[0];
+      response.nomEcurie = result[1];
+      response.pilote = result[2][0];
+      response.render('modifierPilote', response);
+});
+};
+
+module.exports.Modifie = function(request, response){
+  response.title = 'Pilote';
+  let data = request.body;
+
+  async.parallel ([
+    function(callback) {
+      model.modifierPilote(data, function (err, result) {
+        callback(null, result) });
+    }, // modification du pilote
+    function(callback) {
+      model.getListePilote( function (err, result) {
+        callback(null, result) });
+    }, //result[1] : listePilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.listePilote = result[1];
+      response.est_modifie = true;
+      response.render('listerPilote', response);
 });
 };

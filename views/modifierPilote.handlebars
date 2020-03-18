@@ -1,47 +1,53 @@
 <h1> Modifier un Pilote </h1>
 
-<form action="#" method="POST">
+<form action="/piloteModifie" method="POST">
+  <input type="hidden" name="pilnum" value="{{pilote.pilnum}}"/>
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="nom" id="Nom" />
+    <input class="auto" type="text" name="pilnom" id="Nom" value="{{pilote.pilnom}}" required/>
   </div>
   <div class="row">
     <label class="auto" for="Prenom">Prenom</label>
-    <input class="auto" type="text" name="prenom" id="Prenom" />
+    <input class="auto" type="text" name="pilprenom" id="Prenom" value="{{pilote.pilprenom}}" required/>
   </div>
   <div class="row">
     <label class="auto" for="Date">Date de naissance</label>
-    <input class="auto" type="number" name="jour" id="jour" min="1" max="31"/> /
-    <input class="auto" type="number" name="mois" id="mois" min="1" max="12"/> /
-    <input class="auto" type="number" name="annee" id="annee" min="1920" max="2020"/>
+    <input class="auto" type="date" name="pildatenais" id="jour" value="{{formatDate pilote.pildatenais 'YYYY-MM-DD' }}" required />
   </div>
   <div class="row">
     <label class="auto" for="Natio">Nationalité</label>
-    <select class="auto" name="natio">
-
+    <select class="auto" name="paynum">
+      <option value="{{pilote.paynum}}">{{pilote.paynat}}</option>
+      {{#each nationalite}}
+      <option value="{{this.paynum}}">{{this.paynat}}</option>
+      {{/each}}
     </select>
   </div>
   <div class="row">
     <label class="auto" for="Ecurie">Ecurie</label>
-    <select class="auto" name="ecurie">
-
+    <select class="auto" name="ecunum">
+      <option value="{{pilote.ecunum}}">{{pilote.ecunom}}</option>
+      <option value="">pas d'écurie</option>
+      {{#each nomEcurie}}
+      <option value="{{this.ecunum}}">{{this.nom}}</option>
+      {{/each}}
     </select>
   </div>
   <div class="row">
     <label class="auto" for="Point">Points</label>
-    <input class="autoPetit" type="text" name="point" id="Points" />   pts
+    <input class="autoPetit" type="number" name="pilpoints" id="Points" value="{{pilote.pilpoints}}" />   pts
   </div>
   <div class="row">
     <label class="auto" for="Poids">Poids</label>
-    <input class="autoPetit" type="text" name="poids" id="Poids" />     kg
+    <input class="autoPetit" type="number" name="pilpoids" id="Poids" value="{{pilote.pilpoids}}" required/>     kg
   </div>
   <div class="row">
     <label class="auto" for="Taille">Taille</label>
-    <input class="autoPetit" type="text" name="taille" id="Taille" />    cm
+    <input class="autoPetit" type="number" name="piltaille" id="Taille" value="{{pilote.piltaille}}" required/>    cm
   </div>
   <div class="row">
     <label class="auto" for="Desc">Description</label>
-    <textarea class="auto" name="desc" rows="5" cols="60"></textarea>
+    <textarea class="auto" name="piltexte" rows="5" cols="60" required>{{pilote.piltexte}}</textarea>
   </div>
-  <button type="submit" name="modifier">MODIFIER</button>
+  <button type="submit">AJOUTER</button>
 </form>

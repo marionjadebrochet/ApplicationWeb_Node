@@ -43,15 +43,49 @@ module.exports.getNationalite = function (callback) {
 };
 
 module.exports.ajouterPilote = function (data, callback) {
-console.log(data);
-console.log(data.pilpoints);
+
 	db.getConnection(function(err, connexion){
 		if(!err){
 			let sql = "insert into pilote set ?";
-			
+
 			connexion.query(sql, data, callback);
 
 			connexion.release();
 		}
 	});
+};
+
+module.exports.getPilote = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+        if(!err){
+
+						let sql ="SELECT pilnum, pilnom, pilprenom, pildatenais, piltaille, pilpoids,"
+								+ " pilpoints, piltexte, p.paynum, paynat, p.ecunum, ecunom"
+								+ " FROM pilote p"
+								+ "	JOIN ecurie e ON p.ecunum=e.ecunum"
+								+ " JOIN pays ON pays.paynum=p.paynum"
+								+ " WHERE pilnum = " + connexion.escape(data);
+
+            connexion.query(sql, callback);
+
+            connexion.release();
+         }
+      });
+};
+
+module.exports.modifierPilote = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+        if(!err){
+
+						let sql ="update pilote set ? where pilnum = "
+									+ connexion.escape(data.pilnum);
+								console.log(sql);
+								console.log(data);
+            connexion.query(sql, data, callback);
+
+            connexion.release();
+         }
+      });
 };

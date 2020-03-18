@@ -22,8 +22,9 @@ module.exports = function(app){
 // pilotes
     app.get('/listerPilote', PiloteController.Pilote);
     app.get('/ajouterPilote', PiloteController.Ajouter);
-    app.get('/modifierPilote', PiloteController.Modifier);
+    app.get('/modifierPilote/:num', PiloteController.Modifier);
     app.post('/listerPilote', PiloteController.Ajout);
+    app.post('/piloteModifie', PiloteController.Modifie);
 
 
  // circuits
