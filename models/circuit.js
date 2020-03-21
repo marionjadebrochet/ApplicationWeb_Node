@@ -17,7 +17,7 @@ module.exports.getListeCircuit = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT c.CIRNOM as nom, c.CIRLONGUEUR as longu, c.CIRNBSPECTATEURS as nbrSpec FROM circuit c ORDER BY `nom` ASC ";
+						let sql ="SELECT cirnum, c.CIRNOM as nom, c.CIRLONGUEUR as longu, c.CIRNBSPECTATEURS as nbrSpec FROM circuit c ORDER BY `nom` ASC ";
 
             //console.log (sql);
             connexion.query(sql, callback);
@@ -28,18 +28,18 @@ module.exports.getListeCircuit = function (callback) {
       });
 };
 
-// //le 'data' de t'as fonction contiens donc le num passé dans l'adresse
-// 			module.exports.supCir = function (data, callback) {
-//     db.getConnection(function (err, connexion) {
-//         if (!err) {
-//             let sql1 ="update grandprix set cirnum = NULL where cirnum =" + connexion.escape(data);
-//             let sql2 = "delete from  circuit where cirnum =" + connexion.escape(data);
-//             connexion.query(sql1);
-//             connexion.query(sql2);
-//             connexion.query(sql3);
-//             connexion.query(sql4, callback);
-//             connexion.release();
-//
-//         }
-//     });
-// }
+//le 'data' de t'as fonction contiens donc le num passé dans l'adresse
+			module.exports.supCir = function (data, callback) {
+    db.getConnection(function (err, connexion) {
+        if (!err) {
+            let sql1 ="update grandprix set cirnum = NULL where cirnum =" + connexion.escape(data);
+            let sql2 = "delete from  circuit where cirnum =" + connexion.escape(data);
+            connexion.query(sql1);
+            connexion.query(sql2, callback);
+            // connexion.query(sql3);
+            // connexion.query(sql4, callback);
+            connexion.release();
+
+        }
+    });
+}

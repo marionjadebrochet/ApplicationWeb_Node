@@ -1,5 +1,7 @@
 let model = require('../models/circuit.js');
 
+var async = require('async');
+
 // ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
 
 module.exports.Circuit = 	function(request, response){
