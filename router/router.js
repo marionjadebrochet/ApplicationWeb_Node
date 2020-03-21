@@ -25,6 +25,7 @@ module.exports = function(app){
     app.get('/modifierPilote/:num', PiloteController.Modifier);
     app.post('/listerPilote', PiloteController.Ajout);
     app.post('/piloteModifie', PiloteController.Modifie);
+    app.get('/supprimerPilote/:num', PiloteController.Supprimer);
 
 
  // circuits

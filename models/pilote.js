@@ -89,3 +89,19 @@ module.exports.modifierPilote = function (data, callback) {
          }
       });
 };
+
+module.exports.supprimerPi = function (data, callback) {
+    db.getConnection(function (err, connexion) {
+        if (!err) {
+					  let sql1 = "delete from sponsorise where pilnum =" + connexion.escape(data);
+            let sql2 = "delete from photo where pilnum =" + connexion.escape(data);
+						let sql3 = "delete from course where pilnum =" + connexion.escape(data);
+            let sql4 = "delete from pilote  where pilnum =" + connexion.escape(data);
+            connexion.query(sql1);
+            connexion.query(sql2);
+            connexion.query(sql3);
+            connexion.query(sql4, callback);
+            connexion.release();
+        }
+    });
+}

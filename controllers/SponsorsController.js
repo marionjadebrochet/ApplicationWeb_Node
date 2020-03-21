@@ -82,11 +82,10 @@ let data = request.params.num;
 
 async.parallel ([
   function (callback) {
-    console.log('trois');
+
 
     model.supSponsor(data, function (err, result) {
       callback(null, result) });
-      console.log('quatre');
 
   },
   function (callback) {
@@ -105,8 +104,6 @@ async.parallel ([
 
     response.listeSponsor = result[1];
     response.est_supprime = true;
-    console.log('six');
-
 
     response.render('listerSponsors', response);
   }

@@ -136,3 +136,35 @@ module.exports.Modifie = function(request, response){
       response.render('listerPilote', response);
 });
 };
+
+module.exports.Supprimer = 	function(request, response){
+
+let data = request.params.num;
+
+async.parallel ([
+  function (callback) {
+
+    model.supprimerPi(data, function (err, result) {
+      callback(null, result) });
+
+  },
+  function (callback) {
+    model.getListePilote( function (err, result) {
+      callback(null, result) });
+
+  },
+],
+  function (err, result){
+    if (err) {
+        // gestion de l'erreur
+        console.log(err);
+        return;
+    }
+
+    response.listePilote = result[1];
+    response.est_supprime = true;
+
+    response.render('listerPilote', response);
+  }
+); //fin async
+};
