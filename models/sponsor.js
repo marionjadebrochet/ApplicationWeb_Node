@@ -52,8 +52,8 @@ module.exports.getListeSponsor = function (callback) {
 			db.getConnection(function(err, connexion){
 				if(!err){
 					let sql = "insert into sponsor set "
-								 	+ " sponom=" + connexion.escape(data.nom)
-									+ ", SPOSECTACTIVITE=" + connexion.escape(data.sec);
+								 	+ " sponom=" + connexion.escape(data.sponom)
+									+ ", SPOSECTACTIVITE=" + connexion.escape(data.sposectactivite);
 
 
 					connexion.query(sql, callback);
@@ -61,4 +61,34 @@ module.exports.getListeSponsor = function (callback) {
 					connexion.release();
 				}
 			});
+		};
+
+		module.exports.getSponsor = function (data, callback) {
+
+			db.getConnection(function(err, connexion){
+		        if(!err){
+
+								let sql ="SELECT sponum, sponom, sposectactivite"
+										+ " FROM sponsor"
+										+ " WHERE sponum = " + connexion.escape(data);
+
+		            connexion.query(sql, callback);
+		            connexion.release();
+		         }
+		      });
+		};
+
+		module.exports.modifierSponsors = function (data, callback) {
+
+			db.getConnection(function(err, connexion){
+		        if(!err){
+
+								let sql ="update sponsor set ? where sponum = "
+								     + connexion.escape(data.sponum);
+								console.log(sql);
+								console.log(data);
+		            connexion.query(sql, data, callback);
+		            connexion.release();
+		         }
+		      });
 		};

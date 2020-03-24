@@ -11,7 +11,7 @@
         <tr>
             <td>{{nom}}</td>
             <td>{{act}}</td>
-            <td><a href="/modifierSponsors"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerSponsor/{{PILNUM}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+            <td><a href="/modifierSponsors/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerSponsor/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
         </tr>
       {{/each}}
 </table>
@@ -29,6 +29,15 @@
 <script type="text/javascript">
   $(document).ready(function() {
     alert("Le nouveau sponsor a bien été ajouté !");
+    document.location.href="/listerSponsors";
+  });
+</script>
+{{/if}}
+
+{{#if est_modifie}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("Le sponsor a bien été modifié");
     document.location.href="/listerSponsors";
   });
 </script>

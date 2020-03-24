@@ -61,20 +61,51 @@ module.exports.Ajout = 	function(request, response){
   ); //fin async
 };
 
+module.exports.Modifier = function(request, response){
+  let data = request.params.num;
 
-module.exports.Modifier = 	function(request, response){
-
-   model.getListeSponsor( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeSponsor = result;
-       //console.log(result);
-       response.render('ModifierSponsors', response);
+  async.parallel ([
+    function(callback) {
+      model.getSponsor(data, function (err, result) {
+        callback(null, result) });
+    },
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.sponsor = result[1];
+      response.render('modifierSponsors', response);
 });
 };
+
+module.exports.Modifie = function(request, response){
+  let data = request.body;
+
+  async.parallel ([
+    function(callback) {
+      model.modifierSponsors(data, function (err, result) {
+        callback(null, result) });
+    },
+    function(callback) {
+      model.getListeSponsor( function (err, result) {
+        callback(null, result) });
+    },
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.listeSponsor = result[1];
+      response.est_modifie = true;
+      response.render('listerSponsors', response);
+});
+};
+
 
 module.exports.Supprimer = 	function(request, response){
 
@@ -91,7 +122,6 @@ async.parallel ([
   function (callback) {
     model.getListeSponsor( function (err, result) {
       callback(null, result) });
-      console.log('cinq');
 
   },
 ],

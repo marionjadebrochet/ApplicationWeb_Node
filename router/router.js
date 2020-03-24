@@ -48,7 +48,8 @@ module.exports = function(app){
    app.get('/listerSponsors', SponsorsController.Sponsor);
    app.get('/ajouterSponsors', SponsorsController.Ajouter);
    app.post('/listerSponsors', SponsorsController.Ajout);
-   app.get('/modifierSponsors', SponsorsController.Modifier);
+   app.get('/modifierSponsors/:num', SponsorsController.Modifier);
+   app.post('/sponsorModifie', SponsorsController.Modifie);
    app.get('/supprimerSponsor/:num', SponsorsController.Supprimer);
 
 
