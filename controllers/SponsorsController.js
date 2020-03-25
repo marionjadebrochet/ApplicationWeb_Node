@@ -76,7 +76,7 @@ module.exports.Modifier = function(request, response){
           console.log(err);
           return;
       }
-      response.sponsor = result[1];
+      response.sponsor = result[0][0];
       response.render('modifierSponsors', response);
 });
 };
