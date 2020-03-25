@@ -32,7 +32,8 @@ module.exports = function(app){
    app.get('/listerCircuits', CircuitController.Circuit);
    app.get('/ajouterCircuit', CircuitController.Ajouter);
    app.get('/modifierCircuit', CircuitController.Modifier);
-   app.get('/supprimerCircuit/:num', CircuitController.Supprimer);
+   app.get('/supprimerCircuit/:num/:gp', CircuitController.Supprimer);
+   app.get('/supprimerCircuit/:num', CircuitController.SupprimerSansGP);
 
 
 // Ecuries

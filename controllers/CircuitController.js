@@ -48,11 +48,41 @@ module.exports.Modifier = 	function(request, response){
 
 module.exports.Supprimer = 	function(request, response){
 
-let data = request.params.num;
+let data = request.params;
 
 async.parallel ([
   function (callback) {
     model.supCir(data, function (err, result) {
+      callback(null, result) });
+  },
+  function (callback) {
+    model.getListeCircuit( function (err, result) {
+      callback(null, result) });
+  },
+],
+  function (err, result){
+    if (err) {
+        // gestion de l'erreur
+        console.log(err);
+        return;
+    }
+
+    response.listeCircuit = result[1];
+
+    response.est_supprime = true;
+
+    response.render('listerCircuit', response);
+  }
+); //fin async
+};
+
+module.exports.SupprimerSansGP = 	function(request, response){
+
+let data = request.params.num;
+
+async.parallel ([
+  function (callback) {
+    model.supCirSansGP(data, function (err, result) {
       callback(null, result) });
   },
   function (callback) {
