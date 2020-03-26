@@ -1,0 +1,34 @@
+<h1>Saisie des resultats</h1>
+<table>
+      <tr>
+          <th>Place</th>
+      </tr>
+      {{#each placeEtPoint}}
+        <tr>
+            <td><a href="/supprimerResultat"><img src="/image/act_delete.png"></a></td>
+            <td>{{place}}</td>
+        </tr>
+      {{/each}}
+</table>
+<table>
+      <tr>
+          <th>Pilote</th>
+          <th>Temps</th>
+        </tr>
+      {{#each piloteEtTemps}}
+        <tr>
+            <td>{{nom}} {{prenom}}</td>
+            <td>{{temps}}</td>
+        </tr>
+      {{/each}}
+</table>
+<table>
+      <tr>
+          <th>Nb points</th>
+        </tr>
+      {{#each placeEtPoint}}
+        <tr>
+            <td>{{point}}</td>
+        </tr>
+      {{/each}}
+</table>
