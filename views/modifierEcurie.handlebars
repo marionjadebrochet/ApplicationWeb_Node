@@ -1,32 +1,34 @@
 <h1> Modifier une ecurie </h1>
 
-<form action="#" method="POST">
+<form action="/ecurieModifie" method="POST">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="nom" id="Nom" />
+    <input class="auto" type="text" name="ecunom" id="Nom" required/>
   </div>
   <div class="row">
     <label class="auto" for="Directeur">Directeur</label>
-    <input class="auto" type="text" name="directeur" id="Directeur" /> m
+    <input class="auto" type="text" name="ecunomdir" id="Directeur" required />
   </div>
   <div class="row">
     <label class="auto" for="Adresse">Adresse du siege</label>
-    <textarea name="desc" rows="8" cols="80"></textarea>
+    <textarea name="ecuadrsiege" rows="8" cols="80" required></textarea>
   </div>
   <div class="row">
     <label class="auto" for="Point">Points</label>
-    <input class="auto" type="text" name="point" id="Points" /> pts
+    <input class="auto" type="text" name="ecupoints" id="Points" required/>  pts
   </div>
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
-    <select class="auto" name="pays">
-
+    <select class="auto" name="paynum" required>
+      {{#each pays}}
+      <option value="{{this.paynum}}">{{this.paynom}}</option>
+      {{/each}}
     </select>
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <input type="file" id="img" name="img" accept="image/png, image/jpeg, image/jpg, image/gif">
+    <input type="file" id="img" name="ecuadresseimage">
   </div>
 
-  <button type="submit" name="valider">MODIFIER</button>
-</form>
+  <button type="submit">MODIFIER</button>
+  </form>

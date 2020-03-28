@@ -14,14 +14,11 @@
             <td>{{dir}}</td>
             <td>{{point}} </td>
             <!-- tu rajoute le numéro de ton écurie (ecunum) dans l'adresse de ton bouton supprimer (faudra faire pareil pour modifier) -->
-            <td><a href="/modifierEcurie"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerEcurie/{{ecunum}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+            <td><a href="/modifierEcurie/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerEcurie/{{ecunum}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
         </tr>
       {{/each}}
 </table>
 
-<!-- Lis d'habord ce que j'ai dans Ecuriecontroller -->
-<!-- Si la varible est_supprimer existe, (qui se créé unniquement si tu vas dans la fonction de suppréssion)
-    alors j'affiche l'alerte-->
 {{#if est_supprime}}
 <script type="text/javascript">
   $(document).ready(function() {
