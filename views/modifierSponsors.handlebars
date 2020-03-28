@@ -12,5 +12,16 @@
     <input class="auto" type="text" name="sposectactivite" id="Sec"  value="{{sponsor.sposectactivite}}" required/>
   </div>
 
+  <div class="row">
+    <label class="auto" for="Ecurie">Ecurie</label>
+    <select class="auto" name="ecunum">
+      <option value="{{finance.fecunum}}">{{finance.eecunom}}</option>
+      <option value="">Aucune</option>
+      {{#each nomEcurie}}
+      <option value="{{this.ecunum}}">{{this.nom}}</option>
+      {{/each}}
+    </select>
+  </div>
+
   <button type="submit" >MODIFIER</button>
 </form>

@@ -6,7 +6,6 @@
 */
 
 let db = require('../configDb');
-
 /*
 * Récupérer l'intégralité les écuries avec l'adresse de la photo du pays de l'écurie
 * @return Un tableau qui contient le N°, le nom de l'écurie et le nom de la photo du drapeau du pays
@@ -77,6 +76,22 @@ module.exports.getListeSponsor = function (callback) {
 		         }
 		      });
 		};
+
+		module.exports.getEcuSpo = function (data, callback) {
+
+			db.getConnection(function(err, connexion){
+		        if(!err){
+								let sql ="SELECT f.ECUNUM as fecunum, f.SPONUM as fsponum, e.ECUNOM as eecunom"
+										+ "FROM finance f INNER JOIN ecurie e ON f.ecunum = e.ecunum"
+										+ " WHERE sponum = " + connexion.escape(data);
+
+								console.log(sql);
+		            connexion.query(sql, callback);
+		            connexion.release();
+		         }
+		      });
+		};
+
 
 		module.exports.modifierSponsors = function (data, callback) {
 

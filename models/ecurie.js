@@ -65,7 +65,7 @@ module.exports.ajouterEcurie = function (data, callback) {
 		if(!err){
 			let sql = "insert into ecurie set ?";
 			connexion.query(sql, data, callback);
-			
+
 			connexion.release();
 		}
 	});

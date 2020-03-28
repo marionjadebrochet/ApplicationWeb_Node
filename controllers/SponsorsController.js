@@ -1,4 +1,5 @@
 let model = require('../models/sponsor.js');
+let modelEcurie = require('../models/ecurie.js');
 
 var async = require('async');
 
@@ -20,14 +21,25 @@ module.exports.Sponsor = 	function(request, response){
 
 module.exports.Ajouter = 	function(request, response){
 
-  model.getListeSponsor( function (err, result) {
-      if (err) {
-          // gestion de l'erreur
-          console.log(err);
-          return;
-      }
-      response.listeSponsor = result;
-      //console.log(result);
+  async.parallel ([
+    function(callback) {
+      model.getListeSponsor( function (err, result) {
+        callback(null, result) });
+    },
+    function(callback) {
+      modelEcurie.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    },
+  ],
+  function (err, result){
+    if (err) {
+        // gestion de l'erreur
+        console.log(err);
+        return;
+    }
+
+    response.listeSponsor = result[0];
+    response.nomEcurie= result[1];
       response.render('ajouterSponsors', response);
     }
   ); //fin async
@@ -66,6 +78,14 @@ module.exports.Modifier = function(request, response){
 
   async.parallel ([
     function(callback) {
+      model.getEcuSpo(data, function (err, result) {
+        callback(null, result) });
+    },
+    function(callback) {
+      modelEcurie.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    },
+    function(callback) {
       model.getSponsor(data, function (err, result) {
         callback(null, result) });
     },
@@ -76,10 +96,14 @@ module.exports.Modifier = function(request, response){
           console.log(err);
           return;
       }
-      response.sponsor = result[0][0];
+
+      response.finance = result[0];
+      response.nomEcurie = result[1];
+      response.sponsor = result[2][0];
       response.render('modifierSponsors', response);
 });
 };
+
 
 module.exports.Modifie = function(request, response){
   let data = request.body;
