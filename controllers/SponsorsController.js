@@ -49,6 +49,9 @@ module.exports.Ajout = 	function(request, response){
 
   let data = request.body;
 
+  if(data.ecunum == '')
+    delete data.ecunum;
+
   async.parallel ([
     function (callback) {
       model.ajouterSponsors(data, function (err, result) {
@@ -107,6 +110,8 @@ module.exports.Modifier = function(request, response){
 
 module.exports.Modifie = function(request, response){
   let data = request.body;
+  if(data.ecunum == '')
+    delete data.ecunum;
 
   async.parallel ([
     function(callback) {

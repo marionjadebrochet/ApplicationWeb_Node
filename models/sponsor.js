@@ -92,7 +92,6 @@ module.exports.getListeSponsor = function (callback) {
 										+ " FROM finance f INNER JOIN ecurie e ON f.ecunum = e.ecunum"
 										+ " WHERE sponum = " + connexion.escape(data);
 
-								console.log(sql);
 		            connexion.query(sql, callback);
 		            connexion.release();
 		         }
@@ -105,11 +104,20 @@ module.exports.getListeSponsor = function (callback) {
 			db.getConnection(function(err, connexion){
 		        if(!err){
 
-								let sql ="update sponsor set ? where sponum = "
-								     + connexion.escape(data.sponum);
-								console.log(sql);
-								console.log(data);
-		            connexion.query(sql, data, callback);
+								let sql1 ="update sponsor set"
+								 				+ " sponom =" + connexion.escape(data.sponom)
+												+ ", sposectactivite =" + connexion.escape(data.sposectactivite)
+												+ " where sponum = " + connexion.escape(data.sponum);
+								let sql2 = "delete from finance where sponum = " + connexion.escape(data.sponum);
+								let sql3 = "insert into finance set sponum = " + connexion.escape(data.sponum)
+													+ ", ecunum = " + connexion.escape(data.ecunum);
+								console.log(sql1);
+								console.log(sql2);
+								console.log(sql3);
+								connexion.query(sql1);
+								connexion.query(sql2);
+								connexion.query(sql3, callback);
+
 		            connexion.release();
 		         }
 		      });
