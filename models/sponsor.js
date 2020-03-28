@@ -50,12 +50,19 @@ module.exports.getListeSponsor = function (callback) {
 
 			db.getConnection(function(err, connexion){
 				if(!err){
-					let sql = "insert into sponsor set "
+					let sql1 = "insert into sponsor set "
 								 	+ " sponom=" + connexion.escape(data.sponom)
 									+ ", SPOSECTACTIVITE=" + connexion.escape(data.sposectactivite);
 
+					connexion.query(sql1, function(err, result) {
+						let sql2 = "insert into finance set"
+											+ " sponum = ("
+											+ " select sponum from sponsor"
+												+ " where sponum >=all (select sponum from sponsor))"
+											+ ", ecunum=" + connexion.escape(data.ecunum);
 
-					connexion.query(sql, callback);
+						connexion.query(sql2, callback);
+					});
 
 					connexion.release();
 				}
