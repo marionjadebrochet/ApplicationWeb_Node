@@ -18,20 +18,6 @@ module.exports.Ecurie = 	function(request, response){
 });
 };
 
-module.exports.Ajouter = 	function(request, response){
-
-   model.getListeEcurie( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeEcurie = result;
-       //console.log(result);
-       response.render('ajouterEcurie', response);
-});
-};
-
 module.exports.Modifier = 	function(request, response){
 
    model.getListeEcurie( function (err, result) {
@@ -86,4 +72,62 @@ async.parallel ([
     response.render('listerEcurie', response);
   }
 ); //fin async
+};
+
+
+module.exports.Ajouter = 	function(request, response){
+
+let data = request.params.num;
+
+async.parallel ([
+  function (callback) {
+    model.getPays(function (err, result) {
+      callback(null, result) });
+  },
+  function (callback) {
+    model.getListeEcurie( function (err, result) {
+      callback(null, result) });
+  },
+],
+  function (err, result){
+    if (err) {
+        // gestion de l'erreur
+        console.log(err);
+        return;
+    }
+
+    response.pays = result[0];
+    response.listeEcurie = result[1];
+    response.render('ajouterEcurie', response);
+  }
+); //fin async
+};
+
+
+module.exports.Ajout = 	function(request, response){
+
+  let data = request.body;
+
+  async.parallel ([
+    function (callback) {
+      model.ajouterEcurie(data, function (err, result) {
+        callback(null, result) });
+    }, // ajout du pilote dans la bd
+    function(callback) {
+      model.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    }, //result[1] : listePilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listeEcurie = result[1];
+      response.est_ajoute = true;
+      response.render('listerEcurie', response);
+    }
+  ); //fin async
 };

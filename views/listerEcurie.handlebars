@@ -25,7 +25,25 @@
 {{#if est_supprime}}
 <script type="text/javascript">
   $(document).ready(function() {
-    alert("L'écurie a bien été supprimé");
+    alert("L'écurie a bien été supprimée");
+    document.location.href="/listerEcurie";
+  });
+</script>
+{{/if}}
+
+{{#if est_ajoute}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("L'écurie a bien été ajoutée !");
+    document.location.href="/listerEcurie";
+  });
+</script>
+{{/if}}
+
+{{#if est_modifie}}
+<script type="text/javascript">
+  $(document).ready(function() {
+    alert("L'écurie a bien été modifiée");
     document.location.href="/listerEcurie";
   });
 </script>

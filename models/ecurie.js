@@ -28,8 +28,7 @@ module.exports.getListeEcurie = function (callback) {
       });
 };
 
-//le 'data' de t'as fonction contiens donc le num passé dans l'adresse
-			module.exports.supEcu = function (data, callback) {
+module.exports.supEcu = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
             let sql1 ="update pilote set ecunum = NULL where ecunum =" + connexion.escape(data);
@@ -45,3 +44,29 @@ module.exports.getListeEcurie = function (callback) {
         }
     });
 }
+
+module.exports.getPays = function (callback) {
+
+	db.getConnection(function(err, connexion){
+		if(!err){
+
+			let sql = "SELECT paynum, paynom FROM pays ORDER BY paynom";
+
+			connexion.query(sql, callback);
+
+			connexion.release();
+		}
+	});
+};
+
+module.exports.ajouterEcurie = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+		if(!err){
+			let sql = "insert into ecurie set ?";
+			connexion.query(sql, data, callback);
+			
+			connexion.release();
+		}
+	});
+};

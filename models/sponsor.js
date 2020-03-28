@@ -35,7 +35,7 @@ module.exports.getListeSponsor = function (callback) {
 							console.log('un');
 		            let sql1 ="delete from finance where SPONUM =" + connexion.escape(data);
 		            let sql2 = "delete from sponsorise where SPONUM =" + connexion.escape(data);
-		            let sql3 = "DELETE FROM `sponsor` WHERE `sponsor`.`SPONUM` = " + connexion.escape(data);
+		            let sql3 = "delete from `sponsor` where `sponsor`.`SPONUM` = " + connexion.escape(data);
 		            connexion.query(sql1);
 		            connexion.query(sql2);
 		            connexion.query(sql3, callback);
