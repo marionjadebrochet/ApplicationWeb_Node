@@ -97,7 +97,7 @@ module.exports.Modifier = function(request, response){
           return;
       }
 
-      response.finance = result[0];
+      response.finance = result[0][0];
       response.nomEcurie = result[1];
       response.sponsor = result[2][0];
       response.render('modifierSponsors', response);

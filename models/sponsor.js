@@ -82,7 +82,7 @@ module.exports.getListeSponsor = function (callback) {
 			db.getConnection(function(err, connexion){
 		        if(!err){
 								let sql ="SELECT f.ECUNUM as fecunum, f.SPONUM as fsponum, e.ECUNOM as eecunom"
-										+ "FROM finance f INNER JOIN ecurie e ON f.ecunum = e.ecunum"
+										+ " FROM finance f INNER JOIN ecurie e ON f.ecunum = e.ecunum"
 										+ " WHERE sponum = " + connexion.escape(data);
 
 								console.log(sql);
