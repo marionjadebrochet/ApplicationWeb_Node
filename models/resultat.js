@@ -17,8 +17,8 @@ module.exports.getListeRes = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT gp.GPNUM as num, gp.GPNOM as nom FROM " +
-                            "grandprix gp ORDER BY `gp`.`GPNOM` ASC";
+						let sql ="SELECT gp.GPNUM as num, gp.GPNOM as nom FROM "
+						+ "grandprix gp ORDER BY `gp`.`GPNOM` ASC";
 						//console.log (sql);
             connexion.query(sql, callback);
             // la connexion retourne dans le pool

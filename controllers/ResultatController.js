@@ -25,7 +25,7 @@ var async = require('async');
   };
 
 module.exports.Resultat = 	function(request, response){
-let data = request.params.num;
+let data = request.body.num;
 async.parallel ([
   function (callback) {
     model.getListeRes( function (err, result) {

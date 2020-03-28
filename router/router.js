@@ -47,7 +47,7 @@ module.exports = function(app){
 
  //Résultats
    app.get('/listerResultats', ResultatController.Desc);
-   app.get('/detailsResultats/:num', ResultatController.Resultat);
+   app.post('/detailsResultats', ResultatController.Resultat);
 //Sponsors
    app.get('/listerSponsors', SponsorsController.Sponsor);
    app.get('/ajouterSponsors', SponsorsController.Ajouter);
