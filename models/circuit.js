@@ -60,3 +60,29 @@ db.getConnection(function (err, connexion) {
 	}
 });
 }
+
+module.exports.getPays = function (callback) {
+
+	db.getConnection(function(err, connexion){
+		if(!err){
+
+			let sql = "SELECT paynum, paynom FROM pays ORDER BY paynom";
+
+			connexion.query(sql, callback);
+
+			connexion.release();
+		}
+	});
+};
+
+module.exports.ajouterCircuit = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+		if(!err){
+			let sql = "insert into circuit set ?";
+			connexion.query(sql, data, callback);
+
+			connexion.release();
+		}
+	});
+};

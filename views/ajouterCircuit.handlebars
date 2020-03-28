@@ -1,32 +1,34 @@
 <h1> Ajouter un circuit </h1>
 
-<form action="#" method="POST">
+<form action="/listerCircuits" method="POST">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="nom" id="Nom" />
+    <input class="auto" type="text" name="cirnom" id="Nom" />
   </div>
   <div class="row">
     <label class="auto" for="Longueur">Longueur</label>
-    <input class="auto" type="text" name="long" id="Long" /> m
+    <input class="auto" type="text" name="CIRLONGUEUR" id="Long" /> m
   </div>
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
-    <select class="auto" name="pays">
-
+    <select class="auto" name="paynum" required>
+      {{#each pays}}
+      <option value="{{this.paynum}}">{{this.paynom}}</option>
+      {{/each}}
     </select>
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <input type="file" id="img" name="img" accept="image/png, image/jpeg, image/jpg, image/gif">
+    <input type="file" id="img" name="ciradresseimage">
   </div>
   <div class="row">
     <label class="auto" for="Personne">Nombre de spectateurs</label>
-    <input class="auto" type="number" name="personne" id="Personne" /> personnes
+    <input class="autoPetit" type="number" name="cirnbspectateurs" id="Personne" /> personnes
   </div>
   <div class="row">
     <label class="auto" for="Desc">Description</label>
-    <textarea name="desc" rows="8" cols="80"></textarea>
+    <textarea class="auto" name="cirtext" rows="5" cols="60" required></textarea>
   </div>
 
-  <button type="submit" name="valider">AJOUTER</button>
+  <button type="submit">AJOUTER</button>
 </form>

@@ -14,23 +14,69 @@ module.exports.Circuit = 	function(request, response){
        }
        response.listeCircuit = result;
        //console.log(result);
-       response.render('listerCircuit', response);
+       response.render('listerCircuits', response);
 });
 };
+
+
 
 module.exports.Ajouter = 	function(request, response){
 
-   model.getListeCircuit( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeSponsor = result;
-       //console.log(result);
-       response.render('AjouterCircuit', response);
-});
+let data = request.params.num;
+
+async.parallel ([
+  function (callback) {
+    model.getPays(function (err, result) {
+      callback(null, result) });
+  },
+  function (callback) {
+    model.getListeCircuit( function (err, result) {
+      callback(null, result) });
+  },
+],
+  function (err, result){
+    if (err) {
+        // gestion de l'erreur
+        console.log(err);
+        return;
+    }
+
+    response.pays = result[0];
+    response.listeCircuit= result[1];
+    response.render('AjouterCircuit', response);
+  }
+); //fin async
 };
+
+
+module.exports.Ajout = 	function(request, response){
+
+  let data = request.body;
+
+  async.parallel ([
+    function (callback) {
+      model.ajouterCircuit(data, function (err, result) {
+        callback(null, result) });
+    }, // ajout du pilote dans la bd
+    function(callback) {
+      model.getListeCircuit( function (err, result) {
+        callback(null, result) });
+    }, //result[1] : listePilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listeCircuit = result[1];
+      response.est_ajoute = true;
+      response.render('listerCircuits', response);
+    }
+  ); //fin async
+};
+
 
 module.exports.Modifier = 	function(request, response){
 
@@ -42,7 +88,7 @@ module.exports.Modifier = 	function(request, response){
        }
        response.listeSponsor = result;
        //console.log(result);
-       response.render('ModifierCircuit', response);
+       response.render('listerCircuits', response);
 });
 };
 
@@ -71,7 +117,7 @@ async.parallel ([
 
     response.est_supprime = true;
 
-    response.render('listerCircuit', response);
+    response.render('listerCircuits', response);
   }
 ); //fin async
 };
@@ -101,7 +147,7 @@ async.parallel ([
 
     response.est_supprime = true;
 
-    response.render('listerCircuit', response);
+    response.render('listerCircuits', response);
   }
 ); //fin async
 };
