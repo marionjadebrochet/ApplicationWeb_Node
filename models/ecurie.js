@@ -93,7 +93,7 @@ module.exports.modifierEcurie = function (data, callback) {
 	db.getConnection(function(err, connexion){
         if(!err){
 
-						let sql ="update ecurie set ? where ecurie = "
+						let sql ="update ecurie set ? where ecunum = "
 									+ connexion.escape(data.ecunum);
 								console.log(sql);
 								console.log(data);

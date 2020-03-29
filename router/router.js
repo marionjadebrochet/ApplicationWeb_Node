@@ -33,6 +33,7 @@ module.exports = function(app){
    app.get('/ajouterCircuit', CircuitController.Ajouter);
    app.post('/listerCircuits', CircuitController.Ajout);
    app.get('/modifierCircuit', CircuitController.Modifier);
+   app.post('/circuitModifie', CircuitController.Modifie);
    app.get('/supprimerCircuit/:num/:gp', CircuitController.Supprimer);
    app.get('/supprimerCircuit/:num', CircuitController.SupprimerSansGP);
 
