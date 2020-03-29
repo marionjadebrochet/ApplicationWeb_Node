@@ -77,20 +77,57 @@ module.exports.Ajout = 	function(request, response){
   ); //fin async
 };
 
+module.exports.Modifier = function(request, response){
+  let data = request.params.num;
 
-module.exports.Modifier = 	function(request, response){
+  async.parallel ([
+    function(callback) {
+      model.getPays(function (err, result) {
+        callback(null, result) });
+    },
+    function(callback) {
+      model.getCircuit(data, function (err, result) {
+        callback(null, result) });
+    },
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
 
-   model.getListeCircuit( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeSponsor = result;
-       //console.log(result);
-       response.render('listerCircuits', response);
+      response.pays = result[0];
+      response.circuit = result[1][0];
+      response.render('modifierCircuit', response);
 });
 };
+
+module.exports.Modifie = function(request, response){
+  let data = request.body;
+
+  async.parallel ([
+    function(callback) {
+      model.modifierCircuit(data, function (err, result) {
+        callback(null, result) });
+    },
+    function(callback) {
+      model.getListeCircuit( function (err, result) {
+        callback(null, result) });
+    },
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.listeCircuit = result[1];
+      response.est_modifie = true;
+      response.render('listerCircuits', response);
+});
+};
+
 
 module.exports.Supprimer = 	function(request, response){
 

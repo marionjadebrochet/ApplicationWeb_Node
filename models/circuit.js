@@ -17,7 +17,7 @@ module.exports.getListeCircuit = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT c.cirnum, c.CIRNOM as nom, c.CIRLONGUEUR as longu, "
+						let sql ="SELECT c.cirnum as num, c.CIRNOM as nom, c.CIRLONGUEUR as longu, "
 								+ "c.CIRNBSPECTATEURS as nbrSpec, gpnum "
 								+ "FROM circuit c "
 								+ "LEFT JOIN grandprix g ON g.cirnum=c.cirnum "
@@ -85,4 +85,35 @@ module.exports.ajouterCircuit = function (data, callback) {
 			connexion.release();
 		}
 	});
+};
+
+module.exports.getCircuit = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+				if(!err){
+
+						let sql ="SELECT cirnum, cirnom, CIRLONGUEUR, CIRNBSPECTATEURS, cirtext, ciradresseimage, paynum"
+								+ " FROM Circuit"
+								+ " WHERE cirnum = " + connexion.escape(data);
+
+						connexion.query(sql, callback);
+						connexion.release();
+				 }
+			});
+};
+
+module.exports.modifierCircuit= function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+        if(!err){
+
+						let sql ="update circuit set ? where cirnum = "
+									+ connexion.escape(data.cirnum);
+								console.log(sql);
+								console.log(data);
+            connexion.query(sql, data, callback);
+
+            connexion.release();
+         }
+      });
 };

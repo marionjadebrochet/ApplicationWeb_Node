@@ -1,32 +1,37 @@
 <h1> Modifier un circuit </h1>
 
-<form action="#" method="POST">
+<form action="/circuitModifie" method="POST">
+  <input type="hidden" name="cirnum" value="{{circuit.cirnum}}"/>
+
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="nom" id="Nom" />
+    <input class="auto" type="text" name="cirnom" id="Nom"  value="{{circuit.cirnom}}" required />
   </div>
   <div class="row">
     <label class="auto" for="Longueur">Longueur</label>
-    <input class="auto" type="text" name="long" id="Long" /> m
+    <input class="auto" type="text" name="CIRLONGUEUR" id="Long" value="{{circuit.CIRLONGUEUR}}" required /> m
   </div>
   <div class="row">
-    <label class="auto" for="Pays">Pays</label>
-    <select class="auto" name="pays">
-
+    <label class="auto" for="pays">Pays</label>
+    <select class="auto" name="paynum" required>
+      <option value="{{circuit.paynum}}">{{circuit.paynom}}</option>
+      {{#each pays}}
+      <option value="{{this.paynum}}">{{this.paynom}}</option>
+      {{/each}}
     </select>
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <input type="file" id="img" name="img" accept="image/png, image/jpeg, image/jpg, image/gif">
+    <input type="file" id="img" name="ciradresseimage" value="{{circuit.ciradresseimage}}" required>
   </div>
   <div class="row">
     <label class="auto" for="Personne">Nombre de spectateurs</label>
-    <input class="auto" type="number" name="personne" id="Personne" /> personnes
+    <input class="auto" type="number" name="CIRNBSPECTATEURS" id="Personne"  value="{{circuit.CIRNBSPECTATEURS}}" required/> personnes
   </div>
   <div class="row">
     <label class="auto" for="Desc">Description</label>
-    <textarea name="desc" rows="8" cols="80"></textarea>
+    <textarea name="cirtext" rows="5" cols="60" value="{{circuit.cirtext}}" required></textarea>
   </div>
 
-  <button type="submit" name="modifier">MODIFIER</button>
+  <button type="submit">MODIFIER</button>
 </form>

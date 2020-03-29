@@ -32,7 +32,7 @@ module.exports = function(app){
    app.get('/listerCircuits', CircuitController.Circuit);
    app.get('/ajouterCircuit', CircuitController.Ajouter);
    app.post('/listerCircuits', CircuitController.Ajout);
-   app.get('/modifierCircuit', CircuitController.Modifier);
+   app.get('/modifierCircuit/:num', CircuitController.Modifier);
    app.post('/circuitModifie', CircuitController.Modifie);
    app.get('/supprimerCircuit/:num/:gp', CircuitController.Supprimer);
    app.get('/supprimerCircuit/:num', CircuitController.SupprimerSansGP);
