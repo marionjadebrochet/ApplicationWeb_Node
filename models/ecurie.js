@@ -17,7 +17,7 @@ module.exports.getListeEcurie = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT ecunum, ecunom as nom, ecunomdir as dir, ecupoints as point "
+						let sql ="SELECT ecunum as num, ecunom as nom, ecunomdir as dir, ecupoints as point "
 										+ "FROM ecurie";
             //console.log (sql);
             connexion.query(sql, callback);
@@ -59,6 +59,22 @@ module.exports.getPays = function (callback) {
 	});
 };
 
+module.exports.getEcurie = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+        if(!err){
+
+						let sql ="SELECT ecunum, ecunom, ecunomdir, ecuadrsiege, ecupoints, ecuadresseimage, paynum"
+								+ " FROM ecurie e"
+								+ " WHERE ecunum = " + connexion.escape(data);
+
+            connexion.query(sql, callback);
+
+            connexion.release();
+         }
+      });
+};
+
 module.exports.ajouterEcurie = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -69,4 +85,21 @@ module.exports.ajouterEcurie = function (data, callback) {
 			connexion.release();
 		}
 	});
+};
+
+
+module.exports.modifierEcurie = function (data, callback) {
+
+	db.getConnection(function(err, connexion){
+        if(!err){
+
+						let sql ="update ecurie set ? where ecurie = "
+									+ connexion.escape(data.ecunum);
+								console.log(sql);
+								console.log(data);
+            connexion.query(sql, data, callback);
+
+            connexion.release();
+         }
+      });
 };

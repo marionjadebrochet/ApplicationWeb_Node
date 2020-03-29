@@ -76,36 +76,55 @@ module.exports.Ajout = 	function(request, response){
   ); //fin async
 };
 
+module.exports.Modifier = function(request, response){
+  let data = request.params.num;
 
-module.exports.Modifier = 	function(request, response){
-
-   model.getListeEcurie( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeEcurie = result;
-       //console.log(result);
-       response.render('modifierEcurie', response);
+  async.parallel ([
+    function (callback) {
+      model.getPays( function (err, result) {
+        callback(null, result) });
+    }, //result[0] : nationalite
+    function(callback) {
+      model.getEcurie(data, function (err, result) {
+        callback(null, result) });
+    }, //result[2] : pilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.pays = result[0];
+      response.ecurie = result[1][0];
+      response.render('modifierEcurie', response);
 });
 };
 
-module.exports.Modifie = 	function(request, response){
+module.exports.Modifie = function(request, response){
+  let data = request.body;
 
-   model.getListeEcurie( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeEcurie = result;
-       //console.log(result);
-       response.render('modifierEcurie', response);
+  async.parallel ([
+    function(callback) {
+      model.modifierEcurie(data, function (err, result) {
+        callback(null, result) });
+    }, // modification du pilote
+    function(callback) {
+      model.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    }, //result[1] : listePilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+      response.listeEcurie= result[1];
+      response.est_modifie = true;
+      response.render('listerEcurie', response);
 });
 };
-
-
 
 module.exports.Supprimer = 	function(request, response){
 

@@ -1,25 +1,27 @@
 <h1> Modifier une ecurie </h1>
 
 <form action="/ecurieModifie" method="POST">
+  <input type="hidden" name="ecunum" value="{{ecurie.ecunum}}"/>
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="ecunom" id="Nom" required/>
+    <input class="auto" type="text" name="ecunom" id="Nom" value="{{ecurie.ecunom}}" required/>
   </div>
   <div class="row">
     <label class="auto" for="Directeur">Directeur</label>
-    <input class="auto" type="text" name="ecunomdir" id="Directeur" required />
+    <input class="auto" type="text" name="ecunomdir" id="Directeur" value="{{ecurie.ecunomdir}}" required />
   </div>
   <div class="row">
     <label class="auto" for="Adresse">Adresse du siege</label>
-    <textarea name="ecuadrsiege" rows="8" cols="80" required></textarea>
+    <input class="auto" name="ecuadrsiege" type="text" value="{{ecurie.ecuadrsiege}}" required></input>
   </div>
   <div class="row">
     <label class="auto" for="Point">Points</label>
-    <input class="auto" type="text" name="ecupoints" id="Points" required/>  pts
+    <input class="auto" type="text" name="ecupoints" id="Points"  value="{{ecurie.ecupoints}}" required/>  pts
   </div>
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
     <select class="auto" name="paynum" required>
+      <option value="{{ecurie.paynum}}">{{pays.paynom}}</option>
       {{#each pays}}
       <option value="{{this.paynum}}">{{this.paynom}}</option>
       {{/each}}

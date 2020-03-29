@@ -42,7 +42,7 @@ module.exports = function(app){
    app.get('/ajouterEcurie', EcurieController.Ajouter);
    app.post('/listerEcurie', EcurieController.Ajout);
    app.get('/modifierEcurie/:num', EcurieController.Modifier);
-   app.post('/EcurieModifie', EcurieController.Modifie);
+   app.post('/ecurieModifie', EcurieController.Modifie);
    app.get('/supprimerEcurie/:num', EcurieController.Supprimer);
 
  //Résultats
