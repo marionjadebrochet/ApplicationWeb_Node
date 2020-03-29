@@ -177,6 +177,14 @@ table {
  border-collapse:collapse;
  width:90%;
  }
+
+ #resultats table {
+   width:100%;
+ }
+
+ #tabAjoutTps {
+   width: auto;
+ }
 th, td {
  border:1px solid black;
  width:20%;

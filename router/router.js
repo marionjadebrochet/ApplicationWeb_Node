@@ -49,6 +49,8 @@ module.exports = function(app){
  //Résultats
    app.get('/listerResultats', ResultatController.Desc);
    app.post('/detailsResultats', ResultatController.Resultat);
+   app.post('/ajoutTemps', ResultatController.Ajouter);
+   app.get('/supprimerResultat/:gpnum/:pilnum/:pilpoints', ResultatController.Supprimer);
 //Sponsors
    app.get('/listerSponsors', SponsorsController.Sponsor);
    app.get('/ajouterSponsors', SponsorsController.Ajouter);

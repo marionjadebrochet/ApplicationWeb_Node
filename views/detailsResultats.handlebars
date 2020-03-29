@@ -1,11 +1,21 @@
 <h1>Saisie des resultats</h1>
+<div id="resultats">
+<!-- <table>
+  <tr>
+    <th>_</th>
+  </tr>
+  {{#each piloteEtTemps}}
+  <tr>
+    <td><a href="/supprimerResultat/{{gpnum}}/{{this.pilnum}}"><img src="/image/act_delete.png"></a></td>
+  </tr>
+  {{/each}}
+</table>
 <table>
       <tr>
           <th>Place</th>
       </tr>
       {{#each placeEtPoint}}
         <tr>
-            <td><a href="/supprimerResultat"><img src="/image/act_delete.png"></a></td>
             <td>{{place}}</td>
         </tr>
       {{/each}}
@@ -17,8 +27,8 @@
         </tr>
       {{#each piloteEtTemps}}
         <tr>
-            <td>{{nom}} {{prenom}}</td>
-            <td>{{temps}}</td>
+            <td>{{pilnom}}</td>
+            <td>{{tempscourse}}</td>
         </tr>
       {{/each}}
 </table>
@@ -31,4 +41,40 @@
             <td>{{point}}</td>
         </tr>
       {{/each}}
+</table> -->
+<table>
+  <tr>
+    <th>_</th>
+    <th>Place</th>
+    <th>Pilote</th>
+    <th>Temps</th>
+    <th>NbPoints</th>
+  </tr>
+  {{#each piloteEtTemps}}
+  <tr>
+    <td><a href="/supprimerResultat/{{this.gpnum}}/{{this.pilnum}}/{{this.ptnbpointsplace}}"><img src="/image/act_delete.png"></a></td>
+    <td>{{this.place}}</td>
+    <td>{{this.pilnom}}</td>
+    <td>{{this.tempscourse}}</td>
+    <td>{{this.ptnbpointsplace}}</td>
+  </tr>
+  {{/each}}
+</table>
+</div>
+<table id="tabAjoutTps">
+  <tr>
+    <form action="/ajoutTemps" method="post">
+      <input type="hidden" name="gpnum" value="{{gpnum}}">
+    <td>Nouveau temps :</td>
+    <td><select class="auto" name="pilnum" required>
+      {{#each pilotes}}
+      <option value="{{this.pilnum}}">{{this.pilnom}}</option>
+      {{/each}}
+    </select></td>
+    <td style="width: 200px;"><input name="heure" type="number" min="0" required></input>:
+      <input name="minute" type="number" min="0" max="59" required></input>:
+      <input name="seconde" type="number" min="0" max="59" required></input></td>
+    <td><button type="submit">OK</button></td>
+    </form>
+  </tr>
 </table>

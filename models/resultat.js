@@ -28,20 +28,67 @@ module.exports.getListeRes = function (callback) {
 };
 
 module.exports.getPiloteTemps = function (data, callback) {
+	console.log(data);
     db.getConnection(function (err, connexion) {
         if (!err) {
-            let sql = "SELECT gp.GPNUM as num, gp.GPNOM as nomGP, gp.GPDATE as date, p.PILNOM as nom, p.PILPRENOM as prenom, c.TEMPSCOURSE as temps FROM Pilote p LEFT JOIN course c ON c.PILNUM = p.PILNUM LEFT JOIN grandprix gp ON c.GPNUM = gp.GPNUM WHERE gp.GPNUM like \'" + connexion.escape(data) + "\' ORDER BY `temps` ASC ";
+            let sql = "Select place, pilnom, tempscourse, ptnbpointsplace, gpnum, pilnum"
+								+ " from ("
+									+ " select @n := @n + 1 place, pilnom, tempscourse, gp.gpnum, p.pilnum"
+    							+ " from pilote p join (SELECT @n := 0)t"
+    							+ " JOIN course c ON c.pilnum = p.pilnum"
+    							+ " JOIN grandprix gp ON c.gpnum = gp.gpnum"
+									+ " WHERE gp.gpnum =" + connexion.escape(data)
+    							+ " order by tempscourse)tab"
+								+ " join points on points.PTPLACE=tab.place";
+
             connexion.query(sql, callback);
             connexion.release();
         }
     })
 };
 
-module.exports.getPlacePilote = function (callback) {
+module.exports.getPilotes = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
-            let sql = "SELECT PTPLACE as place, PTNBPOINTSPLACE as point FROM points";
+            let sql = "SELECT p1.pilnom, p1.pilnum"
+									+ " FROM pilote p1 WHERE p1.pilnum NOT IN"
+									+ " (SELECT p2.pilnum FROM pilote p2"
+									+ " JOIN course c ON c.pilnum = p2.pilnum"
+									+ " JOIN grandprix gp ON c.gpnum = gp.gpnum"
+									+ " WHERE gp.gpnum =" + connexion.escape(data)
+									+ ") ORDER BY p1.pilnom";
+
             connexion.query(sql, callback);
+            connexion.release();
+        }
+    })
+};
+
+module.exports.ajouter = function (data, callback) {
+    db.getConnection(function (err, connexion) {
+        if (!err) {
+            let sql = "insert into course set"
+										+ " gpnum = " + connexion.escape(data.gpnum)
+										+ ", pilnum = " + connexion.escape(data.pilnum)
+										+ ", tempscourse = " + connexion.escape(data.heure+':'+data.minute+':'+data.seconde);
+
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    })
+};
+
+module.exports.supprimer = function (data, callback) {
+    db.getConnection(function (err, connexion) {
+        if (!err) {
+            let sql = "delete from course"
+										+ " where gpnum = " + connexion.escape(data.gpnum)
+										+ "and pilnum = " + connexion.escape(data.pilnum);
+						let sql1 = "update pilote set pilpoints = NULL"
+						 				+ " where pilnum = " + connexion.escape(data.pilnum);
+									console.log(sql);
+						connexion.query(sql);
+            connexion.query(sql1, callback);
             connexion.release();
         }
     })
