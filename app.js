@@ -5,7 +5,8 @@ let express         = require('express'),
     http = require('http'),
     path = require('path'),
     async = require('async'),
-    Cryptr = require('cryptr');
+    Cryptr = require('cryptr'),
+    fileUploade = require('express-fileupload');
 
 
 let app = express();
