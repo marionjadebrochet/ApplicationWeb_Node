@@ -71,7 +71,7 @@ module.exports.ajouter = function (data, callback) {
 										+ " gpnum = " + connexion.escape(data.gpnum)
 										+ ", pilnum = " + connexion.escape(data.pilnum)
 										+ ", tempscourse = " + connexion.escape(data.heure+':'+data.minute+':'+data.seconde);
-
+										
             connexion.query(sql, callback);
             connexion.release();
         }
@@ -86,10 +86,58 @@ module.exports.supprimer = function (data, callback) {
 										+ "and pilnum = " + connexion.escape(data.pilnum);
 						let sql1 = "update pilote set pilpoints = NULL"
 						 				+ " where pilnum = " + connexion.escape(data.pilnum);
-									console.log(sql);
-						connexion.query(sql);
-            connexion.query(sql1, callback);
+
+										connexion.query(sql);
+				            connexion.query(sql1, callback);
+
             connexion.release();
         }
     })
 };
+
+
+module.exports.updatePoints = function (data, callback) {
+    db.getConnection(function (err, connexion) {
+        if (!err) {
+
+					////////// maj point pilote ///////////
+					let sql2 = "Select ptnbpointsplace, pilnum"
+							+ " from ("
+								+ " select @n := @n + 1 place, p.pilnum"
+								+ " from pilote p join (SELECT @n := 0)t"
+								+ " JOIN course c ON c.pilnum = p.pilnum"
+								+ " JOIN grandprix gp ON c.gpnum = gp.gpnum"
+								+ " WHERE gp.gpnum =" + connexion.escape(data.gpnum)
+								+ " order by tempscourse)tab"
+							+ " left join points on points.PTPLACE=tab.place";
+							console.log(sql2);
+								connexion.query(sql2, function(err, result) {
+									console.log(result);
+									let sql3 ="";
+									result.forEach( function(point, index) {
+										sql3 = "update pilote set"
+														+ " pilpoints =" + point.ptnbpointsplace
+														+ " where pilnum=" + point.pilnum;
+										connexion.query(sql3);
+									});
+
+						/////////////////// Récupération nb par écurie //////////
+						let sql4 = "select sum(pilpoints) as ptecurie, ecunum"
+										+ " from pilote"
+										+ " group by ecunum";
+						connexion.query(sql4, function(err, result) {
+							console.log(result);
+							let sql5 ="";
+							result.forEach( function(point, index) {
+								sql5 = "update ecurie set"
+											+ " ecupoints =" + point.ptecurie
+											+ " where ecunum=" + point.ecunum;
+								connexion.query(sql5);
+								});
+							connexion.query(sql5, callback);
+						});
+					});
+					connexion.release();
+				}
+		})
+	};

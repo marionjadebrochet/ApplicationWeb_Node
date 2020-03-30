@@ -60,6 +60,10 @@ async.series ([
     model.ajouter(data, function (err, result) {
       callback(null, result) });
   },
+  function (callback) {
+    model.updatePoints(data, function (err, result) {
+      callback(null, result) });
+  },
   function(callback) {
     model.getPiloteTemps(data.gpnum, function (err, result) {
       callback(null, result) });
@@ -76,9 +80,9 @@ async.series ([
         return;
     }
 
-    response.piloteEtTemps = result[1];
-    response.gpnum = result[1][0].gpnum;
-    response.pilotes = result[2];
+    response.piloteEtTemps = result[2];
+    response.gpnum = result[2][0].gpnum;
+    response.pilotes = result[3];
     response.render('detailsResultats', response);
   }
 ); //fin async
@@ -92,6 +96,10 @@ async.series ([
     model.supprimer(data, function (err, result) {
       callback(null, result) });
   },
+  function (callback) {
+    model.updatePoints(data, function (err, result) {
+      callback(null, result) });
+  },
   function(callback) {
     model.getPiloteTemps(data.gpnum, function (err, result) {
       callback(null, result) });
@@ -108,9 +116,9 @@ async.series ([
         return;
     }
 
-    response.piloteEtTemps = result[1];
-    response.gpnum = result[1][0].gpnum;
-    response.pilotes = result[2];
+    response.piloteEtTemps = result[2];
+    response.gpnum = result[2][0].gpnum;
+    response.pilotes = result[3];
     response.render('detailsResultats', response);
   }
 ); //fin async

@@ -50,7 +50,7 @@ module.exports = function(app){
    app.get('/listerResultats', ResultatController.Desc);
    app.post('/detailsResultats', ResultatController.Resultat);
    app.post('/ajoutTemps', ResultatController.Ajouter);
-   app.get('/supprimerResultat/:gpnum/:pilnum/:pilpoints', ResultatController.Supprimer);
+   app.get('/supprimerResultat/:gpnum/:pilnum', ResultatController.Supprimer);
 //Sponsors
    app.get('/listerSponsors', SponsorsController.Sponsor);
    app.get('/ajouterSponsors', SponsorsController.Ajouter);
