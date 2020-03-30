@@ -6,12 +6,12 @@ let express         = require('express'),
     path = require('path'),
     async = require('async'),
     Cryptr = require('cryptr'),
-    fileUploade = require('express-fileupload');
+    fileUpload = require('express-fileupload');
 
 
 let app = express();
 
-
+app.use(fileUpload())
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', 6900);
 app.set('views', path.join(__dirname, 'views'));

@@ -1,13 +1,13 @@
 <h1> Ajouter un circuit </h1>
 
-<form action="/listerCircuits" method="POST">
+<form action="/listerCircuits" enctype="multipart/form-data" method="POST">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
     <input class="auto" type="text" name="cirnom" id="Nom" />
   </div>
   <div class="row">
     <label class="auto" for="Longueur">Longueur</label>
-    <input class="auto" type="text" name="CIRLONGUEUR" id="Long" /> m
+    <input class="auto" type="text" name="cirlongueur" id="Long" /> m
   </div>
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
@@ -19,7 +19,7 @@
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <input type="file" id="img" name="ciradresseimage">
+    <input type="file" id="img" name="image" required>
   </div>
   <div class="row">
     <label class="auto" for="Personne">Nombre de spectateurs</label>

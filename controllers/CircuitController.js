@@ -52,6 +52,21 @@ async.parallel ([
 module.exports.Ajout = 	function(request, response){
 
   let data = request.body;
+  //////// si pas de données : on supprime /////
+  if(data.cirnbspectateurs == '')
+    delete data.cirnbspectateurs;
+  if(data.cirlongueur == '')
+    delete data.cirlongueur;
+
+  let image = request.files.image;
+  //////// ajout de l'adresse de l'image dans data //////
+  data.ciradresseimage = image.name;
+
+  ////////////////////// Ajout de l'image///////////////////
+  image.mv('../ApplicationWeb_Node/public/image/circuit/' + image.name , function(err) {
+   if (err)
+     console.log(err);
+ });
 
   async.parallel ([
     function (callback) {
