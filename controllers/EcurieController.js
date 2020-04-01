@@ -150,18 +150,10 @@ async.parallel ([
         return;
     }
 
-
-    //Pas besoin t'as pas d'infos utile à mettre sur ta page que renvoie cette requête
-    //response.supEcurie = result;
-
-    //Par contre t'as besoin des infos que renvoie getListeEcurie
     response.listeEcurie = result[1];
 
-    // tu verra à quoi ça sert dans la page listerEcurie.handlebars
     response.est_supprime = true;
 
-    //response.render('supprimerEcurie', response);
-    //Reviens plutôt sur ta page qui liste les écurie, tu vas donc avoir besoin de getListeEcurie
     response.render('listerEcurie', response);
   }
 ); //fin async
