@@ -1,23 +1,16 @@
-# W R O O M
-<<<<<<< HEAD
-=======
-Structure de base pour l'application GrandPrix de l'IUT en Node.js.<br />
-Le fichier grandprix.sql vous permettra de créer votre base grandprix.<br />
-Vous aurez aussi un jeu d'essai (réaliste mais pas exact).<br />
-<b>(Some small jokes ☺ )</b><br />
+# Projet dans le cadre de l'IUT du Limousin
+<br />
 
+# Site Web Public et administratif en Node.js
+<br />
+
+
+Nous devions réalisé un site WEB permettant à la rédaction d'un magazine spécialisé dans le sport automobile de gérer un système d'information et d'informer ses lecteurs.
+
+Un jeu d'essai est fourni, il est réaliste mais pas exact
 
 Pour démarrer le serveur, taper "node app".<br />
-Le serveur sera à l'écoute du port 6800.<br />
+Le serveur sera à l'écoute du port 6800 dans la partie Public.<br />
+Et sur le port 6900 dans la partie Administrative.<br />
+
 Le fichier config.db contient les paramètres pour la base MySQL<br /><br />
-
-Dans le répertoire helpers, le fichier handlebars.js<br />
-contient quelques fonctions bien utiles.<br />
-Vous pouvez en ajouter （︶︿︶）<br /><br />
-
-Vous devez compléter ce travail pour obtenir les écrans demandés.<br />
-Je souhaite un code bien documenté et clair qui fonctionne sans <br /> intervention de ma part.<br />
-Merci de respecter la date limite de remise du travail !!!!<br /><br />
-
-<b> ⊂(◉‿◉)つ <b><br />
->>>>>>> 0675d1b7491153323286c259cdf27bdadf1253cd
