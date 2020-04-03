@@ -1,0 +1,6 @@
+# Les lignes commençant par '#' sont des commentaires.
+# Ignorer tous les fichiers nommés .~
+.~
+# Ignorer le repertoire node_modules
+Admin/node_modules/*
+Public/node_modules/*
