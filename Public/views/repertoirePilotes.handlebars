@@ -1,0 +1,43 @@
+{{> listeRepPilPartial}}
+
+
+  {{#each listePilote}}
+  <div class="listePilote">
+    <a href="/descPilote/{{this.nom}}"><h1>{{nom}} {{prenom}}</h1>
+    <img src="/image/pilote/{{img}}" alt="image du pilote"></a>
+  </div>
+  {{/each}}
+
+
+
+{{#each descPilote}}
+  <img src="/image/pilote/{{img}}" alt="image du pilote">
+  <h1>Nom : </h1><p>{{nom}} {{prenom}}</p>
+  <h1>Date de naissance :</h1><p>{{date}}</p>
+  <h1>Nationalité :</h1><p>{{nation}}</p>
+  <h1>Poids :</h1><p>{{poids}}</p>
+  <h1>Taille :</h1><p>{{taille}}</p>
+
+  {{#ifCond this.ecunom '==' NULL}}
+  <h1>Ecurie :</h1><p>Pas d'écurie cette année</p>
+   {{else}}
+   <h1>Ecurie :</h1><p>{{ecurie}}</p>
+  {{/ifCond}}
+
+{{/each}}
+
+{{#if sponsors}}
+<h1>Principaux sponsors :</h1><br>
+{{#each sponsors}}
+  <h1>{{nomspon}}</h1><p>({{type}})</p>
+{{/each}}
+{{/if}}
+
+
+{{#each descPilote}}
+  <h1>Qui suis-je ?</h1><p>{{texte}}</p>
+{{/each}}
+
+{{#each images}}
+<img src="/image/pilote/{{imgs}}" alt="image du pilote" class="imgPiloteEnPlus"></a>
+{{/each}}

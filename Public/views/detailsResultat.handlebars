@@ -1,0 +1,39 @@
+{{>listeResultatPartial}}
+
+<b> {{piloteEtTemps.[0].nomGP}} ({{formatDate getPiloteTemps.date 'D/MM/YYYY'}})</b>
+<table>
+      <tr>
+          <th>Place</th>
+        </tr>
+      {{#each placeEtPoint}}
+        <tr>
+            <td>{{place}}</td>
+        </tr>
+      {{/each}}
+</table>
+<table>
+      <tr>
+          <th>Pilote</th>
+          <th>Temps</th>
+        </tr>
+      {{#each piloteEtTemps}}
+        <tr>
+            <td>{{nom}} {{prenom}}</td>
+            <td>{{temps}}</td>
+        </tr>
+      {{/each}}
+</table>
+<table>
+      <tr>
+          <th>Nb points</th>
+        </tr>
+      {{#each placeEtPoint}}
+        <tr>
+            <td>{{point}}</td>
+        </tr>
+      {{/each}}
+</table>
+
+ {{#each details}}
+ <p>{{detail}}</p>
+ {{/each}}

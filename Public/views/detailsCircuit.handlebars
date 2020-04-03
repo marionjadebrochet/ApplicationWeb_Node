@@ -1,0 +1,10 @@
+{{> listeCircuitPartial}}
+
+{{#each detailsCircuits}}
+  <img src="/image/circuit/{{img}}" alt="image du circuit">
+  <h1>Nom : </h1><p>{{nom}}</p>
+  <h1>Longueur :</h1><p>{{lon}}</p>
+  <h1>Nombre de spectateurs :</h1><p>{{nombre}}</p>
+  <h1>Pays :</h1><p>{{pays}}</p>
+	<p>{{texte}}</p>
+{{/each}}

@@ -1,0 +1,9 @@
+
+<div class="accueil">
+  <h2>DERNIERS RESULTATS</h2>
+  {{#each listeGrandPrix}}
+    {{nom}} du {{formatDate date 'DD MMMM YYYY' }}  <br>
+    Mise à jour le : {{formatDate maj 'DD MMMM YYYY' }} <br>
+    <a href="/detailsGP/{{num}}">Voir les résultats</a>
+  {{/each}}
+</div>

@@ -1,0 +1,27 @@
+{{>listeEcuriePartial}}
+
+{{#each detailsEcurie}}
+  <img src="/image/ecurie/{{img}}" alt="image de l'écurie">
+  <h1>Nom : </h1><p>{{nom}}</p>
+  <h1>Directeur :</h1><p>{{dir}}</p>
+  <h1>Adresse :</h1><p>{{adresse}}</p>
+  <h1>Pays :</h1><p>{{pays}}</p>
+  {{#if pneu}}
+  <h1>Fournisseur de pneumatique :</h1><p>{{pneu}}</p>
+  {{/if}}
+{{/each}}
+
+{{#if pilotes}}
+<h1>Pilotes : </h1>
+{{#each pilotes}}
+  <a href="#"> {{nompilote}} {{prenompilote}}</a><br>
+{{/each}}
+{{/if}}
+
+{{#each voiture}}
+
+  <img src="/image/ecurie/voiture/{{imgVoit}}" alt="Voiture" />
+    <p>{{nomVoiture}}</p>
+    <p>{{libelle}}</p>
+
+{{/each}}
