@@ -18,7 +18,8 @@ module.exports.getListeEcurie = function (callback) {
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
 						let sql ="SELECT ecunum as num, ecunom as nom, ecunomdir as dir, ecupoints as point "
-										+ "FROM ecurie";
+										+ "FROM ecurie"
+										+ " order by ecunom asc";
             //console.log (sql);
             connexion.query(sql, callback);
 
@@ -96,7 +97,7 @@ module.exports.modifierEcurie = function (data, callback) {
 
 						let sql ="update ecurie set ? where ecunum = "
 									+ connexion.escape(data.ecunum);
-								
+
             connexion.query(sql, data, callback);
 
             connexion.release();
