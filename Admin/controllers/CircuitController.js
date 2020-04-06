@@ -63,10 +63,14 @@ module.exports.Ajout = 	function(request, response){
   data.ciradresseimage = image.name;
 
   ////////////////////// Ajout de l'image///////////////////
-  image.mv('../ApplicationWeb_Node/public/image/circuit/' + image.name , function(err) {
+  image.mv('./public/image/circuit/' + image.name , function(err) {
    if (err)
      console.log(err);
- });
+   });
+   image.mv('../public/public/image/circuit/' + image.name , function(err) {
+    if (err)
+      console.log(err);
+    });
 
   async.parallel ([
     function (callback) {
@@ -120,6 +124,29 @@ module.exports.Modifier = function(request, response){
 
 module.exports.Modifie = function(request, response){
   let data = request.body;
+
+  if(data.cirnbspectateurs == '')
+    delete data.cirnbspectateurs;
+  if(data.cirlongueur == '')
+    delete data.cirlongueur;
+
+  if(request.files) { //si l'image est changée
+    let image = request.files.image;
+    //////// ajout de l'adresse de l'image dans data //////
+    data.ciradresseimage = image.name;
+
+    ////////////////////// Ajout de l'image///////////////////
+    image.mv('./public/image/circuit/' + image.name , function(err) {
+     if (err)
+       console.log(err);
+     });
+     image.mv('../public/public/image/circuit/' + image.name , function(err) {
+      if (err)
+        console.log(err);
+      });
+  } else {
+    delete data.ciradresseimage;
+  }
 
   async.parallel ([
     function(callback) {

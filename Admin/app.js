@@ -11,7 +11,7 @@ let express         = require('express'),
 
 let app = express();
 
-app.use(fileUpload())
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', 6900);
 app.set('views', path.join(__dirname, 'views'));

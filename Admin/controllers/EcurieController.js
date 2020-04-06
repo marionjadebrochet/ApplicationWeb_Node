@@ -52,6 +52,20 @@ module.exports.Ajout = 	function(request, response){
 
   let data = request.body;
 
+  let image = request.files.image;
+  //////// ajout de l'adresse de l'image dans data //////
+  data.ecuadresseimage = image.name;
+
+  ////////////////////// Ajout de l'image///////////////////
+  image.mv('./public/image/ecurie/' + image.name , function(err) {
+   if (err)
+     console.log(err);
+   });
+   image.mv('../public/public/image/ecurie/' + image.name , function(err) {
+    if (err)
+      console.log(err);
+   });
+
   async.parallel ([
     function (callback) {
       model.ajouterEcurie(data, function (err, result) {

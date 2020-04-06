@@ -1,6 +1,6 @@
 <h1> Modifier un circuit </h1>
 
-<form action="/circuitModifie" method="POST">
+<form action="/circuitModifie" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="cirnum" value="{{circuit.cirnum}}"/>
 
   <div class="row">
@@ -22,7 +22,12 @@
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <input type="file" id="img" name="ciradresseimage" value="{{circuit.ciradresseimage}}" required>
+    <img id="imageCircuit"
+    src="/image/circuit/{{circuit.ciradresseimage}}"
+    title="modifier l'image ..." alt="image circuit"
+    onclick="inputFile()"
+    style="height: 60px;">
+    <input type="file" id="inputImg" name="image" onchange="changeImage()" hidden>
   </div>
   <div class="row">
     <label class="auto" for="Personne">Nombre de spectateurs</label>
@@ -35,3 +40,24 @@
 
   <button type="submit">MODIFIER</button>
 </form>
+
+<script type="text/javascript">
+  function inputFile() {
+    $('#inputImg').click();
+  }
+  function agrandire() {
+    $('#imageCircuit').hover(function() {
+      $('#imageCircuit').animate({'height': '70px'}, 'medium');
+    },
+    function () {
+      $('#imageCircuit').animate({'height': '60px'}, 'medium');
+    });
+  }
+  function changeImage() {
+    var image = document.getElementById('imageCircuit');
+	   image.src = URL.createObjectURL(event.target.files[0]);
+  }
+  $(document).ready(function() {
+    agrandire();
+  });
+</script>
