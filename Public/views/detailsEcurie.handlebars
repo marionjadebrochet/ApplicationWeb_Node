@@ -1,31 +1,50 @@
 {{>listeEcuriePartial}}
 
 {{#each detailsEcurie}}
-  <img src="/image/ecurie/{{img}}" alt="image de l'écurie">
-  <h1>Nom : </h1><p>{{nom}}</p>
-  <h1>Directeur :</h1><p>{{dir}}</p>
-  <h1>Adresse :</h1><p>{{adresse}}</p>
-  <h1>Pays :</h1><p>{{pays}}</p>
-  {{#if pneu}}
-  <h1>Fournisseur de pneumatique :</h1><p>{{pneu}}</p>
+<div class="eccuu">
+  <div class="imgecuu">
+    <img class="imgecuu" src="/image/ecurie/{{img}}" alt="image de l'écurie">
+  </div>
+  <div class="infoecuu">
+    <h1>Nom : </h1><p>  {{nom}}</p><br>
+    <h1>Directeur :</h1><p>  {{dir}}</p><br>
+    <h1>Adresse :</h1><p>  {{adresse}}</p><br>
+    <h1>Pays :</h1><p>  {{pays}}</p><br>
+    {{#if pneu}}
+    <h1>Fournisseur de pneumatique :</h1><p>  {{pneu}}</p><br>
+    {{/if}}
+  </div>
+</div>
+{{/each}}
+
+<br>
+
+<div class="pilici">
+  {{#if pilotes}}
+  <h1>Pilotes : </h1>
+  {{#each pilotes}}
+    <a class="infobulle" href="#" value="{{this.pilnum}}"> {{nompilote}} {{prenompilote}}</a><br>
+    <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
+    <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
+  {{/each}}
   {{/if}}
-{{/each}}
+</div>
 
-{{#if pilotes}}
-<h1>Pilotes : </h1>
-{{#each pilotes}}
-  <a class="infobulle" href="#" value="{{this.pilnum}}"> {{nompilote}} {{prenompilote}}</a><br>
-  <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
-  <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
-{{/each}}
-{{/if}}
 
+<br>
+<br>
+<br>
+  <div class="voittt">
 {{#each voiture}}
-
-  <img src="/image/ecurie/voiture/{{imgVoit}}" alt="Voiture" />
-    <p>{{nomVoiture}}</p>
-    <p>{{libelle}}</p>
+  <div class="imgppo">
+    <img class="imgvoitureici" src="/image/ecurie/voiture/{{imgVoit}}" alt="Voiture" />
+  <p>{{nomVoiture}}</p>
+  <p>{{libelle}}</p>
+</div>
 {{/each}}
+  </div>
+
+
 
 <script type="text/javascript">
 this.zoom_image = function(){

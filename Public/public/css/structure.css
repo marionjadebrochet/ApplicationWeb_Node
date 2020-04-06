@@ -180,12 +180,29 @@ margin-top: -10px;
   flex-wrap: wrap;
 }
 
+.eccuu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.voittt {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 .laa {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
+.imgvoitureici {
+  height: 120px;
+  width: 210px;
+  margin-right: 10px;
+}
 .imcirrr {
   height: 300px;
   width: 400px;
@@ -277,4 +294,23 @@ border:3px solid #E8330C;
 border-collapse:collapse;
 width:60%;
 margin:auto;
+}
+
+.imgecuu {
+  height: 200px;
+  width: 300px;
+}
+
+.infoecuu h1 {
+  font-size: 18px;
+   display: inline;
+}
+
+.infoecuu p {
+  font-size: 15px;
+   display: inline;
+}
+
+.pilici h1 {
+  font-size: 20px;
 }
