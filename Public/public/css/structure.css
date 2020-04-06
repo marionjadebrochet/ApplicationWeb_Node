@@ -318,3 +318,13 @@ margin:auto;
 .pilici h1 {
   font-size: 20px;
 }
+
+.choixliste {
+  color: black;
+  font-size: 13px;
+}
+
+.choixliste:hover {
+  color: red;
+  font-size: 15px;
+}
