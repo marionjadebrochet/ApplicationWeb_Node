@@ -29,36 +29,6 @@ module.exports.getListeRes = function (callback) {
       });
 };
 
-// module.exports.getPiloteTemps = function (data, callback) {
-//     db.getConnection(function (err, connexion) {
-//         if (!err) {
-//             let sql = "SELECT gp.GPNUM as num, gp.GPNOM as nomGP, gp.GPDATE as date, p.PILNOM as nom, p.PILPRENOM as prenom, c.TEMPSCOURSE as temps FROM Pilote p LEFT JOIN course c ON c.PILNUM = p.PILNUM LEFT JOIN grandprix gp ON c.GPNUM = gp.GPNUM WHERE gp.GPNUM like \'" + data + "\' ORDER BY `temps` ASC ";
-//             connexion.query(sql, callback);
-//             connexion.release();
-//         }
-//     })
-// };
-//
-// module.exports.getPlacePilote = function (data, callback) {
-//     db.getConnection(function (err, connexion) {
-//         if (!err) {
-//             let sql = "SELECT PTPLACE as place, PTNBPOINTSPLACE as point FROM points";
-//             connexion.query(sql, callback);
-//             connexion.release();
-//         }
-//     })
-// };
-//
-// module.exports.getDescriptionGP = function (data, callback) {
-//     db.getConnection(function (err, connexion) {
-//         if (!err) {
-//             let sql = "SELECT GPCOMMENTAIRE as detail from grandprix WHERE GPNUM like \'" + data + "\'";
-//             connexion.query(sql, callback);
-//             connexion.release();
-//         }
-//     })
-// };
-
 module.exports.getPiloteTemps = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {

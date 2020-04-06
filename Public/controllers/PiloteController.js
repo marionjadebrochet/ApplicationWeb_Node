@@ -20,7 +20,7 @@ module.exports.Repertoire = 	function(request, response){
 // /////////////////////////P I L O T E S    D O N T    L E    N O M    C O M M E N C E    P A R
 
 module.exports.Pilote = 	function(request, response){
-  let data = request.params.num;
+  let data = request.params.lettre;
   response.title = 'Pilotes dont le nom commence par' + data;
 
   async.parallel ([
@@ -51,7 +51,7 @@ module.exports.Pilote = 	function(request, response){
 // /////////////////////////D E T A I L S    D U    P I L O T E
 
 module.exports.DescPilote = 	function(request, response){
-  let nom = request.params.nom;
+  let data = request.params.num;
 
   async.parallel ([
     function (callback) {
@@ -59,15 +59,15 @@ module.exports.DescPilote = 	function(request, response){
         callback(null, result) });
     },
     function(callback) {
-   model.getDescPilote( nom, function (err, result) {
+   model.getDescPilote( data, function (err, result) {
         callback(null, result) });
     },
     function(callback) {
-   model.getSponsors( nom, function (err, result) {
+   model.getSponsors( data, function (err, result) {
         callback(null, result) });
     },
     function(callback) {
-   model.getImages( nom, function (err, result) {
+   model.getImages( data, function (err, result) {
         callback(null, result) });
     },
   ],
