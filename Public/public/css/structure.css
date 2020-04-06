@@ -311,6 +311,10 @@ margin:auto;
    display: inline;
 }
 
+.infoecuu {
+  margin-left: 5px;
+}
+
 .pilici h1 {
   font-size: 20px;
 }
