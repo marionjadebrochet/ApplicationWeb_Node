@@ -115,6 +115,11 @@ module.exports.Modifie = function(request, response){
   response.title = 'Pilote';
   let data = request.body;
 
+  if(data.pilpoints == '')
+    delete data.pilpoints;
+  if(data.ecunum == '')
+    delete data.ecunum;
+    
   async.parallel ([
     function(callback) {
       model.modifierPilote(data, function (err, result) {

@@ -51,7 +51,6 @@ this.zoom_image = function(){
   );
 
   $("a.infobulle").mousemove(function(e){
-    console.log(e);
     $("#zoom")
     .css("top",(e.pageY - xOffset) + "px")
     .css("left",(e.pageX + yOffset) + "px");

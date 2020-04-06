@@ -26,7 +26,9 @@
   <div class="row">
     <label class="auto" for="Ecurie">Ecurie</label>
     <select class="auto" name="ecunum">
+      {{#if pilote.ecunum}}
       <option value="{{pilote.ecunum}}">{{pilote.ecunom}}</option>
+      {{/if}}
       <option value="">pas d'écurie</option>
       {{#each nomEcurie}}
       <option value="{{this.ecunum}}">{{this.nom}}</option>

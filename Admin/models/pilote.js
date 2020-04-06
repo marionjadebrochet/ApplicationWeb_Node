@@ -17,7 +17,8 @@ module.exports.getListePilote = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT p.PILNUM as num, p.PILNOM as nom, p.PILPRENOM as prenom, p.PILDATENAIS as dateNai FROM pilote p ORDER BY `nom` ASC";
+						let sql ="SELECT p.PILNUM as num, p.PILNOM as nom, p.PILPRENOM as prenom, p.PILDATENAIS as dateNai"
+									+ " FROM pilote p ORDER BY `nom` ASC";
 
             //console.log (sql);
             connexion.query(sql, callback);
@@ -63,7 +64,7 @@ module.exports.getPilote = function (data, callback) {
 						let sql ="SELECT pilnum, pilnom, pilprenom, pildatenais, piltaille, pilpoids,"
 								+ " pilpoints, piltexte, p.paynum, paynat, p.ecunum, ecunom"
 								+ " FROM pilote p"
-								+ "	JOIN ecurie e ON p.ecunum=e.ecunum"
+								+ "	LEFT JOIN ecurie e ON p.ecunum=e.ecunum"
 								+ " JOIN pays ON pays.paynum=p.paynum"
 								+ " WHERE pilnum = " + connexion.escape(data);
 
@@ -81,8 +82,7 @@ module.exports.modifierPilote = function (data, callback) {
 
 						let sql ="update pilote set ? where pilnum = "
 									+ connexion.escape(data.pilnum);
-								console.log(sql);
-								console.log(data);
+								
             connexion.query(sql, data, callback);
 
             connexion.release();
