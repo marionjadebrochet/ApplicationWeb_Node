@@ -17,9 +17,10 @@ module.exports.getListeEcurie = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT ecunum, payadrdrap, ecunom FROM " +
-                            "ecurie e INNER JOIN pays p ";
-						sql= sql + "ON p.paynum=e.paynum ORDER BY ecunom";
+						let sql ="SELECT ecunum, payadrdrap, ecunom"
+								+ " FROM ecurie e"
+								+ " INNER JOIN pays p ON p.paynum=e.paynum"
+								+ " ORDER BY ecunom";
 						//console.log (sql);
             connexion.query(sql, callback);
 
@@ -35,8 +36,13 @@ module.exports.getDetEcurie = function (data,callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT DISTINCT e.ECUNOM as nom, e.ECUNOMDIR as dir, e.ECUADRSIEGE as adresse, pa.PAYNOM as pays, e.ECUADRESSEIMAGE as img, fp.FPNOM as pneu FROM ecurie e INNER JOIN pays pa ON pa.PAYNUM = e.PAYNUM LEFT JOIN fourn_pneu fp ON fp.FPNUM = e.FPNUM LEFT JOIN pilote p ON p.ECUNUM = e.ECUNUM WHERE ECUNOM like \'" + data + "\'";
-						console.log (sql);
+						let sql ="SELECT DISTINCT e.ECUNOM as nom, e.ECUNOMDIR as dir, e.ECUADRSIEGE as adresse,"
+								+ " pa.PAYNOM as pays, e.ECUADRESSEIMAGE as img, fp.FPNOM as pneu"
+								+ " FROM ecurie e INNER JOIN pays pa ON pa.PAYNUM = e.PAYNUM"
+								+ " LEFT JOIN fourn_pneu fp ON fp.FPNUM = e.FPNUM"
+								+ " LEFT JOIN pilote p ON p.ECUNUM = e.ECUNUM"
+								+ " WHERE ECUNOM like " + connexion.escape(data);
+
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool
@@ -56,7 +62,7 @@ module.exports.getPiloteEcurie = function (data,callback) {
 									+ " join photo ph on p.pilnum=ph.pilnum"
 									+ " WHERE ECUNOM like " + connexion.escape(data)
 									+ " and (phonum = 1 or phonum is null)";
-						console.log (sql);
+
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool
@@ -71,8 +77,11 @@ module.exports.getPhotoEcurie = function (data,callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT v.VOINOM as nomVoiture, v.VOIADRESSEIMAGE as imgVoit, tv.TYPELIBELLE as libelle FROM VOITURE v INNER JOIN type_voiture tv ON v.TYPNUM = tv.TYPNUM INNER JOIN ecurie e ON v.ECUNUM = e.ECUNUM WHERE ECUNOM like \'" + data + "\'";
-						console.log (sql);
+						let sql ="SELECT v.VOINOM as nomVoiture, v.VOIADRESSEIMAGE as imgVoit, tv.TYPELIBELLE as libelle"
+								+ " FROM VOITURE v INNER JOIN type_voiture tv ON v.TYPNUM = tv.TYPNUM"
+								+ " INNER JOIN ecurie e ON v.ECUNUM = e.ECUNUM"
+								+ " WHERE ECUNOM like " + connexion.escape(data);
+						
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool

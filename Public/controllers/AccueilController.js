@@ -2,6 +2,7 @@ let model = require('../models/accueil.js');
 
   // //////////////////////////P O U R    A C C U E I L
 module.exports.GrandPrixDate = function(request, response){
+	response.title = "Bienvenue sur le site de WROOM (IUT du Limousin).";
 	model.getGrandPrix( function (err, result) {
 			if (err) {
 					// gestion de l'erreur

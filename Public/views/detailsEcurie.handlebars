@@ -14,7 +14,7 @@
 {{#if pilotes}}
 <h1>Pilotes : </h1>
 {{#each pilotes}}
-  <a href="#" value="{{this.pilnum}}"> {{nompilote}} {{prenompilote}}</a><br>
+  <a class="infobulle" href="#" value="{{this.pilnum}}"> {{nompilote}} {{prenompilote}}</a><br>
   <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
   <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
 {{/each}}
@@ -32,7 +32,7 @@ this.zoom_image = function(){
   xOffset = 10;
   yOffset = 30;
   var texte;
-  $("a").hover(
+  $(".infobulle").hover(
     function(e){
       //texte = $(this).attr('title');
       //$(this).attr('title' , '');

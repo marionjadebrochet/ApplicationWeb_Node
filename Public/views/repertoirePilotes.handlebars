@@ -11,9 +11,9 @@
 
 
 {{#each descPilote}}
-  <img src="/image/pilote/{{img}}" alt="image du pilote">
+  {{#if this.img}}<img src="/image/pilote/{{img}}" alt="image du pilote">{{/if}}
   <h1>Nom : </h1><p>{{nom}} {{prenom}}</p>
-  <h1>Date de naissance :</h1><p>{{date}}</p>
+  <h1>Date de naissance :</h1><p>{{formatDate this.date 'DD MMMM YYYY' }}</p>
   <h1>Nationalité :</h1><p>{{nation}}</p>
   <h1>Poids :</h1><p>{{poids}}</p>
   <h1>Taille :</h1><p>{{taille}}</p>

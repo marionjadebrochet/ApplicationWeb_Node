@@ -39,7 +39,7 @@ module.exports.Pilote = 	function(request, response){
           console.log(err);
           return;
       }
-      console.log(result);
+
       response.listeLettre = result[0];
       response.listePilote = result[1];
       response.render('repertoirePilotes', response);
@@ -52,6 +52,7 @@ module.exports.Pilote = 	function(request, response){
 
 module.exports.DescPilote = 	function(request, response){
   let data = request.params.num;
+  response.title = "Détails Pilote";
 
   async.parallel ([
     function (callback) {
@@ -77,7 +78,7 @@ module.exports.DescPilote = 	function(request, response){
           console.log(err);
           return;
       }
-      console.log(result);
+      
       response.listeLettre = result[0];
       response.descPilote = result[1];
       response.sponsors = result[2];
