@@ -34,9 +34,6 @@ this.zoom_image = function(){
   var texte;
   $(".infobulle").hover(
     function(e){
-      //texte = $(this).attr('title');
-      //$(this).attr('title' , '');
-      //var legende = (texte != "") ? "<br/>" + texte : "";
       var pilnum = $(this).attr('value');
       var idPhoto = "#phoadresseZoom" + pilnum;
       var idTexte = "#piltexteZoom" + pilnum;
@@ -49,12 +46,12 @@ this.zoom_image = function(){
       .fadeIn("slow");
     },
     function(){
-      //$(this).attr('title', texte);
       $("#zoom").remove();
     }
   );
 
-  $("a.zoom").mousemove(function(e){
+  $("a.infobulle").mousemove(function(e){
+    console.log(e);
     $("#zoom")
     .css("top",(e.pageY - xOffset) + "px")
     .css("left",(e.pageX + yOffset) + "px");
