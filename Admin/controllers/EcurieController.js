@@ -118,6 +118,24 @@ module.exports.Modifier = function(request, response){
 module.exports.Modifie = function(request, response){
   let data = request.body;
 
+  if(request.files) { //si l'image est changée
+    let image = request.files.image;
+    //////// ajout de l'adresse de l'image dans data //////
+    data.ecuadresseimage = image.name;
+
+    ////////////////////// Ajout de l'image///////////////////
+    image.mv('./public/image/ecurie/' + image.name , function(err) {
+     if (err)
+       console.log(err);
+     });
+     image.mv('../public/public/image/ecurie/' + image.name , function(err) {
+      if (err)
+        console.log(err);
+      });
+  } else {
+    delete data.ecuadresseimage;
+  }
+
   async.parallel ([
     function(callback) {
       model.modifierEcurie(data, function (err, result) {

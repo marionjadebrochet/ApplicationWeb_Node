@@ -22,12 +22,12 @@
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <img id="imageCircuit"
+    <img id="imageModifCircuit"
     src="/image/circuit/{{circuit.ciradresseimage}}"
     title="modifier l'image ..." alt="image circuit"
     onclick="inputFile()"
     style="height: 60px;">
-    <input type="file" id="inputImg" name="image" onchange="changeImage()" hidden>
+    <input type="file" id="inputModifImgCir" name="image" onchange="changeImage()" hidden>
   </div>
   <div class="row">
     <label class="auto" for="Personne">Nombre de spectateurs</label>
@@ -43,18 +43,18 @@
 
 <script type="text/javascript">
   function inputFile() {
-    $('#inputImg').click();
+    $('#inputModifImgCir').click();
   }
   function agrandire() {
-    $('#imageCircuit').hover(function() {
-      $('#imageCircuit').animate({'height': '70px'}, 'medium');
+    $('#imageModifCircuit').hover(function() {
+      $('#imageModifCircuit').animate({'height': '70px'}, 'medium');
     },
     function () {
-      $('#imageCircuit').animate({'height': '60px'}, 'medium');
+      $('#imageModifCircuit').animate({'height': '60px'}, 'medium');
     });
   }
   function changeImage() {
-    var image = document.getElementById('imageCircuit');
+    var image = document.getElementById('imageModifCircuit');
 	   image.src = URL.createObjectURL(event.target.files[0]);
   }
   $(document).ready(function() {

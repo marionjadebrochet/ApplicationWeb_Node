@@ -1,6 +1,6 @@
 <h1> Modifier une ecurie </h1>
 
-<form action="/ecurieModifie" method="POST">
+<form action="/ecurieModifie" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="ecunum" value="{{ecurie.ecunum}}"/>
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
@@ -29,8 +29,34 @@
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <input type="file" id="img" name="ecuadresseimage">
+    <img id="imageModifEcu"
+    src="/image/ecurie/{{ecurie.ecuadresseimage}}"
+    title="modifier l'image ..." alt="image écurie"
+    onclick="inputFile()"
+    style="height: 60px;">
+    <input type="file" id="inputModifImgEcu" name="image" onchange="changeImage()" hidden>
   </div>
 
   <button type="submit">MODIFIER</button>
   </form>
+
+  <script type="text/javascript">
+    function inputFile() {
+      $('#inputModifImgEcu').click();
+    }
+    function agrandire() {
+      $('#imageModifEcu').hover(function() {
+        $('#imageModifEcu').animate({'height': '70px'}, 'medium');
+      },
+      function () {
+        $('#imageModifEcu').animate({'height': '60px'}, 'medium');
+      });
+    }
+    function changeImage() {
+      var image = document.getElementById('imageModifEcu');
+  	   image.src = URL.createObjectURL(event.target.files[0]);
+    }
+    $(document).ready(function() {
+      agrandire();
+    });
+  </script>
