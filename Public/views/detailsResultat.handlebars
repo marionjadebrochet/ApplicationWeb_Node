@@ -1,22 +1,26 @@
 {{>listeResultatPartial}}
 
 <b> {{gpnom}} ({{formatDate date 'D/MM/YYYY'}})</b>
-<table>
-  <tr>
-    <th>_</th>
-    <th>Place</th>
-    <th>Pilote</th>
-    <th>Temps</th>
-    <th>NbPoints</th>
-  </tr>
-  {{#each piloteEtTemps}}
-  <tr>
-    <td><a href="/supprimerResultat/{{this.gpnum}}/{{this.pilnum}}"><img src="/image/act_delete.png"></a></td>
-    <td>{{this.place}}</td>
-    <td>{{this.pilnom}}</td>
-    <td>{{this.tempscourse}}</td>
-    <td>{{this.ptnbpointsplace}}</td>
-  </tr>
-  {{/each}}
-</table>
- <p>{{detail}}</p>
+<br>
+<br>
+<div class="tabPPP">
+  <table>
+    <tr>
+      <th>Place</th>
+      <th>Pilote</th>
+      <th>Temps</th>
+      <th>NbPoints</th>
+    </tr>
+    {{#each piloteEtTemps}}
+    <tr>
+      <td>{{this.place}}</td>
+      <td>{{this.pilnom}}</td>
+      <td>{{this.tempscourse}}</td>
+      <td>{{this.ptnbpointsplace}}</td>
+    </tr>
+    {{/each}}
+  </table>
+</div>
+
+<br>
+ <p class="texttt">{{detail}}</p>

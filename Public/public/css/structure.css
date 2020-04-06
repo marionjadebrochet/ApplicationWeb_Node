@@ -250,3 +250,31 @@ margin-top: -10px;
   font-size: 18px;
    display: inline;
 }
+
+b {
+  font-size: 20px;
+}
+
+
+.tabPPP th {
+border:1px dotted #E8330C;
+padding:10px;
+background-color:#FFE4E2;
+text-align: center;
+font-size: 20px;
+}
+
+.tabPPP td {
+font-size: 16px;
+border:1px solid #E8330C;
+padding:10px;
+text-align: center;
+
+}
+
+.tabPPP table {
+border:3px solid #E8330C;
+border-collapse:collapse;
+width:60%;
+margin:auto;
+}
