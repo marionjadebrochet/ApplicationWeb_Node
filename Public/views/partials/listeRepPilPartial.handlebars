@@ -1,7 +1,7 @@
-<h1> Mettre ici la première lettre du nom des pilotes </h1>
+<h2 class="let"> Cliquez sur une lettre : </h2>
 
-<h2> Cliquez sur une lettre : </h2>
-
-{{#each listeLettre}}
+<div class="lettre">
+  {{#each listeLettre}}
   <a href="/detailsPilote/{{this.lettre}}">{{this.lettre}}</a>
-{{/each}}
+  {{/each}}
+</div>

@@ -1,43 +1,65 @@
 {{> listeRepPilPartial}}
 
+<br>
 
+<div class="carrepilote">
   {{#each listePilote}}
   <div class="listePilote">
     <a href="/descPilote/{{this.pilnum}}"><h1>{{nom}} {{prenom}}</h1>
-    {{#if this.img }}<img src="/image/pilote/{{img}}" alt="image du pilote">{{/if}}</a>
+    {{#if this.img }}<img class="imgpilote" src="/image/pilote/{{img}}" alt="image du pilote">{{/if}}</a>
   </div>
   {{/each}}
+</div>
 
+<br>
+<br>
 
+<div class="detPilote">
 
 {{#each descPilote}}
-  {{#if this.img}}<img src="/image/pilote/{{img}}" alt="image du pilote">{{/if}}
-  <h1>Nom : </h1><p>{{nom}} {{prenom}}</p>
-  <h1>Date de naissance :</h1><p>{{formatDate this.date 'DD MMMM YYYY' }}</p>
-  <h1>Nationalité :</h1><p>{{nation}}</p>
-  <h1>Poids :</h1><p>{{poids}}</p>
-  <h1>Taille :</h1><p>{{taille}}</p>
+<div class="en">
+  <div class="imagetete">
+      {{#if this.img}}<img class="imgggg" src="/image/pilote/{{img}}" alt="image du pilote">{{/if}}
+  </div>
+  <div class="infopil1">
+    <h1>Nom : </h1><p>{{nom}} {{prenom}}</p>
+    <h1>Date de naissance :</h1><p>{{formatDate this.date 'DD MMMM YYYY' }}</p>
+  </div>
+  <div class="infopil2">
+    <h1>Nationalité :</h1><p>{{nation}}</p>
+    <h1>Poids :</h1><p>{{poids}}</p>
+  </div>
+  <div class="infopil3">
+    <h1>Taille :</h1><p>{{taille}}</p>
 
-  {{#ifCond this.ecunom '==' NULL}}
-  <h1>Ecurie :</h1><p>Pas d'écurie cette année</p>
-   {{else}}
-   <h1>Ecurie :</h1><p>{{ecurie}}</p>
-  {{/ifCond}}
+      {{#ifCond this.ecunom '==' NULL}}
+      <h1>Ecurie :</h1><p>Pas d'écurie cette année</p>
+       {{else}}
+       <h1>Ecurie :</h1><p>{{ecurie}}</p>
+      {{/ifCond}}
 
+  </div>
+</div>
 {{/each}}
 
+<br>
+
 {{#if sponsors}}
-<h1>Principaux sponsors :</h1><br>
+<h1>Principaux sponsors :</h1>
 {{#each sponsors}}
-  <h1>{{nomspon}}</h1><p>({{type}})</p>
+  <p>{{nomspon}} ({{type}})</p>
 {{/each}}
 {{/if}}
 
+<br>
 
 {{#each descPilote}}
-  <h1>Qui suis-je ?</h1><p>{{texte}}</p>
+  <h1>Qui suis-je ?</h1><p class="texttt">{{texte}}</p>
 {{/each}}
+
 
 {{#each images}}
 <img src="/image/pilote/{{imgs}}" alt="image du pilote" class="imgPiloteEnPlus"></a>
 {{/each}}
+
+</div>

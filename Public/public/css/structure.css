@@ -106,13 +106,147 @@
 	text-decoration: underline;
 }
 
+
+
+
+.lettre {
+  background-color: lightgrey;
+  margin-right: 73%;
+  text-decoration: none;
+  font-weight: bold;
+  color: red;
+}
+
+.lettre a {
+font-size: 20px;
+color: black;
+}
+
+.lettre a:hover{
+font-size: 20px;
+color: red;
+}
+
+.let {
+font-size: 40px;
+margin-top: -10px;
+}
+
+.imgpilote {
+  height: 175px;
+  width: 150px;
+}
+
+.imgPiloteEnPlus {
+  height: 175px;
+  width: 150px;
+}
+
+.carrepilote {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.listePilote {
+  width: 25%;
+}
+
+.listePilote a{
+  color: black;
+}
+
+.listePilote a:hover{
+  color: red;
+}
+
+.detPilote h1 {
+  font-size: 22px;
+}
+
+.detPilote p {
+  font-size: 18px;
+}
+
+.en {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.cir {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.laa {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.imcirrr {
+  height: 300px;
+  width: 400px;
+}
+
+.infopil1{
+  margin-left: 5%;
+}
+
+
+.infopil2{
+  margin-left: 5%;
+}
+
+.infopil3{
+  margin-left: 5%;
+}
+
+.imgggg {
+  height: 175px;
+  width: 150px;
+}
+
+.sponom {
+  font-weight: bold;
+}
+
+.texttt {
+  text-align: justify;
+}
+
 .imgPiloteEnPlus {
 	width: 18%;
 	height: auto;
 }
 
-.listePilote {
-  width: 10%;
-  height: auto;
-  display: block;
+.imgPiloteEnPlus {
+	width: 18%;
+	height: auto;
+}
+
+.imgPiloteEnPlus {
+	width: 18%;
+	height: auto;
+}
+
+.imgPiloteEnPlus {
+	width: 18%;
+	height: auto;
+}
+
+.infocirt {
+  margin-left: 3%;
+}
+
+.infocirt h1 {
+  font-size: 20px;
+   display: inline;
+}
+
+.infocirt p {
+  font-size: 18px;
+   display: inline;
 }

@@ -1,10 +1,18 @@
+
 {{> listeCircuitPartial}}
 
 {{#each detailsCircuits}}
-  <img src="/image/circuit/{{img}}" alt="image du circuit">
-  <h1>Nom : </h1><p>{{nom}}</p>
-  <h1>Longueur :</h1><p>{{lon}}</p>
-  <h1>Nombre de spectateurs :</h1><p>{{nombre}}</p>
-  <h1>Pays :</h1><p>{{pays}}</p>
-	<p>{{texte}}</p>
+<div class="cir">
+  <div class="imgcir">
+    <img class="imcirrr"src="/image/circuit/{{img}}">
+  </div>
+  <div class="infocirt">
+    <h1>Nom : </h1><p> {{nom}}</p><br>
+    <h1>Longueur :</h1><p>  {{lon}}</p><br>
+    <h1>Nombre de spectateurs :</h1><p>  {{nombre}}</p><br>
+    <h1>Pays :</h1><p>  {{pays}}</p><br>
+  </div>
+</div>
+<p class="texttt">{{texte}}</p>
+
 {{/each}}
