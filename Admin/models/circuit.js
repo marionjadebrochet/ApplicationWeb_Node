@@ -92,8 +92,9 @@ module.exports.getCircuit = function (data, callback) {
 	db.getConnection(function(err, connexion){
 				if(!err){
 
-						let sql ="SELECT cirnum, cirnom, CIRLONGUEUR, CIRNBSPECTATEURS, cirtext, ciradresseimage, paynum"
-								+ " FROM Circuit"
+						let sql ="SELECT cirnum, cirnom, CIRLONGUEUR, CIRNBSPECTATEURS, cirtext, ciradresseimage, p.paynum, paynom"
+								+ " FROM Circuit c"
+								+ " join pays p on c.paynum=p.paynum"
 								+ " WHERE cirnum = " + connexion.escape(data);
 
 						connexion.query(sql, callback);

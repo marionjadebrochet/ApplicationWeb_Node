@@ -21,7 +21,7 @@
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
     <select class="auto" name="paynum" required>
-      <option value="{{ecurie.paynum}}">{{pays.paynom}}</option>
+      <option value="{{ecurie.paynum}}">{{ecurie.paynom}}</option>
       {{#each pays}}
       <option value="{{this.paynum}}">{{this.paynom}}</option>
       {{/each}}

@@ -64,8 +64,9 @@ module.exports.getEcurie = function (data, callback) {
 	db.getConnection(function(err, connexion){
         if(!err){
 
-						let sql ="SELECT ecunum, ecunom, ecunomdir, ecuadrsiege, ecupoints, ecuadresseimage, paynum"
+						let sql ="SELECT ecunum, ecunom, ecunomdir, ecuadrsiege, ecupoints, ecuadresseimage, p.paynum, paynom"
 								+ " FROM ecurie e"
+								+ " JOIN pays p on p.paynum=e.paynum"
 								+ " WHERE ecunum = " + connexion.escape(data);
 
             connexion.query(sql, callback);
