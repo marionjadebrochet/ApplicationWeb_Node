@@ -34,7 +34,7 @@ module.exports.getPiloteParLettre = function (data, callback) {
 		        if(!err){
 		        	  // s'il n'y a pas d'erreur de connexion
 		        	  // execution de la requête SQL
-								let sql ="SELECT p.pilnum, PILNOM as nom, PILPRENOM as prenom, ph.PHOADRESSE as img FROM pilote p JOIN photo ph WHERE p.PILNUM = ph.PILNUM AND PILNOM like \'" + data + "%\' AND ph.PHONUM = 1";
+								let sql ="SELECT p.pilnum, PILNOM as nom, PILPRENOM as prenom, ph.PHOADRESSE as img FROM pilote p left JOIN photo ph on p.PILNUM = ph.PILNUM where PILNOM like \'" + data + "%\' and (ph.PHONUM = 1 or phonum is null)";
 
 		            //console.log (sql);
 		            connexion.query(sql, callback);

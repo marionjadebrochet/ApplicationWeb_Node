@@ -25,3 +25,47 @@
     <p>{{libelle}}</p>
 
 {{/each}}
+
+<script type="text/javascript">
+this.zoom_image = function(){
+  xOffset = 10;
+  yOffset = 30;
+  var texte;
+  $("a").hover(
+    function(e){
+      //texte = $(this).attr('title');
+      //$(this).attr('title' , '');
+      //var legende = (texte != "") ? "<br/>" + texte : "";
+      var legende = $(this).text();
+      $("#contenu").append("<p id='zoom'><img src='"+ $(this).attr('href') +"' alt='"+legende+"' /></p>");
+      $("#zoom")
+      .css("top",(e.pageY - xOffset) + "px")
+      .css("left",(e.pageX + yOffset) + "px")
+      .fadeIn("slow");
+    },
+    function(){
+      //$(this).attr('title', texte);
+      $("#zoom").remove();
+    }
+  );
+
+  $("a.zoom").mousemove(function(e){
+    $("#zoom")
+    .css("top",(e.pageY - xOffset) + "px")
+    .css("left",(e.pageX + yOffset) + "px");
+  });
+};
+
+$(document).ready(function(){
+  zoom_image();
+});
+</script>
+<style media="screen">
+#zoom { position: absolute;
+     border: 1px solid #333;
+     background: #333;
+     padding: 3px;
+     display: none;
+     color: #fff;
+}
+</style>
