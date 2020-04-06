@@ -3,4 +3,4 @@
 .~
 # Ignorer le repertoire node_modules
 Admin/node_modules/*
-Public/node_modules/*
+public/node_modules/*
