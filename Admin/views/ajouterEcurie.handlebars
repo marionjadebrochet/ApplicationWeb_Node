@@ -27,8 +27,39 @@
   </div>
   <div class="row">
     <label class="auto" for="Image">Images</label>
-    <input type="file" id="img" name="ecuadresseimage">
+    <button type="button" id="buttonImgEcu" onclick="chooseFile()" style="height: auto" >Ajouter image</button>
+    <img id="imageAjoutEcu"
+    title="modifier l'image ..." alt="image écurie"
+    onclick="inputFile()"
+    style="display: none">
+    <input type="file" id="inputAjoutImgEcu" name="image" onchange="changeImage()" hidden>
   </div>
 
   <button type="submit">AJOUTER</button>
 </form>
+
+<script type="text/javascript">
+  function chooseFile() {
+    $('#inputAjoutImgEcu').click();
+    $('#buttonImgEcu').remove();
+  }
+  function inputFile() {
+    $('#inputAjoutImgEcu').click();
+  }
+  function agrandire() {
+    $('#imageAjoutEcu').hover(function() {
+      $('#imageAjoutEcu').animate({'height': '70px'}, 'medium');
+    },
+    function () {
+      $('#imageAjoutEcu').animate({'height': '60px'}, 'medium');
+    });
+  }
+  function changeImage() {
+    $('#imageAjoutEcu').attr('style','height: 60px;');
+    var image = document.getElementById('imageAjoutEcu');
+	   image.src = URL.createObjectURL(event.target.files[0]);
+  }
+  $(document).ready(function() {
+    agrandire();
+  });
+</script>

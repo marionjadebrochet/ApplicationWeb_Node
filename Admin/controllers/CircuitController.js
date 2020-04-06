@@ -131,6 +131,7 @@ module.exports.Modifie = function(request, response){
     delete data.cirlongueur;
 
   if(request.files) { //si l'image est changée
+    
     let image = request.files.image;
     //////// ajout de l'adresse de l'image dans data //////
     data.ciradresseimage = image.name;
