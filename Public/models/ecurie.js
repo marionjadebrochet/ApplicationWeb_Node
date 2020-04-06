@@ -51,7 +51,11 @@ module.exports.getPiloteEcurie = function (data,callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT p.PILNOM as nompilote, p.PILPRENOM as prenompilote FROM PILOTE P INNER JOIN ECURIE e ON p.ECUNUM = e.ECUNUM WHERE ECUNOM like \'" + data + "\'";
+						let sql ="SELECT p.pilnum, p.PILNOM as nompilote, p.PILPRENOM as prenompilote, phoadresse, piltexte"
+						 			+ " FROM PILOTE P INNER JOIN ECURIE e ON p.ECUNUM = e.ECUNUM"
+									+ " join photo ph on p.pilnum=ph.pilnum"
+									+ " WHERE ECUNOM like " + connexion.escape(data)
+									+ " and (phonum = 1 or phonum is null)";
 						console.log (sql);
             connexion.query(sql, callback);
 

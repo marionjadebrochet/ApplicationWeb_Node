@@ -14,7 +14,9 @@
 {{#if pilotes}}
 <h1>Pilotes : </h1>
 {{#each pilotes}}
-  <a href="#"> {{nompilote}} {{prenompilote}}</a><br>
+  <a href="#" value="{{this.pilnum}}"> {{nompilote}} {{prenompilote}}</a><br>
+  <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
+  <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
 {{/each}}
 {{/if}}
 
@@ -23,7 +25,6 @@
   <img src="/image/ecurie/voiture/{{imgVoit}}" alt="Voiture" />
     <p>{{nomVoiture}}</p>
     <p>{{libelle}}</p>
-
 {{/each}}
 
 <script type="text/javascript">
@@ -36,8 +37,12 @@ this.zoom_image = function(){
       //texte = $(this).attr('title');
       //$(this).attr('title' , '');
       //var legende = (texte != "") ? "<br/>" + texte : "";
-      var legende = $(this).text();
-      $("#contenu").append("<p id='zoom'><img src='"+ $(this).attr('href') +"' alt='"+legende+"' /></p>");
+      var pilnum = $(this).attr('value');
+      var idPhoto = "#phoadresseZoom" + pilnum;
+      var idTexte = "#piltexteZoom" + pilnum;
+      var legende = $(this).text() + "<br/>" + $(idTexte).text();
+
+      $("#contenu").append("<div id='zoom'><img src='/image/pilote/"+ $(idPhoto).text() +"' alt='"+$(this).text()+"' />" + legende+"</div>");
       $("#zoom")
       .css("top",(e.pageY - xOffset) + "px")
       .css("left",(e.pageX + yOffset) + "px")
@@ -67,5 +72,9 @@ $(document).ready(function(){
      padding: 3px;
      display: none;
      color: #fff;
+}
+#zoom img {
+  height: 100px;
+  width: auto;
 }
 </style>
