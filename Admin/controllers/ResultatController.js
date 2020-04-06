@@ -42,8 +42,7 @@ async.parallel ([
         console.log(err);
         return;
     }
-    console.log(result);
-    console.log(data);
+    
     response.piloteEtTemps = result[0];
     response.gpnum = result[0][0].gpnum;
     response.pilotes = result[1];

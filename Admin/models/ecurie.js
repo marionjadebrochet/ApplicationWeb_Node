@@ -96,8 +96,7 @@ module.exports.modifierEcurie = function (data, callback) {
 
 						let sql ="update ecurie set ? where ecunum = "
 									+ connexion.escape(data.ecunum);
-								console.log(sql);
-								console.log(data);
+								
             connexion.query(sql, data, callback);
 
             connexion.release();

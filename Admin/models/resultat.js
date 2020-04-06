@@ -28,7 +28,7 @@ module.exports.getListeRes = function (callback) {
 };
 
 module.exports.getPiloteTemps = function (data, callback) {
-	console.log(data);
+
     db.getConnection(function (err, connexion) {
         if (!err) {
             let sql = "Select place, pilnom, tempscourse, ptnbpointsplace, gpnum, pilnum"
@@ -71,7 +71,7 @@ module.exports.ajouter = function (data, callback) {
 										+ " gpnum = " + connexion.escape(data.gpnum)
 										+ ", pilnum = " + connexion.escape(data.pilnum)
 										+ ", tempscourse = " + connexion.escape(data.heure+':'+data.minute+':'+data.seconde);
-										
+
             connexion.query(sql, callback);
             connexion.release();
         }
@@ -110,9 +110,9 @@ module.exports.updatePoints = function (data, callback) {
 								+ " WHERE gp.gpnum =" + connexion.escape(data.gpnum)
 								+ " order by tempscourse)tab"
 							+ " left join points on points.PTPLACE=tab.place";
-							console.log(sql2);
+
 								connexion.query(sql2, function(err, result) {
-									console.log(result);
+
 									let sql3 ="";
 									result.forEach( function(point, index) {
 										sql3 = "update pilote set"
@@ -126,7 +126,7 @@ module.exports.updatePoints = function (data, callback) {
 										+ " from pilote"
 										+ " group by ecunum";
 						connexion.query(sql4, function(err, result) {
-							console.log(result);
+
 							let sql5 ="";
 							result.forEach( function(point, index) {
 								sql5 = "update ecurie set"

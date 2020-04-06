@@ -16,7 +16,8 @@ module.exports.getListeSponsor = function (callback) {
         if(!err){
         	  // s'il n'y a pas d'erreur de connexion
         	  // execution de la requête SQL
-						let sql ="SELECT s.SPONOM as nom, s.SPONUM as num, s.SPOSECTACTIVITE as act FROM sponsor s ORDER BY `nom` ASC ";
+						let sql ="SELECT s.SPONOM as nom, s.SPONUM as num, s.SPOSECTACTIVITE as act"
+									+ " FROM sponsor s ORDER BY `nom` ASC ";
 
             //console.log (sql);
             connexion.query(sql, callback);
@@ -31,14 +32,14 @@ module.exports.getListeSponsor = function (callback) {
 					module.exports.supSponsor = function (data, callback) {
 		    db.getConnection(function (err, connexion) {
 		        if (!err) {
-							console.log('un');
+
 		            let sql1 ="delete from finance where SPONUM =" + connexion.escape(data);
 		            let sql2 = "delete from sponsorise where SPONUM =" + connexion.escape(data);
 		            let sql3 = "delete from `sponsor` where `sponsor`.`SPONUM` = " + connexion.escape(data);
 		            connexion.query(sql1);
 		            connexion.query(sql2);
 		            connexion.query(sql3, callback);
-								console.log('deux');
+
 
 		            connexion.release();
 
@@ -58,7 +59,7 @@ module.exports.getListeSponsor = function (callback) {
 						let sql2 = "insert into finance set"
 											+ " sponum = ("
 											+ " select sponum from sponsor"
-												+ " where sponum >=all (select sponum from sponsor))"
+											+ " where sponum >=all (select sponum from sponsor))"
 											+ ", ecunum=" + connexion.escape(data.ecunum);
 
 						connexion.query(sql2, callback);
@@ -111,9 +112,7 @@ module.exports.getListeSponsor = function (callback) {
 								let sql2 = "delete from finance where sponum = " + connexion.escape(data.sponum);
 								let sql3 = "insert into finance set sponum = " + connexion.escape(data.sponum)
 													+ ", ecunum = " + connexion.escape(data.ecunum);
-								console.log(sql1);
-								console.log(sql2);
-								console.log(sql3);
+
 								connexion.query(sql1);
 								connexion.query(sql2);
 								connexion.query(sql3, callback);

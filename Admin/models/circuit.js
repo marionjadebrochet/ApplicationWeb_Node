@@ -110,8 +110,7 @@ module.exports.modifierCircuit= function (data, callback) {
 
 						let sql ="update circuit set ? where cirnum = "
 									+ connexion.escape(data.cirnum);
-								console.log(sql);
-								console.log(data);
+								
             connexion.query(sql, data, callback);
 
             connexion.release();
