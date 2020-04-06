@@ -54,6 +54,13 @@ module.exports.Ajout = 	function(request, response){
     delete data.pilpoints;
   if(data.ecunum == '')
     delete data.ecunum;
+  if(data.pilpoids == '')
+    delete data.pilpoids;
+  if(data.piltaille == '')
+    delete data.piltaille;
+  if(data.pildatenais == '')
+    delete data.pildatenais;
+
 
   async.parallel ([
     function (callback) {
@@ -119,7 +126,13 @@ module.exports.Modifie = function(request, response){
     delete data.pilpoints;
   if(data.ecunum == '')
     delete data.ecunum;
-    
+  if(data.pilpoids == '')
+    delete data.pilpoids;
+  if(data.piltaille == '')
+    delete data.piltaille;
+  if(data.pildatenais == '')
+    delete data.pildatenais;
+
   async.parallel ([
     function(callback) {
       model.modifierPilote(data, function (err, result) {

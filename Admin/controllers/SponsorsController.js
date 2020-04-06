@@ -110,6 +110,7 @@ module.exports.Modifier = function(request, response){
 
 module.exports.Modifie = function(request, response){
   let data = request.body;
+
   if(data.ecunum == '')
     delete data.ecunum;
 

@@ -3,23 +3,24 @@
 <form action="/listerEcurie" method="POST" enctype="multipart/form-data">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="ecunom" id="Nom" required/>
+    <input class="auto" type="text" name="ecunom" id="Nom" />
   </div>
   <div class="row">
     <label class="auto" for="Directeur">Directeur</label>
-    <input class="auto" type="text" name="ecunomdir" id="Directeur" required />
+    <input class="auto" type="text" name="ecunomdir" id="Directeur"  />
   </div>
   <div class="row">
     <label class="auto" for="Adresse">Adresse du siege</label>
-    <textarea name="ecuadrsiege" rows="8" cols="80" required></textarea>
+    <textarea name="ecuadrsiege" rows="8" cols="80" ></textarea>
   </div>
   <div class="row">
     <label class="auto" for="Point">Points</label>
-    <input class="auto" type="text" name="ecupoints" id="Points" required/> pts
+    <input class="auto" type="text" name="ecupoints" id="Points" /> pts
   </div>
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
-    <select class="auto" name="paynum" required>
+    <select class="auto" name="paynum" >
+      <option value="" selected>Aucun</option>
       {{#each pays}}
       <option value="{{this.paynum}}">{{this.paynom}}</option>
       {{/each}}
@@ -32,7 +33,7 @@
     title="modifier l'image ..." alt="image écurie"
     onclick="inputFile()"
     style="display: none">
-    <input type="file" id="inputAjoutImgEcu" name="image" onchange="changeImage()" hidden>
+    <input type="file" id="inputAjoutImgEcu" name="image" onchange="changeImage()" hidden required>
   </div>
 
   <button type="submit">AJOUTER</button>

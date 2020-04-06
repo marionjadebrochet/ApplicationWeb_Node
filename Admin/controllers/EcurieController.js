@@ -52,6 +52,18 @@ module.exports.Ajout = 	function(request, response){
 
   let data = request.body;
 
+  /// suppression des données si pas renseignées///
+  if(data.ecunom == '')
+    delete data.ecunom;
+  if(data.ecunomdir == '')
+    delete data.ecunomdir;
+  if(data.ecuadrsiege == '')
+    delete data.ecuadrsiege;
+  if(data.ecupoints == '')
+    delete data.ecupoints;
+  if(data.paynum == '')
+    delete data.paynum;
+
   let image = request.files.image;
   //////// ajout de l'adresse de l'image dans data //////
   data.ecuadresseimage = image.name;
@@ -117,6 +129,18 @@ module.exports.Modifier = function(request, response){
 
 module.exports.Modifie = function(request, response){
   let data = request.body;
+
+/// suppression des données si pas renseignées///
+  if(data.ecunom == '')
+    delete data.ecunom;
+  if(data.ecunomdir == '')
+    delete data.ecunomdir;
+  if(data.ecuadrsiege == '')
+    delete data.ecuadrsiege;
+  if(data.ecupoints == '')
+    delete data.ecupoints;
+  if(data.paynum == '')
+    delete data.paynum;
 
   if(request.files) { //si l'image est changée
     let image = request.files.image;

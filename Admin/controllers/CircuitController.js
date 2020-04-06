@@ -53,6 +53,8 @@ module.exports.Ajout = 	function(request, response){
 
   let data = request.body;
   //////// si pas de données : on supprime /////
+  if(data.cirnom == '')
+    delete data.cirnom;
   if(data.cirnbspectateurs == '')
     delete data.cirnbspectateurs;
   if(data.cirlongueur == '')
@@ -125,13 +127,15 @@ module.exports.Modifier = function(request, response){
 module.exports.Modifie = function(request, response){
   let data = request.body;
 
+  if(data.cirnom == '')
+    delete data.cirnom;
   if(data.cirnbspectateurs == '')
     delete data.cirnbspectateurs;
   if(data.cirlongueur == '')
     delete data.cirlongueur;
 
   if(request.files) { //si l'image est changée
-    
+
     let image = request.files.image;
     //////// ajout de l'adresse de l'image dans data //////
     data.ciradresseimage = image.name;
