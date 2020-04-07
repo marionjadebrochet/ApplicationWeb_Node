@@ -134,7 +134,7 @@ module.exports.updatePoints = function (data, callback) {
 											+ " where ecunum=" + point.ecunum;
 								connexion.query(sql5);
 								});
-							connexion.query(sql5, callback);
+							callback(null, result);
 						});
 					});
 					connexion.release();
