@@ -60,7 +60,7 @@ module.exports.getPiloteEcurie = function (data,callback) {
 						let sql ="SELECT p.pilnum, p.PILNOM as nompilote, p.PILPRENOM as prenompilote, phoadresse, piltexte"
 						 			+ " FROM PILOTE P INNER JOIN ECURIE e ON p.ECUNUM = e.ECUNUM"
 									+ " join photo ph on p.pilnum=ph.pilnum"
-									+ " WHERE ECUNOM like " + connexion.escape(data)
+									+ " WHERE e.ecunum = " + connexion.escape(data)
 									+ " and (phonum = 1 or phonum is null)";
 
             connexion.query(sql, callback);
@@ -80,7 +80,7 @@ module.exports.getPhotoEcurie = function (data,callback) {
 						let sql ="SELECT v.VOINOM as nomVoiture, v.VOIADRESSEIMAGE as imgVoit, tv.TYPELIBELLE as libelle"
 								+ " FROM VOITURE v INNER JOIN type_voiture tv ON v.TYPNUM = tv.TYPNUM"
 								+ " INNER JOIN ecurie e ON v.ECUNUM = e.ECUNUM"
-								+ " WHERE ECUNOM like " + connexion.escape(data);
+								+ " WHERE e.ecunum = " + connexion.escape(data);
 
             connexion.query(sql, callback);
 
