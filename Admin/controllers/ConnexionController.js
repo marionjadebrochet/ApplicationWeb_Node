@@ -33,6 +33,7 @@ module.exports.VerifConnexion = function(request, response){
             console.log('Connection autorisée pour ' + login);
           } else {
             console.log('Connection refusée ...')
+            response.err = login;
           }
         });
 response.render('home', response);
@@ -41,7 +42,7 @@ response.render('home', response);
 };
 
 module.exports.deconnexion = function(request, response){
-   response.title = 'connexion';
+   response.title = 'Bienvenue sur le site de WROOM (IUT du Limousin).';
    var login = request.session.login;
    // destruction de la varible de session
    request.session.destroy(function(err) {
@@ -51,5 +52,5 @@ module.exports.deconnexion = function(request, response){
     }
   });
   console.log(login + " c'est déconnecté");
-  response.render('home', response);
+  response.render('deconnexion', response);
 };

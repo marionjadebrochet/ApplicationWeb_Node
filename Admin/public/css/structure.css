@@ -200,3 +200,8 @@ td {
  text-align:center;
  background-color: #E1E2E6;
  }
+
+ .err {
+   color: red;
+   text-align: center;
+ }

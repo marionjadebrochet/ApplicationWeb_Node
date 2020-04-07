@@ -1,13 +1,16 @@
 {{#if session.login}}
   <meta http-equiv="refresh" content="0; URL=accueil">
 {{else}}
+<h1 style="margin-top: 0px">Administration</h1>
 
-<h1>Administration</h1>
+{{#if err}}
+<p class="err" >Identifiant ou mot de passe incorrect ...</p>
+{{/if}}
 
 <form action="/accueil" method="POST">
   <div class="row">
     <label class="auto" for="Login">Login : </label>
-    <input class="auto" type="text" name="login" id="Login" />
+    <input class="auto" type="text" name="login" id="Login" value="{{err}}" required/>
   </div>
   <div class="row">
     <br /><br />
@@ -16,6 +19,10 @@
   </div>
 
   <button type="submit" name="valider">Connexion</button>
+  <br>
+  <a href="http://localhost:6800/">
+  <button type="button" style="width: auto">Accéder à la partie public</button>
+  </a>
 </form>
 
 <script type="text/javascript">
