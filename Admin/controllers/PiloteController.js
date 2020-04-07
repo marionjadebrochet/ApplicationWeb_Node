@@ -48,6 +48,7 @@ module.exports.Ajouter = 	function(request, response){
 module.exports.Ajout = 	function(request, response){
   response.title = 'Pilote';
   let data = request.body;
+  let dataImage = {};
   // supression de pilpoints et ecunum si pas renseigner
   // pour qu'il soit mis à null dans la bd
   if(data.pilpoints == '')
@@ -61,10 +62,30 @@ module.exports.Ajout = 	function(request, response){
   if(data.pildatenais == '')
     delete data.pildatenais;
 
+/////////// ajout photo d'indentité /////////////////
+    if(request.files) {
+      let image = request.files.image;
+      //////// ajout de l'adresse de l'image dans data //////
+      dataImage.phoadresse = image.name;
+      dataImage.phosujet = 'Photo identité';
+      dataImage.phonum = 1;
+      dataImage.phocommentaire = data.phocommentaire;
+      delete data.phocommentaire;
+
+      ////////////////////// Ajout de l'image///////////////////
+      image.mv('./public/image/pilote/' + image.name , function(err) {
+       if (err)
+         console.log(err);
+       });
+       image.mv('../public/public/image/pilote/' + image.name , function(err) {
+        if (err)
+          console.log(err);
+       });
+    }
 
   async.parallel ([
     function (callback) {
-      model.ajouterPilote(data, function (err, result) {
+      model.ajouterPilote(data, dataImage, function (err, result) {
         callback(null, result) });
     }, // ajout du pilote dans la bd
     function(callback) {
@@ -121,6 +142,7 @@ module.exports.Modifier = function(request, response){
 module.exports.Modifie = function(request, response){
   response.title = 'Pilote';
   let data = request.body;
+  let dataImage = {};
 
   if(data.pilpoints == '')
     delete data.pilpoints;
@@ -133,9 +155,38 @@ module.exports.Modifie = function(request, response){
   if(data.pildatenais == '')
     delete data.pildatenais;
 
+/////////// ajout photo d'indentité /////////////////
+  if(request.files) {
+
+    let image = request.files.image;
+    //////// ajout de l'adresse de l'image dans data //////
+    dataImage.phoadresse = image.name;
+    dataImage.pilnum = data.pilnum;
+    dataImage.phosujet = 'Photo identité';
+    dataImage.phonum = 1;
+    dataImage.phocommentaire = data.phocommentaire;
+    delete data.phocommentaire;
+
+    ////////////////////// Ajout de l'image///////////////////
+    image.mv('./public/image/pilote/' + image.name , function(err) {
+     if (err)
+       console.log(err);
+     });
+     image.mv('../public/public/image/pilote/' + image.name , function(err) {
+      if (err)
+        console.log(err);
+     });
+  } else {
+    if (data.phocommentaire) {
+
+      dataImage.phocommentaire = data.phocommentaire;
+      delete data.phocommentaire;
+    }
+  }
+
   async.parallel ([
     function(callback) {
-      model.modifierPilote(data, function (err, result) {
+      model.modifierPilote(data, dataImage, function (err, result) {
         callback(null, result) });
     }, // modification du pilote
     function(callback) {

@@ -27,8 +27,6 @@ module.exports.getListeSponsor = function (callback) {
          }
       });
 		};
-
-		//le 'data' de t'as fonction contiens donc le num passé dans l'adresse
 					module.exports.supSponsor = function (data, callback) {
 		    db.getConnection(function (err, connexion) {
 		        if (!err) {

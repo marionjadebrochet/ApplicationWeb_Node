@@ -1,18 +1,18 @@
 <h1> Modifier un Pilote </h1>
 
-<form action="/piloteModifie" method="POST">
+<form action="/piloteModifie" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="pilnum" value="{{pilote.pilnum}}"/>
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="pilnom" id="Nom" value="{{pilote.pilnom}}" required/>
+    <input class="auto" type="text" name="pilnom" id="Nom" value="{{pilote.pilnom}}"/>
   </div>
   <div class="row">
     <label class="auto" for="Prenom">Prenom</label>
-    <input class="auto" type="text" name="pilprenom" id="Prenom" value="{{pilote.pilprenom}}" required/>
+    <input class="auto" type="text" name="pilprenom" id="Prenom" value="{{pilote.pilprenom}}"/>
   </div>
   <div class="row">
     <label class="auto" for="Date">Date de naissance</label>
-    <input class="auto" type="date" name="pildatenais" id="jour" value="{{formatDate pilote.pildatenais 'YYYY-MM-DD' }}" required />
+    <input class="auto" type="date" name="pildatenais" id="jour" value="{{formatDate pilote.pildatenais 'YYYY-MM-DD' }}" />
   </div>
   <div class="row">
     <label class="auto" for="Natio">Nationalité</label>
@@ -41,15 +41,65 @@
   </div>
   <div class="row">
     <label class="auto" for="Poids">Poids</label>
-    <input class="autoPetit" type="number" name="pilpoids" id="Poids" value="{{pilote.pilpoids}}" required/>     kg
+    <input class="autoPetit" type="number" name="pilpoids" id="Poids" value="{{pilote.pilpoids}}"/>     kg
   </div>
   <div class="row">
     <label class="auto" for="Taille">Taille</label>
-    <input class="autoPetit" type="number" name="piltaille" id="Taille" value="{{pilote.piltaille}}" required/>    cm
+    <input class="autoPetit" type="number" name="piltaille" id="Taille" value="{{pilote.piltaille}}"/>    cm
   </div>
   <div class="row">
     <label class="auto" for="Desc">Description</label>
-    <textarea class="auto" name="piltexte" rows="5" cols="60" required>{{pilote.piltexte}}</textarea>
+    <textarea class="auto" name="piltexte" rows="5" cols="60">{{pilote.piltexte}}</textarea>
+  </div>
+  <div class="row">
+    <label class="auto" for="Image">Photo d'identité</label>
+    {{#if pilote.phoadresse}}
+      <img id="imageModifPil"
+      src="/image/Pilote/{{pilote.phoadresse}}"
+      title="modifier ..." alt="photo d'identité"
+      onclick="inputFile()"
+      style="height: 60px;">
+    {{else}}
+      <button type="button" id="buttonImgPil" onclick="chooseFile()" style="width: auto" >Ajouter photo d'identité</button>
+      <img id="imageModifPil"
+      title="modifier ..." alt="photo identité"
+      onclick="inputFile()"
+      style="display: none">
+    {{/if}}
+    <input type="file" id="inputModifImgPil" name="image" onchange="changeImage()" hidden>
+  </div>
+  <div class="row" id="comImgModif">
+    {{#if pilote.phoadresse}}
+    <label class="auto" for="commentaire">Commentaire photo d'identité</label>
+    <textarea class="auto" name="phocommentaire" rows="5" cols="60" >{{pilote.phocommentaire}}</textarea>
+    {{/if}}
   </div>
   <button type="submit">MODIFIER</button>
 </form>
+
+<script type="text/javascript">
+  function inputFile() {
+    $('#inputModifImgPil').click();
+  }
+  function chooseFile() {
+    $('#inputModifImgPil').click();
+    $('#buttonImgPil').remove();
+    $('#comImgModif').append('<label class="auto" for="commentaire">Commentaire photo d\'identité</label><textarea class="auto" name="phocommentaire" rows="5" cols="60" ></textarea>');
+  }
+  function agrandire() {
+    $('#imageModifPil').hover(function() {
+      $('#imageModifPil').animate({'height': '70px'}, 'medium');
+    },
+    function () {
+      $('#imageModifPil').animate({'height': '60px'}, 'medium');
+    });
+  }
+  function changeImage() {
+    $('#imageModifPil').attr('style','height: 60px;');
+    var image = document.getElementById('imageModifPil');
+     image.src = URL.createObjectURL(event.target.files[0]);
+  }
+  $(document).ready(function() {
+    agrandire();
+  });
+</script>

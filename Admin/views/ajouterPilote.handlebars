@@ -1,6 +1,6 @@
 <h1> Ajouter un Pilote </h1>
 
-<form action="/listerPilote" method="POST">
+<form action="/listerPilote" method="POST" enctype="multipart/form-data">
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
     <input class="auto" type="text" name="pilnom" id="Nom" />
@@ -46,5 +46,43 @@
     <label class="auto" for="Desc">Description</label>
     <textarea class="auto" name="piltexte" rows="5" cols="60" ></textarea>
   </div>
+  <div class="row">
+    <label class="auto" for="Image">Photo d'identité</label>
+    <button type="button" id="buttonImgPil" onclick="chooseFile()" style="width: auto" >Ajouter photo d'identité</button>
+    <img id="imageAjoutPil"
+    title="modifier ..." alt="photo identité"
+    onclick="inputFile()"
+    style="display: none">
+    <input type="file" id="inputAjoutImgPil" name="image" onchange="changeImage()" hidden>
+  </div>
+  <div class="row" id="comImg">
+  </div>
   <button type="submit">AJOUTER</button>
 </form>
+
+<script type="text/javascript">
+  function agrandire() {
+    $('#imageAjoutPil').hover(function() {
+      $('#imageAjoutPil').animate({'height': '70px'}, 'medium');
+    },
+    function () {
+      $('#imageAjoutPil').animate({'height': '60px'}, 'medium');
+    });
+  }
+  function inputFile() {
+    $('#inputAjoutImgPil').click();
+  }
+  function chooseFile() {
+    $('#inputAjoutImgPil').click();
+    $('#buttonImgPil').remove();
+    $('#comImg').append('<label class="auto" for="commentaire">Commentaire photo d\'identité</label><textarea class="auto" name="phocommentaire" rows="5" cols="60" ></textarea>');
+  }
+  function changeImage() {
+    $('#imageAjoutPil').attr('style','height: 60px;');
+    var image = document.getElementById('imageAjoutPil');
+	  image.src = URL.createObjectURL(event.target.files[0]);
+  }
+  $(document).ready(function() {
+    agrandire();
+  });
+</script>

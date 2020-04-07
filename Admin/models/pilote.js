@@ -43,13 +43,30 @@ module.exports.getNationalite = function (callback) {
 	});
 };
 
-module.exports.ajouterPilote = function (data, callback) {
+module.exports.ajouterPilote = function (data, dataImage, callback) {
 
 	db.getConnection(function(err, connexion){
 		if(!err){
 			let sql = "insert into pilote set ?";
 
-			connexion.query(sql, data, callback);
+////// ajout photo d'identité ////////////
+			if (dataImage.phoadresse) {
+				connexion.query(sql, data);
+
+				let sql1 = "select pilnum from pilote"
+							+ " where pilnum >= all ("
+							+ " select pilnum from pilote)";
+
+				connexion.query(sql1, function(err, result) {
+					dataImage.pilnum = result[0].pilnum;
+					let sql2 = "insert into photo set ?";
+
+					connexion.query(sql2, dataImage, callback);
+				})
+			} else {
+				connexion.query(sql, data, callback);
+			}
+
 
 			connexion.release();
 		}
@@ -61,12 +78,13 @@ module.exports.getPilote = function (data, callback) {
 	db.getConnection(function(err, connexion){
         if(!err){
 
-						let sql ="SELECT pilnum, pilnom, pilprenom, pildatenais, piltaille, pilpoids,"
+						let sql ="SELECT p.pilnum, pilnom, pilprenom, pildatenais, piltaille, pilpoids, phoadresse, phocommentaire,"
 								+ " pilpoints, piltexte, p.paynum, paynat, p.ecunum, ecunom"
 								+ " FROM pilote p"
 								+ "	LEFT JOIN ecurie e ON p.ecunum=e.ecunum"
+								+ " left join photo ph on p.pilnum=ph.pilnum"
 								+ " JOIN pays ON pays.paynum=p.paynum"
-								+ " WHERE pilnum = " + connexion.escape(data);
+								+ " WHERE p.pilnum = " + connexion.escape(data);
 
             connexion.query(sql, callback);
 
@@ -75,19 +93,41 @@ module.exports.getPilote = function (data, callback) {
       });
 };
 
-module.exports.modifierPilote = function (data, callback) {
-
+module.exports.modifierPilote = function (data, dataImage, callback) {
+console.log(dataImage);
 	db.getConnection(function(err, connexion){
         if(!err){
 
 						let sql ="update pilote set ? where pilnum = "
 									+ connexion.escape(data.pilnum);
-								
-            connexion.query(sql, data, callback);
 
-            connexion.release();
-         }
-      });
+		////// ajout photo d'identité ////////////
+					if (dataImage.phoadresse) { //si photo ajoutée ou modifiée
+						connexion.query(sql, data);
+
+						let sql1 = "delete from photo"
+									+ " where pilnum=" + connexion.escape(data.pilnum)
+									+ " and phonum = 1";
+						let sql2 = "insert into photo set ?";
+							connexion.query(sql1);
+							connexion.query(sql2, dataImage, callback);
+					} else { // si uniquement commentaire modifié
+						if (dataImage.phocommentaire) {
+
+							connexion.query(sql, data);
+							let sql3 = "update photo set ? "
+										+ " were phonum = 1"
+										+ " and pilnum ="	+ connexion.escape(data.pilnum);
+							connexion.query(sql3, dataImage, callback);
+						} else { // si rien est modifié
+						
+						connexion.query(sql, data, callback);
+						}
+					}
+
+          connexion.release();
+       }
+  });
 };
 
 module.exports.supprimerPi = function (data, callback) {
