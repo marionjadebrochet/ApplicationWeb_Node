@@ -1,26 +1,32 @@
-{{>listeResultatPartial}}
+<div class="details">
+  <div class="droite">
+    {{>listeResultatPartial}}
+  </div>
 
-<b> {{gpnom}} ({{formatDate date 'D/MM/YYYY'}})</b>
-<br>
-<br>
-<div class="tabPPP">
-  <table>
-    <tr>
-      <th>Place</th>
-      <th>Pilote</th>
-      <th>Temps</th>
-      <th>NbPoints</th>
-    </tr>
-    {{#each piloteEtTemps}}
-    <tr>
-      <td>{{this.place}}</td>
-      <td>{{this.pilnom}}</td>
-      <td>{{this.tempscourse}}</td>
-      <td>{{this.ptnbpointsplace}}</td>
-    </tr>
-    {{/each}}
-  </table>
+  <div class="gauche">
+    <b> {{gpnom}} ({{formatDate date 'D/MM/YYYY'}})</b>
+    <br>
+    <br>
+    <div class="tabPPP">
+      <table>
+        <tr>
+          <th>Place</th>
+          <th>Pilote</th>
+          <th>Temps</th>
+          <th>NbPoints</th>
+        </tr>
+        {{#each piloteEtTemps}}
+        <tr>
+          <td>{{this.place}}</td>
+          <td>{{this.pilnom}}</td>
+          <td>{{this.tempscourse}}</td>
+          <td>{{this.ptnbpointsplace}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+
+    <br>
+     <p class="texttt">{{detail}}</p>
+  </div>
 </div>
-
-<br>
- <p class="texttt">{{detail}}</p>

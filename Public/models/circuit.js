@@ -37,8 +37,8 @@ module.exports.getDetCircuit = function (data,callback) {
 									+ " p.PAYNOM as pays, c.CIRTEXT as texte, c.CIRADRESSEIMAGE as img"
 									+ " FROM circuit c"
 									+ " INNER JOIN pays p ON p.PAYNUM = c.PAYNUM"
-									+ " WHERE CIRNOM like " + connexion.escape(data);
-						
+									+ " WHERE c.cirnum =" + connexion.escape(data);
+
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool

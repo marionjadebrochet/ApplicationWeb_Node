@@ -41,7 +41,7 @@ module.exports.getDetEcurie = function (data,callback) {
 								+ " FROM ecurie e INNER JOIN pays pa ON pa.PAYNUM = e.PAYNUM"
 								+ " LEFT JOIN fourn_pneu fp ON fp.FPNUM = e.FPNUM"
 								+ " LEFT JOIN pilote p ON p.ECUNUM = e.ECUNUM"
-								+ " WHERE ECUNOM like " + connexion.escape(data);
+								+ " WHERE e.ecunum = " + connexion.escape(data);
 
             connexion.query(sql, callback);
 
@@ -81,7 +81,7 @@ module.exports.getPhotoEcurie = function (data,callback) {
 								+ " FROM VOITURE v INNER JOIN type_voiture tv ON v.TYPNUM = tv.TYPNUM"
 								+ " INNER JOIN ecurie e ON v.ECUNUM = e.ECUNUM"
 								+ " WHERE ECUNOM like " + connexion.escape(data);
-						
+
             connexion.query(sql, callback);
 
             // la connexion retourne dans le pool

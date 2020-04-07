@@ -4,7 +4,7 @@ let model = require('../models/ecurie.js');
 
 module.exports.DescEcurie = 	function(request, response){
   response.title = " Écuries du grand prix";
-  let data = request.params.nom;
+  let data = request.params.num;
 
   async.parallel ([
     function (callback) {

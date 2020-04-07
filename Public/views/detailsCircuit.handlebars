@@ -1,18 +1,22 @@
-
-{{> listeCircuitPartial}}
-
-{{#each detailsCircuits}}
-<div class="cir">
-  <div class="imgcir">
-    <img class="imcirrr"src="/image/circuit/{{img}}">
+<div class="details">
+  <div class="droite">
+    {{> listeCircuitPartial}}
   </div>
-  <div class="infocirt">
-    <h1>Nom : </h1><p> {{nom}}</p><br>
-    <h1>Longueur :</h1><p>  {{lon}}</p><br>
-    <h1>Nombre de spectateurs :</h1><p>  {{nombre}}</p><br>
-    <h1>Pays :</h1><p>  {{pays}}</p><br>
+    <div class="gauche">
+      {{#each detailsCircuits}}
+      <div class="cir">
+        <div class="imgcir">
+          <img class="imcirrr"src="/image/circuit/{{img}}">
+        </div>
+        <div class="infocirt">
+          <h1>Nom : </h1><p> {{nom}}</p><br>
+          <h1>Longueur :</h1><p>  {{lon}}</p><br>
+          <h1>Nombre de spectateurs :</h1><p>  {{nombre}}</p><br>
+          <h1>Pays :</h1><p>  {{pays}}</p><br>
+        </div>
+      </div>
+      <p class="texttt">{{texte}}</p>
+
+    {{/each}}
   </div>
 </div>
-<p class="texttt">{{texte}}</p>
-
-{{/each}}

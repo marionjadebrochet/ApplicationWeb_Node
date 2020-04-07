@@ -4,7 +4,7 @@ let model = require('../models/circuit.js');
 
 module.exports.DescCircuit = 	function(request, response){
   response.title = " Circuits du grand prix";
-  let data = request.params.nom;
+  let data = request.params.num;
 
   async.parallel ([
     function (callback) {

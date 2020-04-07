@@ -20,11 +20,11 @@ module.exports = function(app){
 
  // circuits
   app.get('/circuits', CircuitController.DescCircuit);
-  app.get('/detailsCircuit/:nom', CircuitController.DescCircuit);
+  app.get('/detailsCircuit/:num', CircuitController.DescCircuit);
 
 // Ecuries
    app.get('/ecuries', EcurieController.DescEcurie);
-   app.get('/detailsEcurie/:nom', EcurieController.DescEcurie);
+   app.get('/detailsEcurie/:num', EcurieController.DescEcurie);
 
  //Résultats
    app.get('/resultats', ResultatController.ListerResultat);

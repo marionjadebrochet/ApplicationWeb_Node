@@ -6,7 +6,10 @@
   {{#each listePilote}}
   <div class="listePilote">
     <a href="/descPilote/{{this.pilnum}}"><h1>{{nom}} {{prenom}}</h1>
-    {{#if this.img }}<img class="imgpilote" src="/image/pilote/{{img}}" alt="image du pilote">{{/if}}</a>
+    {{#if this.img }}
+    <img class="imgpilote" src="/image/pilote/{{img}}" alt="image du pilote">
+    <br>{{this.phocommentaire}}
+    {{/if}}</a>
   </div>
   {{/each}}
 </div>
@@ -19,11 +22,14 @@
 {{#each descPilote}}
 <div class="en">
   <div class="imagetete">
-      {{#if this.img}}<img class="imgggg" src="/image/pilote/{{img}}" alt="image du pilote">{{/if}}
+      {{#if this.img}}
+      <img class="imgggg" src="/image/pilote/{{img}}" alt="image du pilote">
+      <br>{{this.phocommentaire}}
+      {{/if}}
   </div>
   <div class="infopil1">
     <h1>Nom : </h1><p>{{nom}} {{prenom}}</p>
-    <h1>Date de naissance :</h1><p>{{formatDate this.date 'DD MMMM YYYY' }}</p>
+    <h1>Date de naissance :</h1>{{#if this.date}}<p>{{formatDate this.date 'DD MMMM YYYY' }}</p>{{/if}}
   </div>
   <div class="infopil2">
     <h1>Nationalité :</h1><p>{{nation}}</p>
@@ -32,11 +38,11 @@
   <div class="infopil3">
     <h1>Taille :</h1><p>{{taille}}</p>
 
-      {{#ifCond this.ecunom '==' NULL}}
-      <h1>Ecurie :</h1><p>Pas d'écurie cette année</p>
+      {{#if this.ecurie}}
+      <h1>Ecurie :</h1><p>{{ecurie}}</p>
        {{else}}
-       <h1>Ecurie :</h1><p>{{ecurie}}</p>
-      {{/ifCond}}
+       <h1>Ecurie :</h1><p>Pas d'écurie cette année</p>
+      {{/if}}
 
   </div>
 </div>
@@ -58,8 +64,13 @@
 {{/each}}
 
 
-{{#each images}}
-<img src="/image/pilote/{{imgs}}" alt="image du pilote" class="imgPiloteEnPlus"></a>
-{{/each}}
+<div class="listePhotoBonusPilote">
+  {{#each images}}
+  <div class="photoBonusPilote">
+    <img src="/image/pilote/{{imgs}}" alt="image du pilote" class="imgPiloteEnPlus">
+    <p>{{this.phocommentaire}}</p>
+  </div>
+  {{/each}}
+</div>
 
 </div>

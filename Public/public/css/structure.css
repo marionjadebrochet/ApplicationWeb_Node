@@ -107,11 +107,13 @@
 }
 
 
-
+.listeLettre {
+  display: flex;
+  flex-direction: row;
+}
 
 .lettre {
   background-color: lightgrey;
-  margin-right: 73%;
   text-decoration: none;
   font-weight: bold;
   color: red;
@@ -132,15 +134,15 @@ font-size: 40px;
 margin-top: -10px;
 }
 
-.imgpilote {
+.imgpilote, .imgPiloteEnPlus {
   height: 175px;
-  width: 150px;
+  width: auto;
 }
 
-.imgPiloteEnPlus {
+/* .imgPiloteEnPlus {
   height: 175px;
   width: 150px;
-}
+} */
 
 .carrepilote {
   display: flex;
@@ -200,12 +202,12 @@ margin-top: -10px;
 
 .imgvoitureici {
   height: 120px;
-  width: 210px;
+  width: auto;
   margin-right: 10px;
 }
 .imcirrr {
   height: 300px;
-  width: 400px;
+  width: auto;
 }
 
 .infopil1{
@@ -223,7 +225,7 @@ margin-top: -10px;
 
 .imgggg {
   height: 175px;
-  width: 150px;
+  width: auto;
 }
 
 .sponom {
@@ -232,26 +234,7 @@ margin-top: -10px;
 
 .texttt {
   text-align: justify;
-}
-
-.imgPiloteEnPlus {
-	width: 18%;
-	height: auto;
-}
-
-.imgPiloteEnPlus {
-	width: 18%;
-	height: auto;
-}
-
-.imgPiloteEnPlus {
-	width: 18%;
-	height: auto;
-}
-
-.imgPiloteEnPlus {
-	width: 18%;
-	height: auto;
+  width: 80%;
 }
 
 .infocirt {
@@ -298,7 +281,7 @@ margin:auto;
 
 .imgecuu {
   height: 200px;
-  width: 300px;
+  width: auto;
 }
 
 .infoecuu h1 {
@@ -327,4 +310,56 @@ margin:auto;
 .choixliste:hover {
   color: red;
   font-size: 15px;
+}
+
+.listePhotoBonusPilote {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.photoBonusPilote {
+  margin-right: auto;
+}
+
+.photoBonusPilote p {
+  margin-top: 0px;
+  width: 250px;
+  text-align: center;
+  font-size: inherit;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.droite {
+  order: 1;
+}
+
+.gauche {
+  width: 80%;
+}
+
+#zoom { position: absolute;
+     border: 1px solid #333;
+     background: #333;
+     padding: 3px;
+     /* display: none; */
+     color: #fff;
+}
+#zoom img {
+  height: 100px;
+  width: auto;
+}
+.textInfobulle {
+  width: 200px;
+  margin-left: 5px;
+}
+
+.textInfobulle h2 {
+  margin: 0px;
+  padding: 0px;
 }

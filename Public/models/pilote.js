@@ -35,7 +35,7 @@ module.exports.getPiloteParLettre = function (data, callback) {
 		        if(!err){
 		        	  // s'il n'y a pas d'erreur de connexion
 		        	  // execution de la requête SQL
-								let sql ="SELECT p.pilnum, PILNOM as nom, PILPRENOM as prenom, ph.PHOADRESSE as img"
+								let sql ="SELECT p.pilnum, PILNOM as nom, PILPRENOM as prenom, ph.PHOADRESSE as img, phocommentaire"
 											+ " FROM pilote p left JOIN photo ph on p.PILNUM = ph.PILNUM"
 											+ " where PILNOM like " + connexion.escape(data + '%')
 											+ " and (ph.PHONUM = 1 or phonum is null)";
@@ -57,7 +57,7 @@ module.exports.getDescPilote = function (data, callback) {
 		        	  // execution de la requête SQL
 								let sql = "SELECT DISTINCT PILNOM as nom, PILPRENOM as prenom, PILDATENAIS as date,"
 											+ " PILPOIDS as poids, PILTAILLE as taille, PILTEXTE as texte, pa.PAYNOM as nation,"
-											+ " e.ECUNOM as ecurie, ph.PHOADRESSE as img"
+											+ " e.ECUNOM as ecurie, ph.PHOADRESSE as img, phocommentaire"
 											+ " FROM pilote p JOIN pays pa ON p.PAYNUM = pa.PAYNUM"
 											+ " LEFT JOIN ecurie e ON p.ECUNUM = e.ECUNUM"
 											+ " left JOIN photo ph ON p.PILNUM = ph.PILNUM"
@@ -94,7 +94,7 @@ module.exports.getImages = function (data, callback) {
 		        if(!err){
 		        	  // s'il n'y a pas d'erreur de connexion
 		        	  // execution de la requête SQL
-								let sql = "SELECT p.PILNOM as nom, ph.PHOADRESSE as imgs"
+								let sql = "SELECT p.PILNOM as nom, ph.PHOADRESSE as imgs, phocommentaire"
 											+ " FROM pilote p JOIN photo ph ON p.PILNUM = ph.PILNUM"
 											+ " WHERE ph.PHONUM != 1 AND p.pilnum= " + connexion.escape(data);
 		            connexion.query(sql, callback);
