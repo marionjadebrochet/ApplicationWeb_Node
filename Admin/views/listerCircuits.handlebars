@@ -1,5 +1,5 @@
 <h1> Gestion des Circuits </h1>
-<a href="/ajouterCircuit/"><img src="/image/act_add.png"><p>Ajouter un circuit</p></a>
+<a class="ajouter" href="/ajouterCircuit/"><img src="/image/act_add.png"><p>Ajouter un circuit</p></a>
 
 <table>
       <tr>
@@ -13,8 +13,15 @@
             <td>{{nom}}</td>
             <td>{{longu}}</td>
             <td>{{nbrSpec}} </td>
-            <td><a href="/modifierCircuit/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
-              <a href="/supprimerCircuit/{{num}}{{#ifCond gpnum '==' NULL}}{{else}}/{{gpnum}}{{/ifCond}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+            <td><div class="modsup">
+              <div class="mod">
+                <a href="/modifierCircuit/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+              </div>
+                <div class="sup">
+              <a href="/supprimerCircuit/{{num}}{{#ifCond gpnum '==' NULL}}{{else}}/{{gpnum}}{{/ifCond}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+            </div>
+          </td>
+          </div>
         </tr>
       {{/each}}
 </table>

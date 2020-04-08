@@ -1,5 +1,5 @@
 <h1> Gestion des Pilotes </h1>
-<a href="/ajouterPilote/"><img src="/image/act_add.png"><p>Ajouter un pilote</p></a>
+<a class="ajouter" href="/ajouterPilote/"><img src="/image/act_add.png"><p>Ajouter un pilote</p></a>
 
 <table>
       <tr>
@@ -13,7 +13,15 @@
             <td>{{nom}}</td>
             <td>{{prenom}}</td>
             <td>{{formatDate dateNai 'DD/MM/YYYY' }} </td>
-            <td><a href="/modifierPilote/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerPilote/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+            <td> <div class="modsup">
+              <div class="mod">
+                <a href="/modifierPilote/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+              </div>
+              <div class="sup">
+                <a href="/supprimerPilote/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+              </div>
+            </td>
+            </div>
         </tr>
       {{/each}}
 </table>

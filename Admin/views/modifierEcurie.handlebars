@@ -12,11 +12,12 @@
   </div>
   <div class="row">
     <label class="auto" for="Adresse">Adresse du siege</label>
-    <input class="auto" name="ecuadrsiege" type="text" value="{{ecurie.ecuadrsiege}}" required></input>
+    <input class="auto" name="ecuadrsiege" rows="8" cols="80" type="text" value="{{ecurie.ecuadrsiege}}" required></input>
+
   </div>
   <div class="row">
     <label class="auto" for="Point">Points</label>
-    <input class="auto" type="text" name="ecupoints" id="Points"  value="{{ecurie.ecupoints}}" required/>  pts
+    <input class="auto" type="text" name="ecupoints" id="Points"  value="{{ecurie.ecupoints}}" required/>
   </div>
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
@@ -28,7 +29,7 @@
     </select>
   </div>
   <div class="row">
-    <label class="auto" for="Image">Images</label>
+    <label class="auto" for="Image">Image</label>
     <img id="imageModifEcu"
     src="/image/ecurie/{{ecurie.ecuadresseimage}}"
     title="modifier l'image ..." alt="image écurie"

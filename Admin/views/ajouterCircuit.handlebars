@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <label class="auto" for="Longueur">Longueur</label>
-    <input class="auto" type="text" name="cirlongueur" id="Long" /> m
+    <input class="auto" type="text" name="cirlongueur" id="Long" />
   </div>
   <div class="row">
     <label class="auto" for="Pays">Pays</label>
@@ -18,6 +18,14 @@
     </select>
   </div>
   <div class="row">
+    <label class="auto" for="Personne">Nombre de spectateurs</label>
+    <input class="autoPetit" type="number" name="cirnbspectateurs" id="Personne" /> personnes
+  </div>
+  <div class="row">
+    <label class="auto" for="Desc">Description</label>
+    <textarea class="auto" name="cirtext" rows="5" cols="60" required></textarea>
+  </div>
+  <div class="row">
     <label class="auto" for="Image">Images</label>
     <button type="button" id="buttonImgCircuit" onclick="chooseFile()" style="height: auto" >Ajouter image</button>
     <img id="imageAjoutCircuit"
@@ -25,14 +33,6 @@
     onclick="inputFile()"
     style="display: none">
     <input type="file" id="inputAjoutImgCir" name="image" onchange="changeImage()" hidden required>
-  </div>
-  <div class="row">
-    <label class="auto" for="Personne">Nombre de spectateurs</label>
-    <input class="autoPetit" type="number" name="cirnbspectateurs" id="Personne" /> personnes
-  </div>
-  <div class="row">
-    <label class="auto" for="Desc">Description</label>
-    <textarea class="auto" name="cirtext" rows="5" cols="60" required></textarea>
   </div>
 
   <button type="submit">AJOUTER</button>

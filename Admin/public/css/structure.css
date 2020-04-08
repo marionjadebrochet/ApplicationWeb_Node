@@ -146,6 +146,7 @@ margin-left: 2px;
 
 .autoPetit {
   width: 180px;
+ padding-left: 85px;
 }
 
 .auto {
@@ -176,6 +177,7 @@ label {
 table {
  border-collapse:collapse;
  width:90%;
+ margin-left: 5%;
  }
 
  #resultats table {
@@ -205,3 +207,30 @@ td {
    color: red;
    text-align: center;
  }
+
+ .modsup {
+   display: flex;
+   flex-direction: row;
+ }
+
+ .mod {
+   margin-top: 7%;
+   margin-left: 20%;
+ }
+
+ .sup {
+      margin-top: 7%;
+   margin-left: 10%;
+ }
+
+.ajouter {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+margin-left: 49%;
+text-align: center;
+}
+
+.ajouter:hover {
+color: red;
+}

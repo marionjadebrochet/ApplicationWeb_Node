@@ -1,5 +1,5 @@
 <h1> Gestion des Sponsors </h1>
-<a href="/ajouterSponsors/"><img src="/image/act_add.png"><p>Ajouter un sponsor</p></a>
+<a class="ajouter" href="/ajouterSponsors/"><img src="/image/act_add.png"><p>Ajouter un sponsor</p></a>
 
 <table>
       <tr>
@@ -11,7 +11,15 @@
         <tr>
             <td>{{nom}}</td>
             <td>{{act}}</td>
-            <td><a href="/modifierSponsors/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a> <a href="/supprimerSponsor/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a></td>
+            <td><div class="modsup">
+              <div class="mod">
+                <a href="/modifierSponsors/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+              </div>
+              <div class="sup">
+                <a href="/supprimerSponsor/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+              </div>
+            </td>
+            </div>
         </tr>
       {{/each}}
 </table>
