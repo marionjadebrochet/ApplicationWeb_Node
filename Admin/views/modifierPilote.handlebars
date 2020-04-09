@@ -72,7 +72,7 @@
   <div class="row" id="comImgModif">
     {{#if pilote.phoadresse}}
     <label class="auto" for="commentaire">Commentaire photo d'identité</label>
-    <textarea class="auto" name="phocommentaire" rows="5" cols="60" >{{pilote.phocommentaire}}</textarea>
+    <textarea class="auto" name="phocommentaire" rows="2" cols="60" >{{pilote.phocommentaire}}</textarea>
     {{/if}}
   </div>
   <!-- //////////////////////////////////////////////////////////////////// -->
@@ -86,7 +86,7 @@
   function chooseFile() {
     $('#inputModifImgPil').click();
     $('#buttonImgPil').remove();
-    $('#comImgModif').append('<label class="auto" for="commentaire">Commentaire photo d\'identité</label><textarea class="auto" name="phocommentaire" rows="5" cols="60" ></textarea>');
+    $('#comImgModif').append('<label class="auto" for="commentaire">Commentaire photo d\'identité</label><textarea class="auto" name="phocommentaire" rows="2" cols="60" ></textarea>');
   }
   function agrandire() {
     $('#imageModifPil').hover(function() {
