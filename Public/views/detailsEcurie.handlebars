@@ -30,7 +30,7 @@
         <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
         <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
       {{/each}}
-      {{/if}}
+
     </div>
 
 
@@ -46,6 +46,11 @@
         </div>
         {{/each}}
       </div>
+      {{else}}
+        {{#if detailsEcurie}}
+        Cette écurie ne participe pas au championnat cette année
+        {{/if}}
+      {{/if}}
     </div>
 </div>
 
