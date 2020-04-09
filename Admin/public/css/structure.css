@@ -25,6 +25,7 @@ background:#000000;
 }
 .monBody #contenu {
  padding:20px;
+ padding-top: unset;
 }
 .monBody #footer {
 padding: 0 10px;
@@ -227,7 +228,6 @@ td {
   font-size: 20px;
   font-weight: bold;
   color: black;
-margin-left: 49%;
 text-align: center;
 }
 
@@ -238,4 +238,9 @@ color: red;
 .modspo {
   margin-top: 7%;
   margin-left: 26%;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
 }

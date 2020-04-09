@@ -1,11 +1,11 @@
 {{#if session.login}}
   <meta http-equiv="refresh" content="0; URL=accueil">
 {{else}}
-<h1 style="margin-top: 0px">Administration</h1>
+<div class="center">
 
-{{#if err}}
-<p class="err" >Identifiant ou mot de passe incorrect ...</p>
-{{/if}}
+</div>
+
+<h1><img class="logo" src="image/cat_login.png" alt="imglogin"><br>Administration</h1>
 
 <form action="/accueil" method="POST">
   <div class="row">
@@ -17,6 +17,10 @@
     <label class="auto" for="Mdp">Mot de passe : </label>
     <input class="auto" type="password" name="mdp" id="mdp" />
   </div>
+
+  {{#if err}}
+  <p class="err" >Identifiant ou mot de passe incorrect ...</p>
+  {{/if}}
 
   <button type="submit" name="valider">Connexion</button>
   <br>
