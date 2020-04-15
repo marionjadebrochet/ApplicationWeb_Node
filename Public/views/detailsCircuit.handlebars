@@ -3,6 +3,7 @@
     {{> listeCircuitPartial}}
   </div>
   <div class="gauche">
+    {{#if detailsCircuit}}
     <div class="cir">
       <div class="imgcir">
         <img class="imcirrr"src="/image/circuit/{{detailsCircuits.img}}">
@@ -15,5 +16,6 @@
       </div>
     </div>
     <p class="texttt">{{detailsCircuits.texte}}</p>
+    {{/if}}
   </div>
 </div>

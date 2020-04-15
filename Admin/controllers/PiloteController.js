@@ -16,7 +16,7 @@ module.exports.Pilote = 	function(request, response){
        response.listePilote = result;
        //console.log(result);
        response.render('listerPilote', response);
-});
+  });
 };
 
 ////////////////// P A G E   A J O U T E R   P I L O T E ////////////////////
@@ -65,25 +65,25 @@ module.exports.Ajout = 	function(request, response){
     delete data.pildatenais;
 
 /////////// ajout photo d'indentité /////////////////
-    if(request.files) { // si photo ajoutée
-      let image = request.files.image;
-      //////// ajout de l'adresse de l'image dans data //////
-      dataImage.phoadresse = image.name;
-      dataImage.phosujet = 'Photo identité';
-      dataImage.phonum = 1;
-      dataImage.phocommentaire = data.phocommentaire;
-      delete data.phocommentaire;
+  if(request.files) { // si photo ajoutée
+    let image = request.files.image;
+    //////// ajout de l'adresse de l'image dans data //////
+    dataImage.phoadresse = image.name;
+    dataImage.phosujet = 'Photo identité';
+    dataImage.phonum = 1;
+    dataImage.phocommentaire = data.phocommentaire;
+    delete data.phocommentaire;
 
-      ////////////////////// Ajout de l'image///////////////////
-      image.mv('./public/image/pilote/' + image.name , function(err) {
-       if (err)
-         console.log(err);
-       }); // ajout partie admin
-       image.mv('../public/public/image/pilote/' + image.name , function(err) {
-        if (err)
-          console.log(err);
-       }); // ajout partie public
-    }
+    ////////////////////// Ajout de l'image///////////////////
+    image.mv('./public/image/pilote/' + image.name , function(err) {
+     if (err)
+       console.log(err);
+     }); // ajout partie admin
+     image.mv('../public/public/image/pilote/' + image.name , function(err) {
+      if (err)
+        console.log(err);
+     }); // ajout partie public
+  }
 
   async.parallel ([
     function (callback) {
@@ -138,7 +138,7 @@ module.exports.Modifier = function(request, response){
       response.nomEcurie = result[1];
       response.pilote = result[2][0];
       response.render('modifierPilote', response);
-});
+  });
 };
 
 //////////////// M O D I F I E R   P I L O T E //////////////
@@ -207,34 +207,34 @@ module.exports.Modifie = function(request, response){
       response.listePilote = result[1];
       response.est_modifie = true;
       response.render('listerPilote', response);
-});
+  });
 };
 
 /////////////////// S U P P R E S S I O N   D U   P I L O T E ////////////////
 module.exports.Supprimer = 	function(request, response){
-response.title = 'Pilotes';
-let data = request.params.num;
+  response.title = 'Pilotes';
+  let data = request.params.num;
 
-async.parallel ([
-  function (callback) {
-    model.supprimerPi(data, function (err, result) {
-      callback(null, result) });
-  }, // suppression du pilote
-  function (callback) {
-    model.getListePilote( function (err, result) {
-      callback(null, result) });
-  }, // result[1] : liste pilote
-],
-  function (err, result){
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+  async.parallel ([
+    function (callback) {
+      model.supprimerPi(data, function (err, result) {
+        callback(null, result) });
+    }, // suppression du pilote
+    function (callback) {
+      model.getListePilote( function (err, result) {
+        callback(null, result) });
+    }, // result[1] : liste pilote
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listePilote = result[1];
+      response.est_supprime = true;
+      response.render('listerPilote', response);
     }
-
-    response.listePilote = result[1];
-    response.est_supprime = true;
-    response.render('listerPilote', response);
-  }
-); //fin async
+  ); //fin async
 };

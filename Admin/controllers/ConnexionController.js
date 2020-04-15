@@ -35,9 +35,8 @@ module.exports.VerifConnexion = function(request, response){
             response.err = login; // pour pré-remplir le login dans le formulaire
           }
         });
-response.render('home', response);
-});
-
+        response.render('home', response);
+      });
 };
 ////////////////// D E C O N N E X I O N /////////////////
 module.exports.deconnexion = function(request, response){

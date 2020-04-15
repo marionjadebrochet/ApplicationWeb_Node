@@ -5,51 +5,51 @@ var async = require('async');
 // ///////////////////////// L I S T E   D E S   E C U R I E S ///////////////////////
 
 module.exports.Ecurie = 	function(request, response){
-response.title = 'Écuries';
-   model.getListeEcurie( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeEcurie = result;
-       //console.log(result);
-       response.render('listerEcurie', response);
-});
+  response.title = 'Écuries';
+ model.getListeEcurie( function (err, result) {
+     if (err) {
+         // gestion de l'erreur
+         console.log(err);
+         return;
+     }
+     response.listeEcurie = result;
+     //console.log(result);
+     response.render('listerEcurie', response);
+   });
 };
 
 ////////////// P A G E   A J O U T E R   E C U R I E ///////////////
 module.exports.Ajouter = 	function(request, response){
-response.title = 'Ajouter un écurie';
-let data = request.params.num;
+  response.title = 'Ajouter un écurie';
+  let data = request.params.num;
 
-async.parallel ([
-  function (callback) {
-    model.getPays(function (err, result) {
-      callback(null, result) });
-  }, // result[0] : pays
-  function (callback) {
-    model.getListeEcurie( function (err, result) {
-      callback(null, result) });
-  }, // result[1] : liste écuries
-],
-  function (err, result){
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+  async.parallel ([
+    function (callback) {
+      model.getPays(function (err, result) {
+        callback(null, result) });
+    }, // result[0] : pays
+    function (callback) {
+      model.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    }, // result[1] : liste écuries
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.pays = result[0];
+      response.listeEcurie = result[1];
+      response.render('ajouterEcurie', response);
     }
-
-    response.pays = result[0];
-    response.listeEcurie = result[1];
-    response.render('ajouterEcurie', response);
-  }
-); //fin async
+  ); //fin async
 };
 
 /////////////// A J O U T E R   E C U R I E //////////////////
 module.exports.Ajout = 	function(request, response){
-response.title = 'Écuries';
+  response.title = 'Écuries';
   let data = request.body;
 
   /// suppression des données si pas renseignées///
@@ -126,7 +126,7 @@ module.exports.Modifier = function(request, response){
       response.pays = result[0];
       response.ecurie = result[1][0];
       response.render('modifierEcurie', response);
-});
+    });
 };
 
 ////////////////// M O D I F I E R   E C U R I E ////////////////
@@ -183,34 +183,34 @@ module.exports.Modifie = function(request, response){
       response.listeEcurie= result[1];
       response.est_modifie = true;
       response.render('listerEcurie', response);
-});
+    });
 };
 
 //////////////// S U P P R I M E R   E C U R I E ////////////
 module.exports.Supprimer = 	function(request, response){
   response.title = 'Écuries';
-let data = request.params.num;
+  let data = request.params.num;
 
-async.parallel ([
-  function (callback) {
-    model.supEcu(data, function (err, result) {
-      callback(null, result) });
-  }, // result[0] : supprimer écurie
-  function (callback) {
-    model.getListeEcurie( function (err, result) {
-      callback(null, result) });
-  }, // result[1] : liste écurie
-],
-  function (err, result){
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+  async.parallel ([
+    function (callback) {
+      model.supEcu(data, function (err, result) {
+        callback(null, result) });
+    }, // result[0] : supprimer écurie
+    function (callback) {
+      model.getListeEcurie( function (err, result) {
+        callback(null, result) });
+    }, // result[1] : liste écurie
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listeEcurie = result[1];
+      response.est_supprime = true;
+      response.render('listerEcurie', response);
     }
-
-    response.listeEcurie = result[1];
-    response.est_supprime = true;
-    response.render('listerEcurie', response);
-  }
-); //fin async
+  ); //fin async
 };

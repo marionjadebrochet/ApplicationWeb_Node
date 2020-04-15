@@ -6,8 +6,8 @@ var async = require('async');
 // //////////////////// L I S T E   D E S   S P O N S O R ////////
 
 module.exports.Sponsor = 	function(request, response){
-response.title = 'Sponsors';
-   model.getListeSponsor( function (err, result) {
+  response.title = 'Sponsors';
+  model.getListeSponsor( function (err, result) {
        if (err) {
            // gestion de l'erreur
            console.log(err);
@@ -16,7 +16,7 @@ response.title = 'Sponsors';
        response.listeSponsor = result;
        //console.log(result);
        response.render('listerSponsors', response);
-});
+     });
 };
 
 //////////////////// P A G E   A J O U T E R   S P O N S O R ////////
@@ -108,7 +108,7 @@ module.exports.Modifier = function(request, response){
       response.nomEcurie = result[1];
       response.sponsor = result[2][0];
       response.render('modifierSponsors', response);
-});
+    });
 };
 
 //////////////////// M O D I F I E R   S P O N S O R ////////
@@ -138,35 +138,35 @@ module.exports.Modifie = function(request, response){
       response.listeSponsor = result[1];
       response.est_modifie = true;
       response.render('listerSponsors', response);
-});
+    });
 };
 
 //////////////////// S U P P R I M E R   S P O N S O R ////////
 module.exports.Supprimer = 	function(request, response){
-response.title = 'Sponsors';
-let data = request.params.num;
+  response.title = 'Sponsors';
+  let data = request.params.num;
 
-async.parallel ([
-  function (callback) {
-    model.supSponsor(data, function (err, result) {
-      callback(null, result) });
-  }, // suppression du sponsor
-  function (callback) {
-    model.getListeSponsor( function (err, result) {
-      callback(null, result) });
-  }, // result[1] : liste sponsor
-],
-  function (err, result){
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+  async.parallel ([
+    function (callback) {
+      model.supSponsor(data, function (err, result) {
+        callback(null, result) });
+    }, // suppression du sponsor
+    function (callback) {
+      model.getListeSponsor( function (err, result) {
+        callback(null, result) });
+    }, // result[1] : liste sponsor
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listeSponsor = result[1];
+      response.est_supprime = true;
+
+      response.render('listerSponsors', response);
     }
-
-    response.listeSponsor = result[1];
-    response.est_supprime = true;
-
-    response.render('listerSponsors', response);
-  }
-); //fin async
+  ); //fin async
 };

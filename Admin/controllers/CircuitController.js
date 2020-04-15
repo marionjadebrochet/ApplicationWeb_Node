@@ -6,47 +6,47 @@ var async = require('async');
 
 module.exports.Circuit = 	function(request, response){
   response.title = 'Circuits';
-   model.getListeCircuit( function (err, result) {
-       if (err) {
-           // gestion de l'erreur
-           console.log(err);
-           return;
-       }
-       response.listeCircuit = result;
-       //console.log(result);
-       response.render('listerCircuits', response);
-});
+  model.getListeCircuit( function (err, result) {
+    if (err) {
+      // gestion de l'erreur
+      console.log(err);
+      return;
+    }
+    response.listeCircuit = result;
+    //console.log(result);
+    response.render('listerCircuits', response);
+  });
 };
 
 //////////// P A G E   A J O U T E R   C I R C U I T ////////////////
 
 module.exports.Ajouter = 	function(request, response){
-response.title = 'Ajouter un circuit';
-let data = request.params.num;
+  response.title = 'Ajouter un circuit';
+  let data = request.params.num;
 
-async.parallel ([
-  function (callback) {
-    model.getPays(function (err, result) {
-      callback(null, result) });
-  }, // result[0] : pays
-  function (callback) {
-    model.getListeCircuit( function (err, result) {
-      callback(null, result) });
-  }, // result[0] : liste circuit
-],
-  function (err, result){
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
-    }
+  async.parallel ([
+    function (callback) {
+      model.getPays(function (err, result) {
+        callback(null, result) });
+      }, // result[0] : pays
+      function (callback) {
+        model.getListeCircuit( function (err, result) {
+          callback(null, result) });
+        }, // result[0] : liste circuit
+      ],
+      function (err, result){
+        if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+        }
 
-    response.pays = result[0];
-    response.listeCircuit= result[1];
-    response.render('AjouterCircuit', response);
-  }
-); //fin async
-};
+        response.pays = result[0];
+        response.listeCircuit= result[1];
+        response.render('AjouterCircuit', response);
+      }
+    ); //fin async
+  };
 
 /////////////// A J O U T E R   C I R C U I T  //////////////////
 module.exports.Ajout = 	function(request, response){
@@ -66,37 +66,37 @@ module.exports.Ajout = 	function(request, response){
 
   ////////////////////// Ajout de l'image///////////////////
   image.mv('./public/image/circuit/' + image.name , function(err) {
-   if (err)
-     console.log(err);
-   }); // ajout partie admin
-   image.mv('../public/public/image/circuit/' + image.name , function(err) {
     if (err)
-      console.log(err);
-    }); // ajout partie public
+    console.log(err);
+  }); // ajout partie admin
+  image.mv('../public/public/image/circuit/' + image.name , function(err) {
+    if (err)
+    console.log(err);
+  }); // ajout partie public
 
   async.parallel ([
     function (callback) {
       model.ajouterCircuit(data, function (err, result) {
         callback(null, result) });
-    }, // ajout du circuit dans la bd
-    function(callback) {
-      model.getListeCircuit( function (err, result) {
-        callback(null, result) });
-    }, //result[1] : liste Circuits
-  ],
-    function (err, result){
-      if (err) {
+      }, // ajout du circuit dans la bd
+      function(callback) {
+        model.getListeCircuit( function (err, result) {
+          callback(null, result) });
+        }, //result[1] : liste Circuits
+      ],
+      function (err, result){
+        if (err) {
           // gestion de l'erreur
           console.log(err);
           return;
-      }
+        }
 
-      response.listeCircuit = result[1];
-      response.est_ajoute = true;
-      response.render('listerCircuits', response);
-    }
-  ); //fin async
-};
+        response.listeCircuit = result[1];
+        response.est_ajoute = true;
+        response.render('listerCircuits', response);
+      }
+    ); //fin async
+  };
 
 //////////////// P A G E   M O D I F I E R   C I R C U I T ///////
 module.exports.Modifier = function(request, response){
@@ -123,7 +123,7 @@ module.exports.Modifier = function(request, response){
       response.pays = result[0];
       response.circuit = result[1][0];
       response.render('modifierCircuit', response);
-});
+    });
 };
 
 //////////// M O D I F I E R   C U R C U I T /////////////////
@@ -176,63 +176,63 @@ module.exports.Modifie = function(request, response){
       response.listeCircuit = result[1];
       response.est_modifie = true;
       response.render('listerCircuits', response);
-});
+    });
 };
 
 //////////// S U P P R I M E R   C I R C U I T /////////////
 module.exports.Supprimer = 	function(request, response){
-response.title = 'Circuits';
-let data = request.params;
+  response.title = 'Circuits';
+  let data = request.params;
 
-async.parallel ([
-  function (callback) {
-    model.supCir(data, function (err, result) {
-      callback(null, result) });
-  }, // supprimer circuit
-  function (callback) {
-    model.getListeCircuit( function (err, result) {
-      callback(null, result) });
-  }, // result[1] : liste circuits
-],
-  function (err, result){
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+  async.parallel ([
+    function (callback) {
+      model.supCir(data, function (err, result) {
+        callback(null, result) });
+    }, // supprimer circuit
+    function (callback) {
+      model.getListeCircuit( function (err, result) {
+        callback(null, result) });
+    }, // result[1] : liste circuits
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listeCircuit = result[1];
+      response.est_supprime = true;
+      response.render('listerCircuits', response);
     }
-
-    response.listeCircuit = result[1];
-    response.est_supprime = true;
-    response.render('listerCircuits', response);
-  }
-); //fin async
+  ); //fin async
 };
 
 //////////////// S U P P R I M E R   C I R C U I T si pas de grand prix ///////////
 module.exports.SupprimerSansGP = 	function(request, response){
-response.title = 'Circuits';
-let data = request.params.num;
+  response.title = 'Circuits';
+  let data = request.params.num;
 
-async.parallel ([
-  function (callback) {
-    model.supCirSansGP(data, function (err, result) {
-      callback(null, result) });
-  }, // supprimer circuit
-  function (callback) {
-    model.getListeCircuit( function (err, result) {
-      callback(null, result) });
-  }, // result[1] : liste circuit
-],
-  function (err, result){
-    if (err) {
-        // gestion de l'erreur
-        console.log(err);
-        return;
+  async.parallel ([
+    function (callback) {
+      model.supCirSansGP(data, function (err, result) {
+        callback(null, result) });
+    }, // supprimer circuit
+    function (callback) {
+      model.getListeCircuit( function (err, result) {
+        callback(null, result) });
+    }, // result[1] : liste circuit
+  ],
+    function (err, result){
+      if (err) {
+          // gestion de l'erreur
+          console.log(err);
+          return;
+      }
+
+      response.listeCircuit = result[1];
+      response.est_supprime = true;
+      response.render('listerCircuits', response);
     }
-
-    response.listeCircuit = result[1];
-    response.est_supprime = true;
-    response.render('listerCircuits', response);
-  }
-); //fin async
+  ); //fin async
 };
