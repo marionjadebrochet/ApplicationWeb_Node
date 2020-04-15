@@ -25,7 +25,7 @@
     <label class="auto" for="Desc">Description</label>
     <textarea class="auto" name="cirtext" rows="5" cols="60" required></textarea>
   </div>
-  <div class="row">
+  <div id="divImageCircuit" class="row">
     <label class="auto" for="Image">Images</label>
     <button type="button" id="buttonImgCircuit" onclick="chooseFile()" >Ajouter image</button>
     <img id="imageAjoutCircuit"
@@ -35,7 +35,7 @@
     <input type="file" id="inputAjoutImgCir" name="image" onchange="changeImage()" hidden required>
   </div>
 
-  <button type="submit">AJOUTER</button>
+  <button type="submit" onclick="verif()">AJOUTER</button>
 </form>
 
 <script src="/JS/ajouterImageCircuit.js" charset="utf-8"></script>

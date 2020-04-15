@@ -19,9 +19,15 @@ function agrandire() {
 }
 // remplace le boutton/image quand on choisi une nouvelle image
 function changeImage() {
+  $('.err').remove();
   $('#imageAjoutCircuit').attr('style','height: 60px;');
   var image = document.getElementById('imageAjoutCircuit');
    image.src = URL.createObjectURL(event.target.files[0]);
+}
+function verif() {
+  if($('#buttonImgCircuit')) {
+    $('#divImageCircuit').append('<p class="err">Vous devez ajouter une image</p>');
+  }
 }
 $(document).ready(function() {
   agrandire();

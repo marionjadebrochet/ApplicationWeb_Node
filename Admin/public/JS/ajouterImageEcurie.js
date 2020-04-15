@@ -14,9 +14,15 @@ function agrandire() {
   });
 }
 function changeImage() {
+  $('.err').remove();
   $('#imageAjoutEcu').attr('style','height: 60px;');
   var image = document.getElementById('imageAjoutEcu');
    image.src = URL.createObjectURL(event.target.files[0]);
+}
+function verif() {
+  if($('#buttonImgEcu')) {
+    $('#divImageEcu').append('<p class="err">Vous devez ajouter une image</p>');
+  }
 }
 $(document).ready(function() {
   agrandire();

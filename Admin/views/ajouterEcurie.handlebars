@@ -26,7 +26,7 @@
       {{/each}}
     </select>
   </div>
-  <div class="row">
+  <div id="divImageEcu" class="row">
     <label class="auto" for="Image">Image</label>
     <button type="button" id="buttonImgEcu" onclick="chooseFile()" >Ajouter image</button>
     <img id="imageAjoutEcu"
@@ -36,7 +36,7 @@
     <input type="file" id="inputAjoutImgEcu" name="image" onchange="changeImage()" hidden required>
   </div>
 
-  <button type="submit">AJOUTER</button>
+  <button type="submit" onclick="verif()">AJOUTER</button>
 </form>
 
 <script src="/JS/ajouterImageEcurie.js" charset="utf-8"></script>
