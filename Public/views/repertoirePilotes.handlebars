@@ -6,71 +6,71 @@
   {{#each listePilote}}
   <div class="listePilote">
     <a href="/descPilote/{{this.pilnum}}"><h1>{{this.nom}} {{this.prenom}}</h1>
-    {{#if this.img }}
-    <img class="imgpilote" src="/image/pilote/{{this.img}}" alt="image du pilote">
-    <br>{{this.phocommentaire}}
-    {{/if}}</a>
+      {{#if this.img }}
+      <img class="imgpilote" src="/image/pilote/{{this.img}}" alt="image du pilote">
+      <br>{{this.phocommentaire}}
+      {{/if}}</a>
+    </div>
+    {{/each}}
   </div>
-  {{/each}}
-</div>
 
-<br>
-<br>
+  <br>
+  <br>
 
-<div class="detPilote">
+  <div class="detPilote">
 
-{{#if descPilote}}
-<div class="en">
-  <div class="imagetete">
-      {{#if descPilote.img}}
-      <img class="imgggg" src="/image/pilote/{{descPilote.img}}" alt="image du pilote">
-      <br>{{descPilote.phocommentaire}}
-      {{/if}}
+    {{#if descPilote}}
+    <div class="en">
+      <div class="imagetete">
+        {{#if descPilote.img}}
+        <img class="imgggg" src="/image/pilote/{{descPilote.img}}" alt="image du pilote">
+        <br>{{descPilote.phocommentaire}}
+        {{/if}}
+      </div>
+      <div class="infopil1">
+        <h1>Nom : </h1><p>{{descPilote.nom}} {{descPilote.prenom}}</p>
+        <h1>Date de naissance :</h1>{{#if descPilote.date}}<p>{{formatDate descPilote.date 'DD MMMM YYYY' }}</p>{{/if}}
+      </div>
+      <div class="infopil2">
+        <h1>Nationalité :</h1><p>{{descPilote.nation}}</p>
+        <h1>Poids :</h1><p>{{descPilote.poids}}</p>
+      </div>
+      <div class="infopil3">
+        <h1>Taille :</h1><p>{{descPilote.taille}}</p>
+
+        {{#if descPilote.ecurie}}
+        <h1>Ecurie :</h1><p>{{descPilote.ecurie}}</p>
+        {{else}}
+        <h1>Ecurie :</h1><p>Pas d'écurie cette année</p>
+        {{/if}}
+
+      </div>
+    </div>
+    {{/if}}
+
+    <br>
+
+    {{#if sponsors}}
+    <h1>Principaux sponsors :</h1>
+    {{#each sponsors}}
+    <p>{{this.nomspon}} ({{this.type}})</p>
+    {{/each}}
+    {{/if}}
+
+    <br>
+
+    {{#if descPilote}}
+    <h1>Qui suis-je ?</h1><p class="texttt">{{descPilote.texte}}</p>
+    {{/if}}
+
+
+    <div class="listePhotoBonusPilote">
+      {{#each images}}
+      <div class="photoBonusPilote">
+        <img src="/image/pilote/{{this.imgs}}" alt="image du pilote" class="imgPiloteEnPlus">
+        <p>{{this.phocommentaire}}</p>
+      </div>
+      {{/each}}
+    </div>
+
   </div>
-  <div class="infopil1">
-    <h1>Nom : </h1><p>{{descPilote.nom}} {{descPilote.prenom}}</p>
-    <h1>Date de naissance :</h1>{{#if descPilote.date}}<p>{{formatDate descPilote.date 'DD MMMM YYYY' }}</p>{{/if}}
-  </div>
-  <div class="infopil2">
-    <h1>Nationalité :</h1><p>{{descPilote.nation}}</p>
-    <h1>Poids :</h1><p>{{descPilote.poids}}</p>
-  </div>
-  <div class="infopil3">
-    <h1>Taille :</h1><p>{{descPilote.taille}}</p>
-
-      {{#if descPilote.ecurie}}
-      <h1>Ecurie :</h1><p>{{descPilote.ecurie}}</p>
-       {{else}}
-       <h1>Ecurie :</h1><p>Pas d'écurie cette année</p>
-      {{/if}}
-
-  </div>
-</div>
-{{/if}}
-
-<br>
-
-{{#if sponsors}}
-<h1>Principaux sponsors :</h1>
-{{#each sponsors}}
-  <p>{{this.nomspon}} ({{this.type}})</p>
-{{/each}}
-{{/if}}
-
-<br>
-
-{{#if descPilote}}
-  <h1>Qui suis-je ?</h1><p class="texttt">{{descPilote.texte}}</p>
-{{/if}}
-
-
-<div class="listePhotoBonusPilote">
-  {{#each images}}
-  <div class="photoBonusPilote">
-    <img src="/image/pilote/{{this.imgs}}" alt="image du pilote" class="imgPiloteEnPlus">
-    <p>{{this.phocommentaire}}</p>
-  </div>
-  {{/each}}
-</div>
-
-</div>

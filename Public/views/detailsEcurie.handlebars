@@ -26,9 +26,9 @@
       {{#if pilotes}}
       <h1>Pilotes : </h1>
       {{#each pilotes}}
-        <a class="infobulle" href="#" value="{{this.pilnum}}"> {{this.nompilote}} {{this.prenompilote}}</a><br>
-        <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
-        <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
+      <a class="infobulle" href="#" value="{{this.pilnum}}"> {{this.nompilote}} {{this.prenompilote}}</a><br>
+      <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
+      <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
       {{/each}}
 
     </div>
@@ -37,21 +37,21 @@
     <br>
     <br>
     <br>
-      <div class="voittt">
-        {{#each voiture}}
-        <div class="imgppo">
-          <img class="imgvoitureici" src="/image/ecurie/voiture/{{this.imgVoit}}" alt="Voiture" />
-          <p>{{this.nomVoiture}}</p>
-          <p>{{this.libelle}}</p>
-        </div>
-        {{/each}}
+    <div class="voittt">
+      {{#each voiture}}
+      <div class="imgppo">
+        <img class="imgvoitureici" src="/image/ecurie/voiture/{{this.imgVoit}}" alt="Voiture" />
+        <p>{{this.nomVoiture}}</p>
+        <p>{{this.libelle}}</p>
       </div>
-      {{else}}
-        {{#if detailsEcurie}}
-        Cette écurie ne participe pas au championnat cette année
-        {{/if}}
-      {{/if}}
+      {{/each}}
     </div>
+    {{else}}
+    {{#if detailsEcurie}}
+    Cette écurie ne participe pas au championnat cette année
+    {{/if}}
+    {{/if}}
+  </div>
 </div>
 
 <script src="/JS/infobulle.js" charset="utf-8"></script>

@@ -1,14 +1,7 @@
 <h2 class="let"> Cliquez sur une lettre : </h2>
 
-<div class="listeLettre">
-
-  <div class="lettre">
-    {{#each listeLettre}}
-    <a class="choixliste" href="/detailsPilote/{{this.lettre}}">{{this.lettre}}</a>
-    {{/each}}
-  </div>
-  <div class="prout">
-
-  </div>
-  
+<div class="lettre">
+  {{#each listeLettre}}
+  <a class="choixliste" href="/detailsPilote/{{this.lettre}}">{{this.lettre}}</a>
+  {{/each}}
 </div>

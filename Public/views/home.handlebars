@@ -2,8 +2,8 @@
 <div class="accueil">
   <h2>DERNIERS RESULTATS</h2>
   {{#each listeGrandPrix}}
-    {{this.nom}} du {{formatDate this.date 'DD MMMM YYYY' }}  <br>
-    Mise à jour le : {{formatDate this.maj 'DD MMMM YYYY' }} <br>
-    <a href="/detailsGP/{{this.num}}">Voir les résultats</a>
+  {{this.nom}} du {{formatDate this.date 'DD MMMM YYYY' }}  <br>
+  Mise à jour le : {{formatDate this.maj 'DD MMMM YYYY' }} <br>
+  <a href="/detailsGP/{{this.num}}">Voir les résultats</a>
   {{/each}}
 </div>

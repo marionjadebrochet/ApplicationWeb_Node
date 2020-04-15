@@ -24,7 +24,7 @@ module.exports.getListeCircuit = function (callback) {
             // la connexion retourne dans le pool
             connexion.release();
          }
-      });
+    });
 };
 
 ////////////////////////////// details écurie /////////////////////

@@ -14,7 +14,7 @@ module.exports.Repertoire = 	function(request, response){
        response.listeLettre = result;
        //console.log(result);
        response.render('repertoirePilotes', response);
-});
+    });
 };
 
 // /////////////////////////P I L O T E S    D O N T    L E    N O M    C O M M E N C E    P A R

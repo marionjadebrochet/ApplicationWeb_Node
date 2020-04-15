@@ -12,6 +12,6 @@ module.exports.GrandPrixDate = function(request, response){
 			}
 			response.listeGrandPrix = result;
 			//console.log(result);
-	response.render('home', response);
-});
+			response.render('home', response);
+	});
 }

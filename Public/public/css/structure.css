@@ -106,17 +106,12 @@
 	text-decoration: underline;
 }
 
-
-.listeLettre {
-  display: flex;
-  flex-direction: row;
-}
-
 .lettre {
   background-color: lightgrey;
   text-decoration: none;
   font-weight: bold;
   color: red;
+  width: fit-content;
 }
 
 .lettre a {
