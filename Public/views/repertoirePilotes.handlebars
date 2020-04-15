@@ -8,7 +8,18 @@
     <a href="/descPilote/{{this.pilnum}}"><h1>{{this.nom}} {{this.prenom}}</h1>
       {{#if this.img }}
       <img class="imgpilote" src="/image/pilote/{{this.img}}" alt="image du pilote">
-      <br>{{this.phocommentaire}}
+      <br>
+      <!--////// POUR LA BLAGUE ///////-->
+      {{#ifCond this.prenom '==' 'Kimi'}}
+        Avec le petit pâque de bière
+      {{else}}
+        {{#ifCond this.nom '==' 'Button'}}
+          Marion 7ans : enfant terrible
+        {{else}}
+          {{this.phocommentaire}}
+        {{/ifCond}}
+      {{/ifCond}}
+      <!--////////////////////////////////-->
       {{/if}}</a>
     </div>
     {{/each}}
@@ -24,7 +35,18 @@
       <div class="imagetete">
         {{#if descPilote.img}}
         <img class="imgggg" src="/image/pilote/{{descPilote.img}}" alt="image du pilote">
-        <br>{{descPilote.phocommentaire}}
+        <br>
+        <!--////// POUR LA BLAGUE ///////-->
+        {{#ifCond descPilote.prenom '==' 'Kimi'}}
+          Avec le petit pâque de bière
+        {{else}}
+          {{#ifCond descPilote.nom '==' 'Button'}}
+            Marion 7ans : enfant terrible
+          {{else}}
+            {{descPilote.phocommentaire}}
+          {{/ifCond}}
+        {{/ifCond}}
+        <!-- /////////////////////////// -->
         {{/if}}
       </div>
       <div class="infopil1">
