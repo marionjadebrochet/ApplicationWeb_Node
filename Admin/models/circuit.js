@@ -23,7 +23,7 @@ module.exports.getListeCircuit = function (callback) {
 };
 
 ///////////////////// supprimer ciruit //////////////////////////
-			module.exports.supCir = function (data, callback) {
+module.exports.supCir = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
             let sql1 ="delete from course where gpnum =" + connexion.escape(data.gp);

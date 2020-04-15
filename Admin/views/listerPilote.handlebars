@@ -2,28 +2,28 @@
 <a class="ajouter" href="/ajouterPilote/"><p><img src="/image/act_add.png"> Ajouter un pilote</p></a>
 
 <table>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Date de naissance</th>
-        <th>Actions</th>
-      </tr>
-      {{#each listePilote}}
-        <tr>
-            <td>{{this.nom}}</td>
-            <td>{{this.prenom}}</td>
-            <td>{{formatDate this.dateNai 'DD/MM/YYYY' }} </td>
-            <td> <div class="modsup">
-              <div class="mod">
-                <a href="/modifierPilote/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
-              </div>
-              <div class="sup">
-                <a href="/supprimerPilote/{{this.num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
-              </div>
-            </td>
-            </div>
-        </tr>
-      {{/each}}
+  <tr>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Date de naissance</th>
+    <th>Actions</th>
+  </tr>
+  {{#each listePilote}}
+  <tr>
+    <td>{{this.nom}}</td>
+    <td>{{this.prenom}}</td>
+    <td>{{formatDate this.dateNai 'DD/MM/YYYY' }} </td>
+    <td> <div class="modsup">
+      <div class="mod">
+        <a href="/modifierPilote/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+      </div>
+      <div class="sup">
+        <a href="/supprimerPilote/{{this.num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+      </div>
+    </td>
+  </div>
+</tr>
+{{/each}}
 </table>
 
 {{#if est_ajoute}}

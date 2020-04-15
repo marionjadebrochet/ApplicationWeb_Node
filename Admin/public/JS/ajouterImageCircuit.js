@@ -25,6 +25,7 @@ function changeImage() {
    image.src = URL.createObjectURL(event.target.files[0]);
 }
 function verif() {
+  //affiche un message d'erreur si pas de photo ajoutée
   if($('#buttonImgCircuit')) {
     $('#divImageCircuit').append('<p class="err">Vous devez ajouter une image</p>');
   }

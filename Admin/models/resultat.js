@@ -105,34 +105,34 @@ module.exports.updatePoints = function (data, callback) {
 								+ " order by tempscourse)tab"
 							+ " left join points on points.PTPLACE=tab.place";
 
-								connexion.query(sql2, function(err, result) {
+					connexion.query(sql2, function(err, result) {
 
-									let sql3 ="";
-									result.forEach( function(point, index) {
-										sql3 = "update pilote set"
-														+ " pilpoints =" + point.ptnbpointsplace
-														+ " where pilnum=" + point.pilnum;
-										connexion.query(sql3);
-									});
-
-						/////////////////// Récupération nb par écurie //////////
-						let sql4 = "select sum(pilpoints) as ptecurie, ecunum"
-										+ " from pilote"
-										+ " group by ecunum";
-						connexion.query(sql4, function(err, result) {
-
-							let sql5 ="";
-							//////////////// maj points écurie ////////////
-							result.forEach( function(point, index) {
-								sql5 = "update ecurie set"
-											+ " ecupoints =" + point.ptecurie
-											+ " where ecunum=" + point.ecunum;
-								connexion.query(sql5);
-								});
-							callback(null, result);
-						});
+					let sql3 ="";
+					result.forEach( function(point, index) {
+						sql3 = "update pilote set"
+										+ " pilpoints =" + point.ptnbpointsplace
+										+ " where pilnum=" + point.pilnum;
+						connexion.query(sql3);
 					});
-					connexion.release();
-				}
+
+					/////////////////// Récupération nb par écurie //////////
+					let sql4 = "select sum(pilpoints) as ptecurie, ecunum"
+									+ " from pilote"
+									+ " group by ecunum";
+					connexion.query(sql4, function(err, result) {
+
+					let sql5 ="";
+					//////////////// maj points écurie ////////////
+					result.forEach( function(point, index) {
+						sql5 = "update ecurie set"
+									+ " ecupoints =" + point.ptecurie
+									+ " where ecunum=" + point.ecunum;
+						connexion.query(sql5);
+						});
+						callback(null, result);
+					});
+				});
+				connexion.release();
+			}
 		})
 	};

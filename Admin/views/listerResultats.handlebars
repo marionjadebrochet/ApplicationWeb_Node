@@ -3,16 +3,16 @@
   <h1>Resultats</h1>
   <p>Selectionner un grand prix :</p>
 
-<form class="form" action="/detailsResultats" method="post">
+  <form class="form" action="/detailsResultats" method="post">
 
-  <select name="gp" id="gp_select">
+    <select name="gp" id="gp_select">
       {{#each listeGrandPrix}}
       <option value="{{this.num}}">{{this.nom}}</option>
       {{/each}}
-  </select>
-  <br>
-  <button type="submit">VALIDER</button>
-</form>
+    </select>
+    <br>
+    <button type="submit">VALIDER</button>
+  </form>
 
 
 </div>

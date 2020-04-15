@@ -21,7 +21,7 @@ module.exports.getListeSponsor = function (callback) {
 		};
 
 ///////////////// suppression sponsor ///////////////////////
-					module.exports.supSponsor = function (data, callback) {
+module.exports.supSponsor = function (data, callback) {
 		    db.getConnection(function (err, connexion) {
 		        if (!err) {
 
@@ -40,79 +40,79 @@ module.exports.getListeSponsor = function (callback) {
 		}
 
 ////////////////////// ajouter sponsor ///////////////////////
-		module.exports.ajouterSponsors = function (data, callback) {
+module.exports.ajouterSponsors = function (data, callback) {
 
-			db.getConnection(function(err, connexion){
-				if(!err){
-					let sql1 = "insert into sponsor set "
-								 	+ " sponom=" + connexion.escape(data.sponom)
-									+ ", SPOSECTACTIVITE=" + connexion.escape(data.sposectactivite);
+	db.getConnection(function(err, connexion){
+		if(!err){
+			let sql1 = "insert into sponsor set "
+						 	+ " sponom=" + connexion.escape(data.sponom)
+							+ ", SPOSECTACTIVITE=" + connexion.escape(data.sposectactivite);
 
-					connexion.query(sql1, function(err, result) {
-						let sql2 = "insert into finance set"
-											+ " sponum = ("
-											+ " select sponum from sponsor"
-											+ " where sponum >=all (select sponum from sponsor))"
-											+ ", ecunum=" + connexion.escape(data.ecunum);
+			connexion.query(sql1, function(err, result) {
+				let sql2 = "insert into finance set"
+									+ " sponum = ("
+									+ " select sponum from sponsor"
+									+ " where sponum >=all (select sponum from sponsor))"
+									+ ", ecunum=" + connexion.escape(data.ecunum);
 
-						connexion.query(sql2, callback);
-					});
-
-					connexion.release();
-				}
+				connexion.query(sql2, callback);
 			});
-		};
+
+			connexion.release();
+		}
+	});
+};
 
 //////////////////// récupérer un sponsor ///////////////////
-		module.exports.getSponsor = function (data, callback) {
+module.exports.getSponsor = function (data, callback) {
 
-			db.getConnection(function(err, connexion){
-		        if(!err){
+	db.getConnection(function(err, connexion){
+        if(!err){
 
-								let sql ="SELECT sponum, sponom, sposectactivite"
-										+ " FROM sponsor"
-										+ " WHERE sponum = " + connexion.escape(data);
+						let sql ="SELECT sponum, sponom, sposectactivite"
+								+ " FROM sponsor"
+								+ " WHERE sponum = " + connexion.escape(data);
 
-		            connexion.query(sql, callback);
-		            connexion.release();
-		         }
-		      });
-		};
+            connexion.query(sql, callback);
+            connexion.release();
+         }
+      });
+};
 
 /////////////////////// liste écurie d'un sponsor //////////////////////
-		module.exports.getEcuSpo = function (data, callback) {
+module.exports.getEcuSpo = function (data, callback) {
 
-			db.getConnection(function(err, connexion){
-		        if(!err){
-								let sql ="SELECT f.ECUNUM as fecunum, f.SPONUM as fsponum, e.ECUNOM as eecunom"
-										+ " FROM finance f INNER JOIN ecurie e ON f.ecunum = e.ecunum"
-										+ " WHERE sponum = " + connexion.escape(data);
+	db.getConnection(function(err, connexion){
+        if(!err){
+						let sql ="SELECT f.ECUNUM as fecunum, f.SPONUM as fsponum, e.ECUNOM as eecunom"
+								+ " FROM finance f INNER JOIN ecurie e ON f.ecunum = e.ecunum"
+								+ " WHERE sponum = " + connexion.escape(data);
 
-		            connexion.query(sql, callback);
-		            connexion.release();
-		         }
-		      });
-		};
+            connexion.query(sql, callback);
+            connexion.release();
+         }
+      });
+};
 
 //////////////////////// modifier sponsor ///////////////////////////
-		module.exports.modifierSponsors = function (data, callback) {
+module.exports.modifierSponsors = function (data, callback) {
 
-			db.getConnection(function(err, connexion){
-		        if(!err){
+	db.getConnection(function(err, connexion){
+        if(!err){
 
-								let sql1 ="update sponsor set"
-								 				+ " sponom =" + connexion.escape(data.sponom)
-												+ ", sposectactivite =" + connexion.escape(data.sposectactivite)
-												+ " where sponum = " + connexion.escape(data.sponum);
-								let sql2 = "delete from finance where sponum = " + connexion.escape(data.sponum);
-								let sql3 = "insert into finance set sponum = " + connexion.escape(data.sponum)
-													+ ", ecunum = " + connexion.escape(data.ecunum);
+						let sql1 ="update sponsor set"
+						 				+ " sponom =" + connexion.escape(data.sponom)
+										+ ", sposectactivite =" + connexion.escape(data.sposectactivite)
+										+ " where sponum = " + connexion.escape(data.sponum);
+						let sql2 = "delete from finance where sponum = " + connexion.escape(data.sponum);
+						let sql3 = "insert into finance set sponum = " + connexion.escape(data.sponum)
+											+ ", ecunum = " + connexion.escape(data.ecunum);
 
-								connexion.query(sql1);
-								connexion.query(sql2);
-								connexion.query(sql3, callback);
+						connexion.query(sql1);
+						connexion.query(sql2);
+						connexion.query(sql3, callback);
 
-		            connexion.release();
-		         }
-		      });
-		};
+            connexion.release();
+         }
+      });
+};

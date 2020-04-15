@@ -13,45 +13,45 @@
 </head>
 
 <body class="monBody">
-<div id="container">
-	<div id="header">
-	<img src="/image/staff_admin.jpg" alt="WROOM l'encyclopédie de la F1" />
-	</div>
-	<div id="menu">
-		<div class="gauche">
-			<a href="/listerPilote">PILOTE</a> |
-			<a href="/listerCircuits">CIRCUITS</a> |
-			<a href="/listerEcurie">ECURIES</a> |
-			<a href="/listerResultats">RESULTATS</a> |
-			<a href="/listerSponsors">SPONSORS</a> |
-			<a href="http://localhost:6800/">Retour au site</a>
+	<div id="container">
+		<div id="header">
+			<img src="/image/staff_admin.jpg" alt="WROOM l'encyclopédie de la F1" />
 		</div>
-		<div class="droite">
-			<a href="/deconnexion">Se déconnecter</a>
-		</div>
-	</div>
-	<div id="contenu">
-
-<!-- /////// gestion de la connexion /////////// -->
-		{{#if session.login}}
-			{{{body}}}
-		{{else}}
-			{{>connexion}}
-		{{/if}}
-
-	</div>
-				<div id="footer">
-					L'encyclopédie de la F1 depuis janvier 2020 (en NodeJS)
-					<br />
-					© IUT du Limousin DUT Informatique année 2
-					<br />
-					<br />
-                Application réalisée par Marion Brochet et Guillaume Rousselet
-                <br />
-								<br />
-					<img src="/image/nodejs.png" id= "LogoNode" alt="Logo NodeJs" title="Logo Node.JS" />
+		<div id="menu">
+			<div class="gauche">
+				<a href="/listerPilote">PILOTE</a> |
+				<a href="/listerCircuits">CIRCUITS</a> |
+				<a href="/listerEcurie">ECURIES</a> |
+				<a href="/listerResultats">RESULTATS</a> |
+				<a href="/listerSponsors">SPONSORS</a> |
+				<a href="http://localhost:6800/">Retour au site</a>
 			</div>
+			<div class="droite">
+				<a href="/deconnexion">Se déconnecter</a>
+			</div>
+		</div>
+		<div id="contenu">
 
-</div>
+			<!-- /////// gestion de la connexion /////////// -->
+			{{#if session.login}}
+				{{{body}}}
+			{{else}}
+				{{>connexion}}
+			{{/if}}
+
+		</div>
+		<div id="footer">
+			L'encyclopédie de la F1 depuis janvier 2020 (en NodeJS)
+			<br />
+			© IUT du Limousin DUT Informatique année 2
+			<br />
+			<br />
+			Application réalisée par Marion Brochet et Guillaume Rousselet
+			<br />
+			<br />
+			<img src="/image/nodejs.png" id= "LogoNode" alt="Logo NodeJs" title="Logo Node.JS" />
+		</div>
+
+	</div>
 </body>
 </html>

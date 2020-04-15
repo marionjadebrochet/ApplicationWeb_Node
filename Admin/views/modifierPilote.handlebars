@@ -55,16 +55,16 @@
   <div class="row">
     <label class="auto" for="Image">Photo d'identité</label>
     {{#if pilote.phoadresse}}
-      <img id="imageModifPil"
-      src="/image/Pilote/{{pilote.phoadresse}}"
-      title="modifier ..." alt="photo d'identité"
-      onclick="inputFile()">
+    <img id="imageModifPil"
+    src="/image/Pilote/{{pilote.phoadresse}}"
+    title="modifier ..." alt="photo d'identité"
+    onclick="inputFile()">
     {{else}}
-      <button type="button" id="buttonImgPil" onclick="chooseFile()" >Ajouter photo d'identité</button>
-      <img id="imageModifPil"
-      title="modifier ..." alt="photo identité"
-      onclick="inputFile()"
-      style="display: none">
+    <button type="button" id="buttonImgPil" onclick="chooseFile()" >Ajouter photo d'identité</button>
+    <img id="imageModifPil"
+    title="modifier ..." alt="photo identité"
+    onclick="inputFile()"
+    style="display: none">
     {{/if}}
     <input type="file" id="inputModifImgPil" name="image" onchange="changeImage()" hidden>
   </div>

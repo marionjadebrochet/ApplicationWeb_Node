@@ -94,8 +94,8 @@ console.log(dataImage);
 	db.getConnection(function(err, connexion){
         if(!err){
 
-						let sql ="update pilote set ? where pilnum = "
-									+ connexion.escape(data.pilnum);
+					let sql ="update pilote set ? where pilnum = "
+								+ connexion.escape(data.pilnum);
 
 		////// ajout photo d'identité ////////////
 					if (dataImage.phoadresse) { //si photo ajoutée ou modifiée

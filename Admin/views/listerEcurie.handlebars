@@ -2,28 +2,28 @@
 <a class="ajouter" href="/ajouterEcurie/"><p><img src="/image/act_add.png"> Ajouter une ecurie</p></a>
 
 <table>
-      <tr>
-        <th>Nom</th>
-        <th>Directeur</th>
-        <th>Points</th>
-        <th>Actions</th>
-      </tr>
-      {{#each listeEcurie}}
-        <tr>
-            <td>{{this.nom}}</td>
-            <td>{{this.dir}}</td>
-            <td>{{this.point}} </td>
-            <td> <div class="modsup">
-              <div class="mod">
-              <a href="/modifierEcurie/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
-              </div>
-              <div class="sup">
-               <a href="/supprimerEcurie/{{this.num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
-             </div>
-             </td>
-             </div>
-        </tr>
-      {{/each}}
+  <tr>
+    <th>Nom</th>
+    <th>Directeur</th>
+    <th>Points</th>
+    <th>Actions</th>
+  </tr>
+  {{#each listeEcurie}}
+  <tr>
+    <td>{{this.nom}}</td>
+    <td>{{this.dir}}</td>
+    <td>{{this.point}} </td>
+    <td> <div class="modsup">
+      <div class="mod">
+        <a href="/modifierEcurie/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+      </div>
+      <div class="sup">
+        <a href="/supprimerEcurie/{{this.num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+      </div>
+    </td>
+  </div>
+</tr>
+{{/each}}
 </table>
 
 {{#if est_supprime}}

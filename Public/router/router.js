@@ -32,7 +32,7 @@ module.exports = function(app){
 
 
 // tout le reste
-app.get('*', HomeController.NotFound);
-app.post('*', HomeController.NotFound);
+   app.get('*', HomeController.NotFound);
+   app.post('*', HomeController.NotFound);
 
 };
