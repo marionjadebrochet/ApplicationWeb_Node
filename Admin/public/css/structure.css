@@ -118,6 +118,18 @@ height: 50px;
 transition: all 1s;
 }
 
+#buttonPublic, #buttonImgPil, #buttonImgPil {
+  width: auto;
+}
+
+#buttonImgCircuit, #buttonImgEcu {
+  height: auto;
+}
+
+#imageModifCircuit, #imageModifEcu, #imageModifPil {
+  height: 60px;
+}
+
 form {
 	display: flex;
 	margin-left:auto;
@@ -203,6 +215,10 @@ td {
  text-align:center;
  background-color: #E1E2E6;
  }
+
+#ajoutTemps {
+  width: 200px;
+}
 
  .err {
    color: red;
