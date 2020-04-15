@@ -7,7 +7,7 @@
 
 let db = require('../configDb');
 
-
+////////////////////////////// liste écuries //////////////////
 module.exports.getListeCircuit = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
@@ -27,6 +27,7 @@ module.exports.getListeCircuit = function (callback) {
       });
 };
 
+////////////////////////////// details écurie /////////////////////
 module.exports.getDetCircuit = function (data,callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){

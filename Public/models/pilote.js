@@ -1,16 +1,5 @@
-/*
-* config.Db contient les parametres de connection à la base de données
-* il va créer aussi un pool de connexions utilisables
-* sa méthode getConnection permet de se connecter à MySQL
-*
-*/
-
 let db = require('../configDb');
-
-/*
-* Récupérer l'intégralité les écuries avec l'adresse de la photo du pays de l'écurie
-* @return Un tableau qui contient le N°, le nom de l'écurie et le nom de la photo du drapeau du pays
-*/
+/////////////// liste 1ere lettre noms des pilotes ////////////////
 module.exports.getListeLettre = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
@@ -29,6 +18,7 @@ module.exports.getListeLettre = function (callback) {
       });
 }
 
+/////////// pilotes en fonction de la 1ere lettre de leur nom ///////////////
 module.exports.getPiloteParLettre = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -48,7 +38,7 @@ module.exports.getPiloteParLettre = function (data, callback) {
 		         }
 		   });
 };
-
+///////////////////////////// détails pilote ////////////////////////////
 module.exports.getDescPilote = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -71,6 +61,7 @@ module.exports.getDescPilote = function (data, callback) {
 		   });
 };
 
+///////////////////////// sponors du pilote /////////////////////////
 module.exports.getSponsors = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -87,7 +78,7 @@ module.exports.getSponsors = function (data, callback) {
 		         }
 		   });
 };
-
+/////////////////// images du pilote (!= photo d'identité) /////////////////////
 module.exports.getImages = function (data, callback) {
 
 	db.getConnection(function(err, connexion){

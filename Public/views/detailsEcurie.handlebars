@@ -3,22 +3,22 @@
     {{>listeEcuriePartial}}
   </div>
   <div class="gauche">
-    {{#each detailsEcurie}}
+    {{#if detailsEcurie}}
     <div class="eccuu">
       <div class="imgecuu">
-        <img class="imgecuu" src="/image/ecurie/{{img}}" alt="image de l'écurie">
+        <img class="imgecuu" src="/image/ecurie/{{detailsEcurie.img}}" alt="image de l'écurie">
       </div>
       <div class="infoecuu">
-        <h1>Nom : </h1><p>  {{nom}}</p><br>
-        <h1>Directeur :</h1><p>  {{dir}}</p><br>
-        <h1>Adresse :</h1><p>  {{adresse}}</p><br>
-        <h1>Pays :</h1><p>  {{pays}}</p><br>
-        {{#if pneu}}
-        <h1>Fournisseur de pneumatique :</h1><p>  {{pneu}}</p><br>
+        <h1>Nom : </h1><p>  {{detailsEcurie.nom}}</p><br>
+        <h1>Directeur :</h1><p>  {{detailsEcurie.dir}}</p><br>
+        <h1>Adresse :</h1><p>  {{detailsEcurie.adresse}}</p><br>
+        <h1>Pays :</h1><p>  {{detailsEcurie.pays}}</p><br>
+        {{#if detailsEcurie.pneu}}
+        <h1>Fournisseur de pneumatique :</h1><p>  {{detailsEcurie.pneu}}</p><br>
         {{/if}}
       </div>
     </div>
-    {{/each}}
+    {{/if}}
 
     <br>
 
@@ -26,7 +26,7 @@
       {{#if pilotes}}
       <h1>Pilotes : </h1>
       {{#each pilotes}}
-        <a class="infobulle" href="#" value="{{this.pilnum}}"> {{nompilote}} {{prenompilote}}</a><br>
+        <a class="infobulle" href="#" value="{{this.pilnum}}"> {{this.nompilote}} {{this.prenompilote}}</a><br>
         <p id="piltexteZoom{{this.pilnum}}" hidden>{{this.piltexte}}</p>
         <p id="phoadresseZoom{{this.pilnum}}" hidden>{{this.phoadresse}}</p>
       {{/each}}
@@ -40,9 +40,9 @@
       <div class="voittt">
         {{#each voiture}}
         <div class="imgppo">
-          <img class="imgvoitureici" src="/image/ecurie/voiture/{{imgVoit}}" alt="Voiture" />
-          <p>{{nomVoiture}}</p>
-          <p>{{libelle}}</p>
+          <img class="imgvoitureici" src="/image/ecurie/voiture/{{this.imgVoit}}" alt="Voiture" />
+          <p>{{this.nomVoiture}}</p>
+          <p>{{this.libelle}}</p>
         </div>
         {{/each}}
       </div>
@@ -54,40 +54,4 @@
     </div>
 </div>
 
-
-<script type="text/javascript">
-this.zoom_image = function(){
-  xOffset = 10;
-  yOffset = 30;
-  var texte;
-  $(".infobulle").hover(
-    function(e){
-      var pilnum = $(this).attr('value');
-      var idPhoto = "#phoadresseZoom" + pilnum;
-      var idTexte = "#piltexteZoom" + pilnum;
-      var legende = "<h2>"+$(this).text()+ "</h2>" + "<br/>" + $(idTexte).text().substr(0,100) + " ...";
-
-      $("#contenu").append("<div id='zoom'><img src='/image/pilote/"+ $(idPhoto).text() +"' alt='"+$(this).text()+"' /> <div class='textInfobulle'>" + legende+"</div></div>");
-      $("#zoom")
-      .css("top",(e.pageY - xOffset) + "px")
-      .css("left",(e.pageX + yOffset) + "px")
-      .css("display","flex")
-      .css("flex-direction","row")
-      .fadeIn("slow");
-    },
-    function(){
-      $("#zoom").remove();
-    }
-  );
-
-  $("a.infobulle").mousemove(function(e){
-    $("#zoom")
-    .css("top",(e.pageY - xOffset) + "px")
-    .css("left",(e.pageX + yOffset) + "px");
-  });
-};
-
-$(document).ready(function(){
-  zoom_image();
-});
-</script>
+<script src="/JS/infobulle.js" charset="utf-8"></script>

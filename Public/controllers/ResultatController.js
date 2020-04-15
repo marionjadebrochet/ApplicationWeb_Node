@@ -1,9 +1,9 @@
 let model = require('../models/resultat.js');
 
-  // //////////////////////////L I S T E R    R E S U L T A T S
+  // //////////////////////////L I S T E R    R E S U L T A T S /////////////
 module.exports.ListerResultat = function(request, response){
 	response.title = 'Liste des résulats des grands prix';
-	
+
 	model.getListeRes( function (err, result) {
 			if (err) {
 					// gestion de l'erreur
@@ -15,7 +15,7 @@ module.exports.ListerResultat = function(request, response){
 	response.render('listerResultat', response);
 	});
 }
-
+////////////////////// T A B L E A U   R E S U L T A T S ///////////////
 module.exports.DescResultat = 	function(request, response){
 	response.title = 'Liste des résulats des grands prix';
 	let data = request.params.num;
@@ -24,11 +24,11 @@ module.exports.DescResultat = 	function(request, response){
 		function(callback) {
 	    model.getPiloteTemps(data, function (err, result) {
 	      callback(null, result) });
-	  },
+	  }, // result[0] : résultat
 	  function (callback) {
 	    model.getListeRes( function (err, result) {
 	      callback(null, result) });
-	  },
+	  }, // result[1] : liste grand prix
 	],
 	  function (err, result){
 	    if (err) {

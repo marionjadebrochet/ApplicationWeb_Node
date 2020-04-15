@@ -1,7 +1,7 @@
 <table class="tabpayscir">
 	 {{#each listeCircuit}}
-		<tr><td><img src="/image/pays/{{drapeau}}" alt="drapeau du pays" class="drapeau" />
-      <a class="choixliste" href="/detailsCircuit/{{num}}"> {{nom}}</a>
+		<tr><td><img src="/image/pays/{{this.drapeau}}" alt="drapeau du pays" class="drapeau" />
+      <a class="choixliste" href="/detailsCircuit/{{this.num}}"> {{this.nom}}</a>
     </td></tr>
  {{/each}}
 </table>
