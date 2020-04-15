@@ -5,7 +5,7 @@ var async = require('async');
 // ///////////////////////// L I S T E   D E S   E C U R I E S ///////////////////////
 
 module.exports.Ecurie = 	function(request, response){
-
+response.title = 'Écuries';
    model.getListeEcurie( function (err, result) {
        if (err) {
            // gestion de l'erreur
@@ -20,7 +20,7 @@ module.exports.Ecurie = 	function(request, response){
 
 ////////////// P A G E   A J O U T E R   E C U R I E ///////////////
 module.exports.Ajouter = 	function(request, response){
-
+response.title = 'Ajouter un écurie';
 let data = request.params.num;
 
 async.parallel ([
@@ -49,7 +49,7 @@ async.parallel ([
 
 /////////////// A J O U T E R   E C U R I E //////////////////
 module.exports.Ajout = 	function(request, response){
-
+response.title = 'Écuries';
   let data = request.body;
 
   /// suppression des données si pas renseignées///
@@ -104,6 +104,7 @@ module.exports.Ajout = 	function(request, response){
 
 //////////////// P A G E   M O D I F I E R   E C U R I E ////////////////
 module.exports.Modifier = function(request, response){
+  response.title = 'Modifier écurie';
   let data = request.params.num;
 
   async.parallel ([
@@ -130,6 +131,7 @@ module.exports.Modifier = function(request, response){
 
 ////////////////// M O D I F I E R   E C U R I E ////////////////
 module.exports.Modifie = function(request, response){
+  response.title = 'Écuries';
   let data = request.body;
 
 /// suppression des données si pas renseignées///
@@ -186,6 +188,7 @@ module.exports.Modifie = function(request, response){
 
 //////////////// S U P P R I M E R   E C U R I E ////////////
 module.exports.Supprimer = 	function(request, response){
+  response.title = 'Écuries';
 let data = request.params.num;
 
 async.parallel ([

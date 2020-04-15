@@ -5,7 +5,7 @@ var async = require('async');
 // ///////////////////////// L I S T E   D E S   C I R C U I T S /////////////
 
 module.exports.Circuit = 	function(request, response){
-
+  response.title = 'Circuits';
    model.getListeCircuit( function (err, result) {
        if (err) {
            // gestion de l'erreur
@@ -21,7 +21,7 @@ module.exports.Circuit = 	function(request, response){
 //////////// P A G E   A J O U T E R   C I R C U I T ////////////////
 
 module.exports.Ajouter = 	function(request, response){
-
+response.title = 'Ajouter un circuit';
 let data = request.params.num;
 
 async.parallel ([
@@ -50,7 +50,7 @@ async.parallel ([
 
 /////////////// A J O U T E R   C I R C U I T  //////////////////
 module.exports.Ajout = 	function(request, response){
-
+  response.title = 'Circuits';
   let data = request.body;
   //////// si pas de données : on supprime /////
   if(data.cirnom == '')
@@ -100,6 +100,7 @@ module.exports.Ajout = 	function(request, response){
 
 //////////////// P A G E   M O D I F I E R   C I R C U I T ///////
 module.exports.Modifier = function(request, response){
+  response.title = 'Modifier circuits';
   let data = request.params.num;
 
   async.parallel ([
@@ -127,6 +128,7 @@ module.exports.Modifier = function(request, response){
 
 //////////// M O D I F I E R   C U R C U I T /////////////////
 module.exports.Modifie = function(request, response){
+  response.title = 'Circuits';
   let data = request.body;
 // Si pas de données : on supprime
   if(data.cirnom == '')
@@ -179,7 +181,7 @@ module.exports.Modifie = function(request, response){
 
 //////////// S U P P R I M E R   C I R C U I T /////////////
 module.exports.Supprimer = 	function(request, response){
-
+response.title = 'Circuits';
 let data = request.params;
 
 async.parallel ([
@@ -208,7 +210,7 @@ async.parallel ([
 
 //////////////// S U P P R I M E R   C I R C U I T si pas de grand prix ///////////
 module.exports.SupprimerSansGP = 	function(request, response){
-
+response.title = 'Circuits';
 let data = request.params.num;
 
 async.parallel ([

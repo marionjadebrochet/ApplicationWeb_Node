@@ -6,7 +6,7 @@ var async = require('async');
 // //////////////////// L I S T E   D E S   S P O N S O R ////////
 
 module.exports.Sponsor = 	function(request, response){
-
+response.title = 'Sponsors';
    model.getListeSponsor( function (err, result) {
        if (err) {
            // gestion de l'erreur
@@ -21,7 +21,7 @@ module.exports.Sponsor = 	function(request, response){
 
 //////////////////// P A G E   A J O U T E R   S P O N S O R ////////
 module.exports.Ajouter = 	function(request, response){
-
+response.title = 'Ajouter un sponsors';
   async.parallel ([
     function(callback) {
       model.getListeSponsor( function (err, result) {
@@ -48,7 +48,7 @@ module.exports.Ajouter = 	function(request, response){
 
 //////////////////// A J O U T E R   S P O N S O R ////////
 module.exports.Ajout = 	function(request, response){
-
+response.title = 'Sponsors';
   let data = request.body;
 // supprression de l'écunum si pas renseigné
   if(data.ecunum == '')
@@ -80,6 +80,7 @@ module.exports.Ajout = 	function(request, response){
 
 //////////////////// P A G E   M O D I F I E R   S P O N S O R ////////
 module.exports.Modifier = function(request, response){
+  response.title = 'Modifier un sponsors';
   let data = request.params.num;
 
   async.parallel ([
@@ -112,6 +113,7 @@ module.exports.Modifier = function(request, response){
 
 //////////////////// M O D I F I E R   S P O N S O R ////////
 module.exports.Modifie = function(request, response){
+  response.title = 'Sponsors';
   let data = request.body;
 // suppression de ecunum si pas renseigné
   if(data.ecunum == '')
@@ -141,7 +143,7 @@ module.exports.Modifie = function(request, response){
 
 //////////////////// S U P P R I M E R   S P O N S O R ////////
 module.exports.Supprimer = 	function(request, response){
-
+response.title = 'Sponsors';
 let data = request.params.num;
 
 async.parallel ([

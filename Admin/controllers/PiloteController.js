@@ -6,7 +6,7 @@ var async = require('async');
 // ///////////////////// R E P E R T O I R E    D E S    P I L O T E S //////
 
 module.exports.Pilote = 	function(request, response){
-  response.title = 'Pilote';
+  response.title = 'Pilotes';
    model.getListePilote( function (err, result) {
        if (err) {
            // gestion de l'erreur
@@ -48,7 +48,7 @@ module.exports.Ajouter = 	function(request, response){
 
 /////////////// A J O U T   D U   P I L O T E ///////////////////
 module.exports.Ajout = 	function(request, response){
-  response.title = 'Pilote';
+  response.title = 'Pilotes';
   let data = request.body;
   let dataImage = {};
   // supression des données si pas renseigner
@@ -111,7 +111,7 @@ module.exports.Ajout = 	function(request, response){
 
 /////////////// P A G E   M O D I F I E R   P I L O T E  //////////////
 module.exports.Modifier = function(request, response){
-  response.title = 'Pilote';
+  response.title = 'Modifier un pilote';
   let data = request.params.num;
 
   async.parallel ([
@@ -143,7 +143,7 @@ module.exports.Modifier = function(request, response){
 
 //////////////// M O D I F I E R   P I L O T E //////////////
 module.exports.Modifie = function(request, response){
-  response.title = 'Pilote';
+  response.title = 'Pilotes';
   let data = request.body;
   let dataImage = {};
 
@@ -212,7 +212,7 @@ module.exports.Modifie = function(request, response){
 
 /////////////////// S U P P R E S S I O N   D U   P I L O T E ////////////////
 module.exports.Supprimer = 	function(request, response){
-
+response.title = 'Pilotes';
 let data = request.params.num;
 
 async.parallel ([

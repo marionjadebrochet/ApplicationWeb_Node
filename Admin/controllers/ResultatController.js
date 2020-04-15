@@ -3,7 +3,7 @@ var async = require('async');
 
   // ///////////////////////L I S T E R    R E S U L T A T S //////////
   module.exports.Desc = 	function(request, response){
-
+  response.title = 'Résultats';
   async.parallel ([
     function (callback) {
       model.getListeRes( function (err, result) {
@@ -26,6 +26,7 @@ var async = require('async');
 
 ///////////////// T A B L E A U   R E S U L T A T S /////////////////////
 module.exports.Resultat = 	function(request, response){
+  response.title = 'Résultats';
 let data = request.body.gp;
 
 async.parallel ([
@@ -55,6 +56,7 @@ async.parallel ([
 
 ////////////// A J O U T E R   R E S U L T A T //////////////
 module.exports.Ajouter = 	function(request, response){
+  response.title = 'Résultats';
 let data = request.body;
 
 async.series ([
@@ -92,6 +94,7 @@ async.series ([
 
 ///////////////// S U P P R I M E R   R E S U L T A T //////////////
 module.exports.Supprimer = 	function(request, response){
+  response.title = 'Résultats';
 let data = request.params;
 
 async.series ([
