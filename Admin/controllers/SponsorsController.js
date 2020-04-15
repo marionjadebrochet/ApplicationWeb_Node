@@ -3,7 +3,7 @@ let modelEcurie = require('../models/ecurie.js');
 
 var async = require('async');
 
-// ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
+// //////////////////// L I S T E   D E S   S P O N S O R ////////
 
 module.exports.Sponsor = 	function(request, response){
 
@@ -19,17 +19,18 @@ module.exports.Sponsor = 	function(request, response){
 });
 };
 
+//////////////////// P A G E   A J O U T E R   S P O N S O R ////////
 module.exports.Ajouter = 	function(request, response){
 
   async.parallel ([
     function(callback) {
       model.getListeSponsor( function (err, result) {
         callback(null, result) });
-    },
+    },// result[0] : liste sponsors
     function(callback) {
       modelEcurie.getListeEcurie( function (err, result) {
         callback(null, result) });
-    },
+    }, // result[1] : ecuries
   ],
   function (err, result){
     if (err) {
@@ -45,10 +46,11 @@ module.exports.Ajouter = 	function(request, response){
   ); //fin async
 };
 
+//////////////////// A J O U T E R   S P O N S O R ////////
 module.exports.Ajout = 	function(request, response){
 
   let data = request.body;
-
+// supprression de l'écunum si pas renseigné
   if(data.ecunum == '')
     delete data.ecunum;
 
@@ -56,11 +58,11 @@ module.exports.Ajout = 	function(request, response){
     function (callback) {
       model.ajouterSponsors(data, function (err, result) {
         callback(null, result) });
-    },
+    }, // ajouter sponsor
     function(callback) {
       model.getListeSponsor( function (err, result) {
         callback(null, result) });
-    },
+    }, // result[1] : liste sponsor
   ],
     function (err, result){
       if (err) {
@@ -76,6 +78,7 @@ module.exports.Ajout = 	function(request, response){
   ); //fin async
 };
 
+//////////////////// P A G E   M O D I F I E R   S P O N S O R ////////
 module.exports.Modifier = function(request, response){
   let data = request.params.num;
 
@@ -83,15 +86,15 @@ module.exports.Modifier = function(request, response){
     function(callback) {
       model.getEcuSpo(data, function (err, result) {
         callback(null, result) });
-    },
+    }, // result[0] : ecurie
     function(callback) {
       modelEcurie.getListeEcurie( function (err, result) {
         callback(null, result) });
-    },
+    }, // result[0] : ecuries
     function(callback) {
       model.getSponsor(data, function (err, result) {
         callback(null, result) });
-    },
+    }, // result[0] : sponsor
   ],
     function (err, result){
       if (err) {
@@ -107,10 +110,10 @@ module.exports.Modifier = function(request, response){
 });
 };
 
-
+//////////////////// M O D I F I E R   S P O N S O R ////////
 module.exports.Modifie = function(request, response){
   let data = request.body;
-
+// suppression de ecunum si pas renseigné
   if(data.ecunum == '')
     delete data.ecunum;
 
@@ -118,11 +121,11 @@ module.exports.Modifie = function(request, response){
     function(callback) {
       model.modifierSponsors(data, function (err, result) {
         callback(null, result) });
-    },
+    }, // modifier sponsor
     function(callback) {
       model.getListeSponsor( function (err, result) {
         callback(null, result) });
-    },
+    }, // result[1] : liste sponsor
   ],
     function (err, result){
       if (err) {
@@ -136,24 +139,20 @@ module.exports.Modifie = function(request, response){
 });
 };
 
-
+//////////////////// S U P P R I M E R   S P O N S O R ////////
 module.exports.Supprimer = 	function(request, response){
 
 let data = request.params.num;
 
 async.parallel ([
   function (callback) {
-
-
     model.supSponsor(data, function (err, result) {
       callback(null, result) });
-
-  },
+  }, // suppression du sponsor
   function (callback) {
     model.getListeSponsor( function (err, result) {
       callback(null, result) });
-
-  },
+  }, // result[1] : liste sponsor
 ],
   function (err, result){
     if (err) {

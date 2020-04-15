@@ -10,15 +10,15 @@
       </tr>
       {{#each listeEcurie}}
         <tr>
-            <td>{{nom}}</td>
-            <td>{{dir}}</td>
-            <td>{{point}} </td>
+            <td>{{this.nom}}</td>
+            <td>{{this.dir}}</td>
+            <td>{{this.point}} </td>
             <td> <div class="modsup">
               <div class="mod">
-              <a href="/modifierEcurie/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+              <a href="/modifierEcurie/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
               </div>
               <div class="sup">
-               <a href="/supprimerEcurie/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+               <a href="/supprimerEcurie/{{this.num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
              </div>
              </td>
              </div>
@@ -27,28 +27,13 @@
 </table>
 
 {{#if est_supprime}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("L'écurie a bien été supprimée");
-    document.location.href="/listerEcurie";
-  });
-</script>
+<script src="/JS/estSupprimeEcurie.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_ajoute}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("L'écurie a bien été ajoutée !");
-    document.location.href="/listerEcurie";
-  });
-</script>
+<script src="/JS/estAjouteEcurie.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_modifie}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("L'écurie a bien été modifiée");
-    document.location.href="/listerEcurie";
-  });
-</script>
+<script src="/JS/estModifieEcurie.js" charset="utf-8"></script>
 {{/if}}

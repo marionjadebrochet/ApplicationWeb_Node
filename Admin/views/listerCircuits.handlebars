@@ -10,15 +10,15 @@
       </tr>
       {{#each listeCircuit}}
         <tr>
-            <td>{{nom}}</td>
-            <td>{{longu}}</td>
-            <td>{{nbrSpec}} </td>
+            <td>{{this.nom}}</td>
+            <td>{{this.longu}}</td>
+            <td>{{this.nbrSpec}} </td>
             <td><div class="modsup">
               <div class="mod">
-                <a href="/modifierCircuit/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+                <a href="/modifierCircuit/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
               </div>
                 <div class="sup">
-              <a href="/supprimerCircuit/{{num}}{{#ifCond gpnum '==' NULL}}{{else}}/{{gpnum}}{{/ifCond}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+              <a href="/supprimerCircuit/{{this.num}}{{#ifCond gpnum '==' NULL}}{{else}}/{{gpnum}}{{/ifCond}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
             </div>
           </td>
           </div>
@@ -27,28 +27,13 @@
 </table>
 
 {{#if est_supprime}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le circuit a bien été supprimé");
-    document.location.href="/listerCircuits";
-  });
-</script>
+<script src="/JS/estSupprimeCircuit.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_ajoute}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le circuit a bien été ajouté !");
-    document.location.href="/listerCircuits";
-  });
-</script>
+<script src="/JS/estAjouteCircuit.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_modifie}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le circuit  a bien été modifié");
-    document.location.href="/listerCircuits";
-  });
-</script>
+<script src="/JS/estModifieCircuit.js" charset="utf-8"></script>
 {{/if}}

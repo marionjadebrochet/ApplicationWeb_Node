@@ -38,28 +38,4 @@
   <button type="submit">AJOUTER</button>
 </form>
 
-<script type="text/javascript">
-  function chooseFile() {
-    $('#inputAjoutImgCir').click();
-    $('#buttonImgCircuit').remove();
-  }
-  function inputFile() {
-    $('#inputAjoutImgCir').click();
-  }
-  function agrandire() {
-    $('#imageAjoutCircuit').hover(function() {
-      $('#imageAjoutCircuit').animate({'height': '70px'}, 'medium');
-    },
-    function () {
-      $('#imageAjoutCircuit').animate({'height': '60px'}, 'medium');
-    });
-  }
-  function changeImage() {
-    $('#imageAjoutCircuit').attr('style','height: 60px;');
-    var image = document.getElementById('imageAjoutCircuit');
-	   image.src = URL.createObjectURL(event.target.files[0]);
-  }
-  $(document).ready(function() {
-    agrandire();
-  });
-</script>
+<script src="/JS/ajouterImageCircuit.js" charset="utf-8"></script>

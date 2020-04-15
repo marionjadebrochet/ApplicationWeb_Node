@@ -1,16 +1,7 @@
-/*
-* config.Db contient les parametres de connection à la base de données
-* il va créer aussi un pool de connexions utilisables
-* sa méthode getConnection permet de se connecter à MySQL
-*
-*/
-
 let db = require('../configDb');
 
-/*
-* Récupérer l'intégralité les écuries avec l'adresse de la photo du pays de l'écurie
-* @return Un tableau qui contient le N°, le nom de l'écurie et le nom de la photo du drapeau du pays
-*/
+
+//////////////////// liste pilotes //////////////////////////////
 module.exports.getListePilote = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
@@ -29,6 +20,8 @@ module.exports.getListePilote = function (callback) {
       });
 };
 
+
+///////////////// récupérer nationnalités ///////////////////
 module.exports.getNationalite = function (callback) {
 
 	db.getConnection(function(err, connexion){
@@ -43,6 +36,7 @@ module.exports.getNationalite = function (callback) {
 	});
 };
 
+/////////////////////// ajouter pilote /////////////////////////////
 module.exports.ajouterPilote = function (data, dataImage, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -67,12 +61,12 @@ module.exports.ajouterPilote = function (data, dataImage, callback) {
 				connexion.query(sql, data, callback);
 			}
 
-
 			connexion.release();
 		}
 	});
 };
 
+///////////////////////// détails pilote ///////////////////////
 module.exports.getPilote = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -93,6 +87,8 @@ module.exports.getPilote = function (data, callback) {
       });
 };
 
+
+////////////////////////// modifier un pilote /////////////////////////
 module.exports.modifierPilote = function (data, dataImage, callback) {
 console.log(dataImage);
 	db.getConnection(function(err, connexion){
@@ -120,7 +116,7 @@ console.log(dataImage);
 										+ " and pilnum ="	+ connexion.escape(data.pilnum);
 							connexion.query(sql3, dataImage, callback);
 						} else { // si rien est modifié
-						
+
 						connexion.query(sql, data, callback);
 						}
 					}
@@ -130,6 +126,8 @@ console.log(dataImage);
   });
 };
 
+
+///////////////////// supprimer un pilote //////////////////////////
 module.exports.supprimerPi = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {

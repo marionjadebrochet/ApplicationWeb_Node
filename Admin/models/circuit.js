@@ -1,16 +1,6 @@
-/*
-* config.Db contient les parametres de connection à la base de données
-* il va créer aussi un pool de connexions utilisables
-* sa méthode getConnection permet de se connecter à MySQL
-*
-*/
-
 let db = require('../configDb');
 
-/*
-* Récupérer l'intégralité les écuries avec l'adresse de la photo du pays de l'écurie
-* @return Un tableau qui contient le N°, le nom de l'écurie et le nom de la photo du drapeau du pays
-*/
+//////////////// liste circuits //////////////////////
 module.exports.getListeCircuit = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
@@ -32,7 +22,7 @@ module.exports.getListeCircuit = function (callback) {
       });
 };
 
-//le 'data' de t'as fonction contiens donc le num passé dans l'adresse
+///////////////////// supprimer ciruit //////////////////////////
 			module.exports.supCir = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
@@ -50,6 +40,7 @@ module.exports.getListeCircuit = function (callback) {
     });
 }
 
+//////////////////// supprimer circuit sans grand prix /////////////////
 module.exports.supCirSansGP = function (data, callback) {
 db.getConnection(function (err, connexion) {
 	if (!err) {
@@ -60,7 +51,7 @@ db.getConnection(function (err, connexion) {
 	}
 });
 }
-
+ //////////////////// récupérer les pays ///////////////////
 module.exports.getPays = function (callback) {
 
 	db.getConnection(function(err, connexion){
@@ -75,6 +66,8 @@ module.exports.getPays = function (callback) {
 	});
 };
 
+
+////////////// ajouter un circuit /////////////////////
 module.exports.ajouterCircuit = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -87,6 +80,8 @@ module.exports.ajouterCircuit = function (data, callback) {
 	});
 };
 
+
+//////////////// détails circuit ///////////////////////
 module.exports.getCircuit = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -103,6 +98,8 @@ module.exports.getCircuit = function (data, callback) {
 			});
 };
 
+
+////////////////// modifier circuit ///////////////////////
 module.exports.modifierCircuit= function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -110,7 +107,7 @@ module.exports.modifierCircuit= function (data, callback) {
 
 						let sql ="update circuit set ? where cirnum = "
 									+ connexion.escape(data.cirnum);
-								
+
             connexion.query(sql, data, callback);
 
             connexion.release();

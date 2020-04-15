@@ -15,7 +15,6 @@ module.exports = function(app){
     app.get('/accueil', HomeController.Index);
 
 // connexion
-    //app.get('/connexion', ConnexionController.Connexion);
     app.post('/accueil', ConnexionController.VerifConnexion);
     app.get('/deconnexion', ConnexionController.deconnexion);
 

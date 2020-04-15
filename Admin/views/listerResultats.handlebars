@@ -7,7 +7,7 @@
 
   <select name="gp" id="gp_select">
       {{#each listeGrandPrix}}
-      <option value="{{num}}">{{nom}}</option>
+      <option value="{{this.num}}">{{this.nom}}</option>
       {{/each}}
   </select>
   <br>

@@ -1,16 +1,6 @@
-/*
-* config.Db contient les parametres de connection à la base de données
-* il va créer aussi un pool de connexions utilisables
-* sa méthode getConnection permet de se connecter à MySQL
-*
-*/
-
 let db = require('../configDb');
 
-/*
-* Récupérer l'intégralité les écuries avec l'adresse de la photo du pays de l'écurie
-* @return Un tableau qui contient le N°, le nom de l'écurie et le nom de la photo du drapeau du pays
-*/
+//////////////////// liste écurie //////////////////////////
 module.exports.getListeEcurie = function (callback) {
    // connection à la base
 	db.getConnection(function(err, connexion){
@@ -29,6 +19,7 @@ module.exports.getListeEcurie = function (callback) {
       });
 };
 
+////////////////////////// supprimer écurie ////////////////////////
 module.exports.supEcu = function (data, callback) {
     db.getConnection(function (err, connexion) {
         if (!err) {
@@ -46,6 +37,8 @@ module.exports.supEcu = function (data, callback) {
     });
 }
 
+
+/////////////////////// récupérer les pays ///////////////////////////
 module.exports.getPays = function (callback) {
 
 	db.getConnection(function(err, connexion){
@@ -60,6 +53,8 @@ module.exports.getPays = function (callback) {
 	});
 };
 
+
+//////////////////////// détails écurie ///////////////////////////////
 module.exports.getEcurie = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -67,7 +62,7 @@ module.exports.getEcurie = function (data, callback) {
 
 						let sql ="SELECT ecunum, ecunom, ecunomdir, ecuadrsiege, ecupoints, ecuadresseimage, p.paynum, paynom"
 								+ " FROM ecurie e"
-								+ " JOIN pays p on p.paynum=e.paynum"
+								+ " LEFT JOIN pays p on p.paynum=e.paynum"
 								+ " WHERE ecunum = " + connexion.escape(data);
 
             connexion.query(sql, callback);
@@ -77,6 +72,7 @@ module.exports.getEcurie = function (data, callback) {
       });
 };
 
+////////////////////// ajouter écurie ////////////////////////////////
 module.exports.ajouterEcurie = function (data, callback) {
 
 	db.getConnection(function(err, connexion){
@@ -89,7 +85,7 @@ module.exports.ajouterEcurie = function (data, callback) {
 	});
 };
 
-
+///////////////////////// modifier écurie ///////////////////////////////
 module.exports.modifierEcurie = function (data, callback) {
 
 	db.getConnection(function(err, connexion){

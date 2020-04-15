@@ -2,7 +2,7 @@ let model = require('../models/circuit.js');
 
 var async = require('async');
 
-// ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
+// ///////////////////////// L I S T E   D E S   C I R C U I T S /////////////
 
 module.exports.Circuit = 	function(request, response){
 
@@ -18,7 +18,7 @@ module.exports.Circuit = 	function(request, response){
 });
 };
 
-
+//////////// P A G E   A J O U T E R   C I R C U I T ////////////////
 
 module.exports.Ajouter = 	function(request, response){
 
@@ -28,11 +28,11 @@ async.parallel ([
   function (callback) {
     model.getPays(function (err, result) {
       callback(null, result) });
-  },
+  }, // result[0] : pays
   function (callback) {
     model.getListeCircuit( function (err, result) {
       callback(null, result) });
-  },
+  }, // result[0] : liste circuit
 ],
   function (err, result){
     if (err) {
@@ -48,7 +48,7 @@ async.parallel ([
 ); //fin async
 };
 
-
+/////////////// A J O U T E R   C I R C U I T  //////////////////
 module.exports.Ajout = 	function(request, response){
 
   let data = request.body;
@@ -68,21 +68,21 @@ module.exports.Ajout = 	function(request, response){
   image.mv('./public/image/circuit/' + image.name , function(err) {
    if (err)
      console.log(err);
-   });
+   }); // ajout partie admin
    image.mv('../public/public/image/circuit/' + image.name , function(err) {
     if (err)
       console.log(err);
-    });
+    }); // ajout partie public
 
   async.parallel ([
     function (callback) {
       model.ajouterCircuit(data, function (err, result) {
         callback(null, result) });
-    }, // ajout du pilote dans la bd
+    }, // ajout du circuit dans la bd
     function(callback) {
       model.getListeCircuit( function (err, result) {
         callback(null, result) });
-    }, //result[1] : listePilote
+    }, //result[1] : liste Circuits
   ],
     function (err, result){
       if (err) {
@@ -98,6 +98,7 @@ module.exports.Ajout = 	function(request, response){
   ); //fin async
 };
 
+//////////////// P A G E   M O D I F I E R   C I R C U I T ///////
 module.exports.Modifier = function(request, response){
   let data = request.params.num;
 
@@ -105,11 +106,11 @@ module.exports.Modifier = function(request, response){
     function(callback) {
       model.getPays(function (err, result) {
         callback(null, result) });
-    },
+    }, // result[0] : pays
     function(callback) {
       model.getCircuit(data, function (err, result) {
         callback(null, result) });
-    },
+    }, // result[1] : circuit
   ],
     function (err, result){
       if (err) {
@@ -124,9 +125,10 @@ module.exports.Modifier = function(request, response){
 });
 };
 
+//////////// M O D I F I E R   C U R C U I T /////////////////
 module.exports.Modifie = function(request, response){
   let data = request.body;
-
+// Si pas de données : on supprime
   if(data.cirnom == '')
     delete data.cirnom;
   if(data.cirnbspectateurs == '')
@@ -144,11 +146,11 @@ module.exports.Modifie = function(request, response){
     image.mv('./public/image/circuit/' + image.name , function(err) {
      if (err)
        console.log(err);
-     });
+     }); // ajout partie admin
      image.mv('../public/public/image/circuit/' + image.name , function(err) {
       if (err)
         console.log(err);
-      });
+      }); // ajout partie public
   } else {
     delete data.ciradresseimage;
   }
@@ -157,11 +159,11 @@ module.exports.Modifie = function(request, response){
     function(callback) {
       model.modifierCircuit(data, function (err, result) {
         callback(null, result) });
-    },
+    }, // modifier le circuit
     function(callback) {
       model.getListeCircuit( function (err, result) {
         callback(null, result) });
-    },
+    }, // result[1] : liste circuits
   ],
     function (err, result){
       if (err) {
@@ -175,7 +177,7 @@ module.exports.Modifie = function(request, response){
 });
 };
 
-
+//////////// S U P P R I M E R   C I R C U I T /////////////
 module.exports.Supprimer = 	function(request, response){
 
 let data = request.params;
@@ -184,11 +186,11 @@ async.parallel ([
   function (callback) {
     model.supCir(data, function (err, result) {
       callback(null, result) });
-  },
+  }, // supprimer circuit
   function (callback) {
     model.getListeCircuit( function (err, result) {
       callback(null, result) });
-  },
+  }, // result[1] : liste circuits
 ],
   function (err, result){
     if (err) {
@@ -198,14 +200,13 @@ async.parallel ([
     }
 
     response.listeCircuit = result[1];
-
     response.est_supprime = true;
-
     response.render('listerCircuits', response);
   }
 ); //fin async
 };
 
+//////////////// S U P P R I M E R   C I R C U I T si pas de grand prix ///////////
 module.exports.SupprimerSansGP = 	function(request, response){
 
 let data = request.params.num;
@@ -214,11 +215,11 @@ async.parallel ([
   function (callback) {
     model.supCirSansGP(data, function (err, result) {
       callback(null, result) });
-  },
+  }, // supprimer circuit
   function (callback) {
     model.getListeCircuit( function (err, result) {
       callback(null, result) });
-  },
+  }, // result[1] : liste circuit
 ],
   function (err, result){
     if (err) {
@@ -228,9 +229,7 @@ async.parallel ([
     }
 
     response.listeCircuit = result[1];
-
     response.est_supprime = true;
-
     response.render('listerCircuits', response);
   }
 ); //fin async

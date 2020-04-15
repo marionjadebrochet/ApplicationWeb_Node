@@ -3,7 +3,7 @@ let model = require('../models/pilote.js'),
 
 var async = require('async');
 
-// ///////////////////////// R E P E R T O I R E    D E S    P I L O T E S
+// ///////////////////// R E P E R T O I R E    D E S    P I L O T E S //////
 
 module.exports.Pilote = 	function(request, response){
   response.title = 'Pilote';
@@ -19,6 +19,7 @@ module.exports.Pilote = 	function(request, response){
 });
 };
 
+////////////////// P A G E   A J O U T E R   P I L O T E ////////////////////
 module.exports.Ajouter = 	function(request, response){
   response.title = 'Ajouter un pilote';
 
@@ -45,12 +46,13 @@ module.exports.Ajouter = 	function(request, response){
   ); //fin async
 };
 
+/////////////// A J O U T   D U   P I L O T E ///////////////////
 module.exports.Ajout = 	function(request, response){
   response.title = 'Pilote';
   let data = request.body;
   let dataImage = {};
-  // supression de pilpoints et ecunum si pas renseigner
-  // pour qu'il soit mis à null dans la bd
+  // supression des données si pas renseigner
+  // pour qu'elles soient mises à null dans la bd
   if(data.pilpoints == '')
     delete data.pilpoints;
   if(data.ecunum == '')
@@ -63,7 +65,7 @@ module.exports.Ajout = 	function(request, response){
     delete data.pildatenais;
 
 /////////// ajout photo d'indentité /////////////////
-    if(request.files) {
+    if(request.files) { // si photo ajoutée
       let image = request.files.image;
       //////// ajout de l'adresse de l'image dans data //////
       dataImage.phoadresse = image.name;
@@ -76,11 +78,11 @@ module.exports.Ajout = 	function(request, response){
       image.mv('./public/image/pilote/' + image.name , function(err) {
        if (err)
          console.log(err);
-       });
+       }); // ajout partie admin
        image.mv('../public/public/image/pilote/' + image.name , function(err) {
         if (err)
           console.log(err);
-       });
+       }); // ajout partie public
     }
 
   async.parallel ([
@@ -107,7 +109,7 @@ module.exports.Ajout = 	function(request, response){
   ); //fin async
 };
 
-
+/////////////// P A G E   M O D I F I E R   P I L O T E  //////////////
 module.exports.Modifier = function(request, response){
   response.title = 'Pilote';
   let data = request.params.num;
@@ -139,11 +141,13 @@ module.exports.Modifier = function(request, response){
 });
 };
 
+//////////////// M O D I F I E R   P I L O T E //////////////
 module.exports.Modifie = function(request, response){
   response.title = 'Pilote';
   let data = request.body;
   let dataImage = {};
 
+// suppression des données si pas renseignées
   if(data.pilpoints == '')
     delete data.pilpoints;
   if(data.ecunum == '')
@@ -156,7 +160,7 @@ module.exports.Modifie = function(request, response){
     delete data.pildatenais;
 
 /////////// ajout photo d'indentité /////////////////
-  if(request.files) {
+  if(request.files) { // si nouvelle photo
 
     let image = request.files.image;
     //////// ajout de l'adresse de l'image dans data //////
@@ -171,14 +175,14 @@ module.exports.Modifie = function(request, response){
     image.mv('./public/image/pilote/' + image.name , function(err) {
      if (err)
        console.log(err);
-     });
+     }); // ajout partie admin
      image.mv('../public/public/image/pilote/' + image.name , function(err) {
       if (err)
         console.log(err);
-     });
+     }); // ajout partie public
   } else {
     if (data.phocommentaire) {
-
+      // si uniquement commentaire modifié
       dataImage.phocommentaire = data.phocommentaire;
       delete data.phocommentaire;
     }
@@ -206,22 +210,20 @@ module.exports.Modifie = function(request, response){
 });
 };
 
+/////////////////// S U P P R E S S I O N   D U   P I L O T E ////////////////
 module.exports.Supprimer = 	function(request, response){
 
 let data = request.params.num;
 
 async.parallel ([
   function (callback) {
-
     model.supprimerPi(data, function (err, result) {
       callback(null, result) });
-
-  },
+  }, // suppression du pilote
   function (callback) {
     model.getListePilote( function (err, result) {
       callback(null, result) });
-
-  },
+  }, // result[1] : liste pilote
 ],
   function (err, result){
     if (err) {
@@ -232,7 +234,6 @@ async.parallel ([
 
     response.listePilote = result[1];
     response.est_supprime = true;
-
     response.render('listerPilote', response);
   }
 ); //fin async

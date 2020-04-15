@@ -5,11 +5,11 @@
 
   <div class="row">
     <label class="auto" for="Nom">Nom</label>
-    <input class="auto" type="text" name="cirnom" id="Nom"  value="{{circuit.cirnom}}" required />
+    <input class="auto" type="text" name="cirnom" id="Nom"  value="{{circuit.cirnom}}"  />
   </div>
   <div class="row">
     <label class="auto" for="Longueur">Longueur</label>
-    <input class="auto" type="text" name="CIRLONGUEUR" id="Long" value="{{circuit.CIRLONGUEUR}}" required />
+    <input class="auto" type="text" name="cirlongueur" id="Long" value="{{circuit.CIRLONGUEUR}}"  />
   </div>
   <div class="row">
     <label class="auto" for="pays">Pays</label>
@@ -22,7 +22,7 @@
   </div>
   <div class="row">
     <label class="auto" for="Personne">Nombre de spectateurs</label>
-    <input class="autoPetit" type="number" name="CIRNBSPECTATEURS" id="Personne"  value="{{circuit.CIRNBSPECTATEURS}}" required/> personnes
+    <input class="autoPetit" type="number" name="cirnbspectateurs" id="Personne"  value="{{circuit.CIRNBSPECTATEURS}}" /> personnes
   </div>
 
   <div class="row">
@@ -44,23 +44,4 @@
   <button type="submit">MODIFIER</button>
 </form>
 
-<script type="text/javascript">
-  function inputFile() {
-    $('#inputModifImgCir').click();
-  }
-  function agrandire() {
-    $('#imageModifCircuit').hover(function() {
-      $('#imageModifCircuit').animate({'height': '70px'}, 'medium');
-    },
-    function () {
-      $('#imageModifCircuit').animate({'height': '60px'}, 'medium');
-    });
-  }
-  function changeImage() {
-    var image = document.getElementById('imageModifCircuit');
-	   image.src = URL.createObjectURL(event.target.files[0]);
-  }
-  $(document).ready(function() {
-    agrandire();
-  });
-</script>
+<script src="/JS/modifierImageCircuit.js" charset="utf-8"></script>

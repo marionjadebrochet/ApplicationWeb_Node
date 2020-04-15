@@ -9,14 +9,14 @@
       </tr>
       {{#each listeSponsor}}
         <tr>
-            <td>{{nom}}</td>
-            <td>{{act}}</td>
+            <td>{{this.nom}}</td>
+            <td>{{this.act}}</td>
             <td><div class="modsup">
               <div class="modspo">
-                <a href="/modifierSponsors/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+                <a href="/modifierSponsors/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
               </div>
               <div class="sup">
-                <a href="/supprimerSponsor/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+                <a href="/supprimerSponsor/{{this.num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
               </div>
             </td>
             </div>
@@ -25,28 +25,13 @@
 </table>
 
 {{#if est_supprime}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le sponsor a bien été supprimé");
-    document.location.href="/listerSponsors";
-  });
-</script>
+<script src="/JS/estSupprimeSponsor.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_ajoute}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le nouveau sponsor a bien été ajouté !");
-    document.location.href="/listerSponsors";
-  });
-</script>
+<script src="/JS/estAjouteSponsor.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_modifie}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le sponsor a bien été modifié");
-    document.location.href="/listerSponsors";
-  });
-</script>
+<script src="/JS/estModifieSponsor.js" charset="utf-8"></script>
 {{/if}}

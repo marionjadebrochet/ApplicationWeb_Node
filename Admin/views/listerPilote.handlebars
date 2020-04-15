@@ -10,15 +10,15 @@
       </tr>
       {{#each listePilote}}
         <tr>
-            <td>{{nom}}</td>
-            <td>{{prenom}}</td>
-            <td>{{formatDate dateNai 'DD/MM/YYYY' }} </td>
+            <td>{{this.nom}}</td>
+            <td>{{this.prenom}}</td>
+            <td>{{formatDate this.dateNai 'DD/MM/YYYY' }} </td>
             <td> <div class="modsup">
               <div class="mod">
-                <a href="/modifierPilote/{{num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
+                <a href="/modifierPilote/{{this.num}}"><img src="/image/act_edit.png"><p>Modifier</p></a>
               </div>
               <div class="sup">
-                <a href="/supprimerPilote/{{num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
+                <a href="/supprimerPilote/{{this.num}}"><img src="/image/act_delete.png"><p>Supprimer</p></a>
               </div>
             </td>
             </div>
@@ -27,28 +27,13 @@
 </table>
 
 {{#if est_ajoute}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le nouveau pilote a bien été ajouté !");
-    document.location.href="/listerPilote";
-  });
-</script>
+<script src="/JS/estAjoutePilote.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_supprime}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le pilote a bien été supprimé");
-    document.location.href="/listerPilote";
-  });
-</script>
+<script src="/JS/estSupprimePilote.js" charset="utf-8"></script>
 {{/if}}
 
 {{#if est_modifie}}
-<script type="text/javascript">
-  $(document).ready(function() {
-    alert("Le pilote a bien été modifié");
-    document.location.href="/listerPilote";
-  });
-</script>
+<script src="/JS/estModifiePilote.js" charset="utf-8"></script>
 {{/if}}
